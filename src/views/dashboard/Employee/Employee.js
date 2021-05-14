@@ -54,6 +54,7 @@ const Tables = () => {
     const [shiftId, setshiftId] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
     const [rfid, setrfid] = useState("");
+  const [employeeEmail, setemail] = useState("");
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -80,6 +81,9 @@ const Tables = () => {
     const onChangeemployeeTypeId = (e) => {
         setemployeeTypeId( e.target.value );
     };
+  const onChangeemail = (e) => {
+    setemail( e.target.value );
+  };
 
     const token = localStorage.getItem("Token")
     const headers = {
@@ -119,7 +123,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId} );
+        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail} );
 
 
     const headers = {
@@ -294,6 +298,16 @@ const Tables = () => {
                       <CFormText>Type your RFID</CFormText>
                   </CCol>
                 </CFormGroup>
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="select">Password</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" placeholder="email" value={employeeEmail} onChange={onChangeemail} />
+                      <CFormText>Type your Email</CFormText>
+                    </CCol>
+                  </CFormGroup>
+
 
 
                 </CForm>
