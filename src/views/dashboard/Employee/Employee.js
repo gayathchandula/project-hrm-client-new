@@ -52,6 +52,7 @@ const Tables = () => {
   const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [shiftId, setshiftId] = useState("");
+  const [accountNumber, setaccountnumber] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
     const [rfid, setrfid] = useState("");
   const [employeeEmail, setemail] = useState("");
@@ -83,6 +84,9 @@ const Tables = () => {
     };
   const onChangeemail = (e) => {
     setemail( e.target.value );
+  };
+  const onChangeaccountnumber = (e) => {
+    setaccountnumber( e.target.value );
   };
 
     const token = localStorage.getItem("Token")
@@ -123,7 +127,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail} );
+        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber} );
 
 
     const headers = {
@@ -307,7 +311,15 @@ const Tables = () => {
                       <CFormText>Type your Email</CFormText>
                     </CCol>
                   </CFormGroup>
-
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="select">Account number</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" placeholder="accountnumber" value={accountNumber} onChange={onChangeaccountnumber} />
+                      <CFormText>Type your Account number</CFormText>
+                    </CCol>
+                  </CFormGroup>
 
 
                 </CForm>
