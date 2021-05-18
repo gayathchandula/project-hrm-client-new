@@ -32,6 +32,16 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Department',
+    to: '/Department',
+    icon: <CIcon name="cil-puzzle"
+                 customClasses="c-sidebar-nav-icon"/>,
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Admin',
     to: '/Admin',
     icon: <CIcon name="cil-cursor" customClasses="c-sidebar-nav-icon"/>,
@@ -113,7 +123,7 @@ const _nav =  [
       },
     ],
   },
-  
+
   {
     _tag: 'CSidebarNavDivider'
   },
@@ -149,7 +159,7 @@ const _nav =  [
       },
     ],
   },
-  
+
   {
     _tag: 'CSidebarNavDivider',
     className: 'm-2'
@@ -200,7 +210,7 @@ const _nav =  [
     _tag: 'CSidebarNavDivider',
     className: 'm-2'
   },
- 
+
 ]
 
 export default _nav
