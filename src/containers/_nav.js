@@ -42,6 +42,16 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Designation',
+    to: '/Designation',
+    icon: <CIcon name="cil-puzzle"
+                 customClasses="c-sidebar-nav-icon"/>,
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Admin',
     to: '/Admin',
     icon: <CIcon name="cil-cursor" customClasses="c-sidebar-nav-icon"/>,

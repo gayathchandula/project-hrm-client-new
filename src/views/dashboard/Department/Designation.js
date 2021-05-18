@@ -44,8 +44,8 @@ const fields = ['id','Employee_type', 'createdAt', 'updatedAt', {
 const Tables = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
-  const [designationName, setDesignation] = useState("");
-  const [departmentName, setDepartment] = useState("");
+  const [Designation, setDesignation] = useState("");
+  const [Department, setDepartment] = useState("");
   const [Employee_type, setEmployee_type] = useState("");
   const [rfid, setrfid] = useState("");
   const [listData, setListData] = useState({ lists: [] });
@@ -54,7 +54,7 @@ const Tables = () => {
   const components = {
     DropdownIndicator: null,
   };
-   const onChangeDepartment = (e) => {
+  const onChangeDepartment = (e) => {
     setDepartment( e.target.value );
   };
   const onChangeDesignation = (e) => {
@@ -97,7 +97,7 @@ const Tables = () => {
   const onSubmit = async (data) => {
 
 
-    const body = ({departmentName,designationName} );
+    const body = ({Department,Designation} );
     axios.defaults.baseURL = "https://hrm-innovigent.herokuapp.com/api/v1";
 
     const headers = {
@@ -107,7 +107,7 @@ const Tables = () => {
       }
     };
 
-    axios.post(`/organizations/${orgid}/department/create`, body, headers)
+    axios.post(`/organizations/${orgid}/employeetypes`, body, headers)
       .then((res) => {
         if (res.status === 200) {
           alert('upload success');
@@ -160,7 +160,7 @@ const Tables = () => {
                     <CLabel htmlFor="text-input">Department Name</CLabel>
                   </CCol>
                   <CCol xs="12" md="6">
-                    <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={departmentName} onChange={onChangeDepartment}/>
+                    <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={Department} onChange={onChangeDepartment}/>
                     <CFormText>Enter New Department</CFormText>
                   </CCol>
                 </CFormGroup>

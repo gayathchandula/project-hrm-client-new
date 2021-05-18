@@ -40,6 +40,7 @@ const LeaveAcceptance = React.lazy(() => import('./containers/TheLayout'));
 const Updateshift = React.lazy(() => import('./containers/TheLayout'));
 const Updateot = React.lazy(() => import('./containers/TheLayout'));
 const Department = React.lazy(() => import('./containers/TheLayout'));
+const Designation = React.lazy(() => import('./containers/TheLayout'));
 
 function App () {
 
@@ -70,6 +71,7 @@ function App () {
               <Route exact path="/Shift Configuration" name="OvertimeConfiguration"  render={props => <ShiftConfiguration {...props}/>} />
               <Route exact path="/Updateshift" name="Updateshift"  render={props => <Updateshift {...props}/>} />
               <Route exact path="/Updateot" name="Updateot"  render={props => <Updateot {...props}/>} />
+              <Route exact path="/Designation" name="Designation"  render={props => <Designation {...props}/>} />
               <Route exact path="/Leave Types" name="LeaveTypes"  render={props => <LeaveTypes {...props}/>} />
               <Route exact path="/Leave Application" name="LeaveApplication"  render={props => <LeaveApplication {...props}/>} />
               <Route exact path="/Leave configuration" name="LeaveConfiguration"  render={props => <LeaveConfiguration {...props}/>} />

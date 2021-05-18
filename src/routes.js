@@ -57,6 +57,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const Department = React.lazy(() => import('./views/dashboard/Department/Department'));
+const Designation = React.lazy(() => import('./views/dashboard/Department/Designation'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -75,6 +76,7 @@ const routes = [
   { path: '/Overtime Configuration', name: 'Overtime Configuration', component: OvertimeConfiguration },
   { path: '/Shift Configuration', name: 'Shift Configuration', component: ShiftConfiguration },
   { path: '/Department', name: 'Department', component: Department },
+  { path: '/Designation', name: 'Designation', component: Designation },
   { path: '/Updateshift', name: 'Updateshift', component: Updateshift },
   { path: '/Updateot', name: 'Updateot', component: Updateot },
   { path: '/Leave Types', name: 'Leave Types', component: LeaveTypes },
