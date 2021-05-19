@@ -60,6 +60,12 @@ const Tables = () => {
   const [designationName, setdesignationName] = useState("");
   const [accountHolderName, setaccountHolderName] = useState("");
   const [branchName, setbranchName] = useState("");
+  const [bankName, setbankName] = useState("");
+  const [epf, setepf] = useState("");
+  const [gender, setgender] = useState("");
+  const [phone, setphone] = useState("");
+  const [address, setaddress] = useState("");
+  const [DOB, setDOB] = useState("");
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -76,11 +82,29 @@ const Tables = () => {
     const onChangefirstName = (e) => {
         setfirstName(e.target.value);
     };
+  const onChangebankName = (e) => {
+    setbankName(e.target.value);
+  };
+  const onChangeaddress = (e) => {
+    setaddress(e.target.value);
+  };
+  const onChangephone = (e) => {
+    setphone(e.target.value);
+  };
+  const onChangeDOB = (e) => {
+    setDOB(e.target.value);
+  };
+  const onChangegender = (e) => {
+    setgender(e.target.value);
+  };
   const onChangebranchName = (e) => {
     setbranchName(e.target.value);
   };
   const onChangeaccountHolderName = (e) => {
     setaccountHolderName(e.target.value);
+  };
+  const onChangeepf = (e) => {
+    setepf(e.target.value);
   };
     const onChangelastName = (e) => {
         setlastName(e.target.value );
@@ -168,7 +192,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber} );
+        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,departmentName,designationName,accountHolderName,branchName,epf,gender,phone,address,DOB} );
 
 
     const headers = {
@@ -294,6 +318,55 @@ const Tables = () => {
                   </CFormGroup>
 
                   <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="text-input">Gender</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CSelect
+                        name="Countries"
+                        onChange={onChangegender}
+                        value={gender}
+                      >
+                        <option selected>Select the Gender type</option>
+                        <option selected>Male</option>
+                        <option selected>Female</option>
+
+                      </CSelect>
+                      <CFormText>Select your Gender type</CFormText>
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="text-input">Mobile No</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" placeholder="Mobile" value={phone} onChange={onChangephone} />
+                      <CFormText>Type your Mobile No</CFormText>
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="text-input">Address</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" placeholder="Address" value={address} onChange={onChangeaddress} />
+                      <CFormText>Type your Address</CFormText>
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
+                    <CCol md="3">
+                      <CLabel htmlFor="text-input">Date of Birth</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" type="date" placeholder="Address" value={DOB} onChange={onChangeDOB} />
+                      <CFormText>Date of Birth</CFormText>
+                    </CCol>
+                  </CFormGroup>
+
+                  <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="text-input">Employee Type</CLabel>
                   </CCol>
@@ -377,7 +450,7 @@ const Tables = () => {
                   <CLabel htmlFor="text-input">EPF No</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" placeholder="EPF No" value={firstName} onChange={onChangefirstName}/>
+                  <CInput id="text-input" name="text-input" placeholder="EPF No" value={epf} onChange={onChangeepf}/>
                   <CFormText>Type your EPF No</CFormText>
                 </CCol>
               </CFormGroup>
@@ -444,6 +517,15 @@ const Tables = () => {
                 </CFormGroup>
                 <CFormGroup row>
                   <CCol md="3">
+                    <CLabel htmlFor="text-input">Bank Name</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput id="text-input" name="text-input" placeholder="Bank Name" value={bankName} onChange={onChangebankName}/>
+                    <CFormText>Type Bank Name</CFormText>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
                     <CLabel htmlFor="text-input">Account Number</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
@@ -457,7 +539,7 @@ const Tables = () => {
                   </CCol>
                   <CCol xs="12" md="9">
                     <CInput id="text-input" name="text-input" placeholder="branchName" value={branchName} onChange={onChangebranchName}/>
-                    <CFormText>Type Branc hName</CFormText>
+                    <CFormText>Type Branch Name</CFormText>
                   </CCol>
                 </CFormGroup>
 
