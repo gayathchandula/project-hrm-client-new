@@ -192,7 +192,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,departmentName,designationName,accountHolderName,branchName,epf,gender,phone,address,DOB} );
+        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
 
 
     const headers = {
