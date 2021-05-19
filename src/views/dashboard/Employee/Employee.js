@@ -39,7 +39,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['id','firstName', 'lastName', 'shiftId','rfid', {
+const fields = ['id','firstName', 'lastName', 'shiftId','rfid','phone','gender','DOB', {
   key: 'show_details',
   label: 'Action',
 
