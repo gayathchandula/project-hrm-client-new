@@ -128,20 +128,21 @@ const Tables = () => {
     setdesignationName( e.target.value );
   };
   const onChangedepartmant = (e) => {
-    setdepartmentName( e.target.value );
-
+    e.preventDefault();
+    setdepartmentName( e.target.value )
+    const departmentName = (e.target.value )
     const fetchData = async () => {
-      try {
-        const body = ({departmentName});
-        const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
-        console.log(loginResponse);
-        setListData4({lists: loginResponse.data.data.departmentsDetails});
-        //window.location.reload();
+        try {
+          const body = ({departmentName});
+          const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
+          console.log(loginResponse);
+          setListData4({lists: loginResponse.data.data.departmentsDetails});
+          //window.location.reload();
 
-      } catch (err) {
-        //err.response.data.message&& setErr(err.response.data.message)
+        } catch (err) {
+          //err.response.data.message&& setErr(err.response.data.message)
+        }
       }
-    }
       fetchData();
 
   };
