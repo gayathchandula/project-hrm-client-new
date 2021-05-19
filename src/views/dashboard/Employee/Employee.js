@@ -52,13 +52,19 @@ const Tables = () => {
   const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [shiftId, setshiftId] = useState("");
-  const [accountNumber, setaccountnumber] = useState("");
+  const [accountNumber, setaccountNumber] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
     const [rfid, setrfid] = useState("");
   const [employeeEmail, setemail] = useState("");
+  const [departmentName, setdepartmentName] = useState("");
+  const [designationName, setdesignationName] = useState("");
+  const [accountHolderName, setaccountHolderName] = useState("");
+  const [branchName, setbranchName] = useState("");
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
+  const [listData3, setListData3] = useState({ lists: [] });
+  const [listData4, setListData4] = useState({ lists: [] });
     const [loading, setLoading] = useState(true);
     const { userData, setUserData } = useContext(UserContext);
   const orgid = localStorage.getItem("id")
@@ -70,6 +76,12 @@ const Tables = () => {
     const onChangefirstName = (e) => {
         setfirstName(e.target.value);
     };
+  const onChangebranchName = (e) => {
+    setbranchName(e.target.value);
+  };
+  const onChangeaccountHolderName = (e) => {
+    setaccountHolderName(e.target.value);
+  };
     const onChangelastName = (e) => {
         setlastName(e.target.value );
     };
@@ -85,8 +97,29 @@ const Tables = () => {
   const onChangeemail = (e) => {
     setemail( e.target.value );
   };
-  const onChangeaccountnumber = (e) => {
-    setaccountnumber( e.target.value );
+  const onChangeaccountNumber = (e) => {
+    setaccountNumber( e.target.value );
+  };
+  const onChangeDesignation = (e) => {
+    setdesignationName( e.target.value );
+  };
+  const onChangedepartmant = (e) => {
+    setdepartmentName( e.target.value );
+
+    const fetchData = async () => {
+      try {
+        const body = ({departmentName});
+        const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
+        console.log(loginResponse);
+        setListData4({lists: loginResponse.data.data.departmentsDetails});
+        //window.location.reload();
+
+      } catch (err) {
+        //err.response.data.message&& setErr(err.response.data.message)
+      }
+    }
+      fetchData();
+
   };
 
     const token = localStorage.getItem("Token")
@@ -116,14 +149,22 @@ const Tables = () => {
           `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/shifttypes`,headers
         );
         setListData2({ lists: result.data.data.shiftDetails });
-        setLoading(false);
         console.log(result)
     };
+      const fetchData3 = async () => {
+        const result = await axios(
+          `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/get`,headers
+        );
+        setListData3({ lists: result.data.data.departmentsDetails });
+        setLoading(false);
+      };
 
       fetchData();
       fetchData1();
       fetchData2();
+      fetchData3();
   }, []);
+
     const onSubmit = async (data) => {
 
 
@@ -222,7 +263,7 @@ const Tables = () => {
       <CTabContent>
       <CTabPane data-tab="Employeeform">
     <CRow>
-        <CCol xs="12" md="10">
+        <CCol xs="12" md="8">
             <CCard>
               <CCardHeader>
                 Employee Form
@@ -311,15 +352,7 @@ const Tables = () => {
                       <CFormText>Type your Email</CFormText>
                     </CCol>
                   </CFormGroup>
-                  <CFormGroup row>
-                    <CCol md="3">
-                      <CLabel htmlFor="select">Account number</CLabel>
-                    </CCol>
-                    <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="accountnumber" value={accountNumber} onChange={onChangeaccountnumber} />
-                      <CFormText>Type your Account number</CFormText>
-                    </CCol>
-                  </CFormGroup>
+
 
 
                 </CForm>
@@ -331,12 +364,112 @@ const Tables = () => {
             </CCard>
 
           </CCol>
+      <CCol >
+        <CCard>
+          <CCardHeader>
+            Department Form
+          </CCardHeader>
+          <CCardBody>
+            <CForm action="submit" method="post"  className="form-horizontal">
 
-        <CCol >
-          <Link to="/AddEmployeeType">
-            <CButton color="primary" className="mt-3" active tabIndex={-1}>Add New Employee Catergory </CButton>
-          </Link>
-        </CCol>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">EPF No</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput id="text-input" name="text-input" placeholder="EPF No" value={firstName} onChange={onChangefirstName}/>
+                  <CFormText>Type your EPF No</CFormText>
+                </CCol>
+              </CFormGroup>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">Department Type</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CSelect
+                    name="Countries"
+                    onChange={onChangedepartmant}
+                    value={departmentName}
+                  >
+                    <option selected>Select the Department</option>
+                    {listData3.lists.map((country, key) => (
+                      <option key={key} value={country.departmentName}>
+                        {country.departmentName}
+                      </option>
+                    ))}
+                  </CSelect>
+                  <CFormText>Select your Department</CFormText>
+                </CCol>
+              </CFormGroup>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">Designation</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CSelect
+                    name="Countries"
+                    onChange={onChangeDesignation}
+                    value={designationName}
+                  >
+                    <option selected>Select the Designation</option>
+                    {listData4.lists.map((country, key) => (
+                      <option key={key} value={country.designationName}>
+                        {country.designationName}
+                      </option>
+                    ))}
+                  </CSelect>
+                  <CFormText>Select your Designation</CFormText>
+                </CCol>
+              </CFormGroup>
+            </CForm>
+          </CCardBody>
+        </CCard>
+        <CRow>
+          <CCol>
+          <CCard>
+            <CCardHeader>
+              Bank Details Form
+            </CCardHeader>
+            <CCardBody>
+              <CForm action="submit" method="post"  className="form-horizontal">
+
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">Account Holder Name</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput id="text-input" name="text-input" placeholder="accountHolderName" value={accountHolderName} onChange={onChangeaccountHolderName}/>
+                    <CFormText>Type Account Holder Name</CFormText>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">Account Number</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput id="text-input" name="text-input" placeholder="accountNumber" value={accountNumber} onChange={onChangeaccountNumber}/>
+                    <CFormText>Type Account Number</CFormText>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">Branch Name</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput id="text-input" name="text-input" placeholder="branchName" value={branchName} onChange={onChangebranchName}/>
+                    <CFormText>Type Branc hName</CFormText>
+                  </CCol>
+                </CFormGroup>
+
+              </CForm>
+            </CCardBody>
+          </CCard>
+          </CCol>
+        </CRow>
+
+      </CCol>
+
+
 
     </CRow>
 

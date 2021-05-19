@@ -21,14 +21,24 @@ const _nav =  [
     }
   },
   {
-    _tag: 'CSidebarNavItem',
+    _tag: 'CSidebarNavDropdown',
     name: 'Employee',
-    to: '/Employee',
-    icon: <CIcon name="cil-puzzle"
-    customClasses="c-sidebar-nav-icon"/>,
-    badge: {
-      color: 'info',
-    }
+    route: '/Employee',
+    icon: 'cil-puzzle',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Employee',
+        to: '/Employee',
+        icon: 'cil-chart-pie',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Employee Type',
+        to: '/AddEmployeeType',
+        icon: 'cil-star',
+      },
+    ],
   },
   {
     _tag: 'CSidebarNavItem',
@@ -40,16 +50,7 @@ const _nav =  [
       color: 'info',
     }
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Designation',
-    to: '/Designation',
-    icon: <CIcon name="cil-puzzle"
-                 customClasses="c-sidebar-nav-icon"/>,
-    badge: {
-      color: 'info',
-    }
-  },
+
   {
     _tag: 'CSidebarNavItem',
     name: 'Admin',
