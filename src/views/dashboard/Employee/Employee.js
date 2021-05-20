@@ -75,6 +75,11 @@ const Tables = () => {
     const { userData, setUserData } = useContext(UserContext);
   const orgid = localStorage.getItem("id")
 
+  function removeDuplicates(arr) {
+    const map = new Map();
+    arr.forEach(v => map.set(v.departmentName, v)) // having `departmentName` is always unique
+    return [...map.values()];
+  }
     const handlefile = (e) => {
       setFile(e.target.files[0]);
 
@@ -180,7 +185,7 @@ const Tables = () => {
         const result = await axios(
           `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/get`,headers
         );
-        setListData3({ lists: result.data.data.departmentsDetails });
+        setListData3({ lists:  removeDuplicates(result.data.data.departmentsDetails) });
         setLoading(false);
       };
 
