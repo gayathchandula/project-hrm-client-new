@@ -44,7 +44,7 @@ const Tables = () => {
   const [passwordConfirm, setpasswordConfirm] = useState();
   const [loading, setLoading] = useState(true);
   const { userData, setUserData } = useContext(UserContext);
-  
+
   const onChangefirstName = (e) => {
     setfirstName(e.target.value);
   };
@@ -62,6 +62,7 @@ const Tables = () => {
   };
 
   const token = localStorage.getItem("Token")
+  const orgid = localStorage.getItem("id")
   const headers = {
     headers: {
 
@@ -85,20 +86,25 @@ const Tables = () => {
     e.preventDefault();
     try{
       const body = ({email, password,passwordConfirm,firstName,lastName} );
-      
-      const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/users", body,headers);
+
+      const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/users`, body,headers);
       console.log(loginResponse);
       setfirstName('')
       setlastName('')
       setemail('' )
       setPassword('')
       setpasswordConfirm( '' )
+      const newuserId = loginResponse.data.data.user.id;
+      const body1=({newuserId})
+      console.log("body"+loginResponse.data.data.user.id)
+      const loginResponse1 = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/users/orgid`, body1,headers);
+      console.log(loginResponse1);
       window.location.reload();
     } catch(err) {
       //err.response.data.message&& setErr(err.response.data.message)
     }
   };
-  
+
  if (loading) {
   return (
     <div style={{ padding: "10px 20px", textAlign: "center"}}>
@@ -117,7 +123,7 @@ const Tables = () => {
               </CCardHeader>
               <CCardBody>
                 <CForm action="submit" method="post" e className="form-horizontal">
-  
+
                   <CFormGroup row>
                     <CCol md="3">
                       <CLabel htmlFor="text-input">First Name</CLabel>
@@ -127,7 +133,7 @@ const Tables = () => {
                       <CFormText>Type your first name</CFormText>
                     </CCol>
                   </CFormGroup>
-  
+
                   <CFormGroup row>
                     <CCol md="3">
                       <CLabel htmlFor="text-input">Last Name</CLabel>
@@ -137,7 +143,7 @@ const Tables = () => {
                       <CFormText>Type your last name</CFormText>
                     </CCol>
                   </CFormGroup>
-  
+
                   <CFormGroup row>
                     <CCol md="3">
                       <CLabel htmlFor="email-input">Email</CLabel>
@@ -174,15 +180,15 @@ const Tables = () => {
                       <CFormText className="help-block">Please enter the same password as above</CFormText>
                     </CCol>
                   </CFormGroup>
-  
+
                 </CForm>
               </CCardBody>
               <CCardFooter>
                 <CButton type="submit" size="lg" color="primary" onClick={submit}> Submit</CButton>
-                
+
               </CCardFooter>
             </CCard>
-           
+
           </CCol>
 
     </CRow>
@@ -218,7 +224,7 @@ const Tables = () => {
           </CCard>
         </CCol>
       </CRow>
-        
+
     </>
   )
 }
