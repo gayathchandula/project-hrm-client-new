@@ -17,7 +17,7 @@ import {
   CInput,
   CFormText,
   CCardFooter,
- 
+
 
   CCardHeader
 } from '@coreui/react'
@@ -32,107 +32,107 @@ const Tabs = () => {
     <CRow>
       <CCol xs="12" sm="6" md="4" className="mb-4">
         <CCard>
-         
+
           <CCardBody>
             <div className="image-container" align="center">
-          <label><img src={imageName.default} height="200px" /> </label> 
-            <h1><b>Kasun charuka</b></h1>
-            <p>hello i am php developer</p>
-            <CRow className="align-items-center mt-3">
-            
-          
-            <CCol col="3" sm="2" md="2" xl className="mb-1 mb-xl-0">
-              <CButton active block color="success" aria-pressed="true" style={{width:'150px'}}>FOLLOW</CButton>
-            </CCol>
-            <CCol col="3" sm="2" md="2" xl className="mb-1 mb-xl-0">
-              <CButton active block color="danger" aria-pressed="true" style={{width:'150px'}}>REMOVE</CButton>
-            </CCol>
-           
-          </CRow>
-              </div>
-              <p>overview</p>
-              <p>Accounts Details</p>
-              <p>Help</p>
+              <label><img src={imageName.default} height="200px" /> </label>
+              <h1><b>Kasun charuka</b></h1>
+              <p>hello i am php developer</p>
+              <CRow className="align-items-center mt-3">
+
+
+                <CCol col="3" sm="2" md="2" xl className="mb-1 mb-xl-0">
+                  <CButton active block color="success" aria-pressed="true" style={{width:'150px'}}>FOLLOW</CButton>
+                </CCol>
+                <CCol col="3" sm="2" md="2" xl className="mb-1 mb-xl-0">
+                  <CButton active block color="danger" aria-pressed="true" style={{width:'150px'}}>REMOVE</CButton>
+                </CCol>
+
+              </CRow>
+            </div>
+            <p>overview</p>
+            <p>Accounts Details</p>
+            <p>Help</p>
           </CCardBody>
         </CCard>
       </CCol>
       <CCol xs="12" md="8" className="mb-4">
         <CCard>
           <CCardHeader>
-           <p><b>PERSONAL PROFILE</b></p>
+            <p><b>PERSONAL PROFILE</b></p>
           </CCardHeader>
           <CCardBody>
-          <CForm action="submit" method="post"  className="form-horizontal">
+            <CForm action="submit" method="post"  className="form-horizontal">
 
-<CFormGroup row>
-  <CCol md="3">
-    <CLabel htmlFor="select">First name</CLabel>
-  </CCol>
-  <CCol xs="12" md="9">
-  <CInput id="text-input" name="text-input" placeholder=" "  />
-    
-  </CCol>
-</CFormGroup>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="select">First name</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput id="text-input" name="text-input" placeholder=" "  />
 
-
-  <CFormGroup row>
-    <CCol md="3">
-      <CLabel htmlFor="text-input">Last name</CLabel>
-    </CCol>
-    <CCol xs="12" md="9">
-      <CInput id="text-input" name="text-input" placeholder=""  />
-     
-    </CCol>
-  </CFormGroup>
-
-  <CFormGroup row>
-    <CCol md="3">
-      <CLabel htmlFor="text-input">Email</CLabel>
-    </CCol>
-    <CCol xs="12" md="9">
-      <CInput id="text-input" name="text-input" placeholder="" />
-    
-    </CCol>
-  </CFormGroup>
-
-  <CFormGroup row>
-    <CCol md="3">
-      <CLabel htmlFor="text-input">phone</CLabel>
-    </CCol>
-    <CCol xs="12" md="9">
-      <CInput id="text-input" name="text-input" placeholder="" />
-    
-    </CCol>
-  </CFormGroup>
+                </CCol>
+              </CFormGroup>
 
 
-  <CFormGroup row>
-    <CCol md="3">
-      <CLabel htmlFor="email-input">occupation</CLabel>
-    </CCol>
-    <CCol xs="12" md="9">
-      <CInput type="email" id="email-input" name="email-input" placeholder="" autoComplete="" />
-      
-    </CCol>
-  </CFormGroup>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">Last name</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput id="text-input" name="text-input" placeholder=""  />
+
+                </CCol>
+              </CFormGroup>
+
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">Email</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput id="text-input" name="text-input" placeholder="" />
+
+                </CCol>
+              </CFormGroup>
+
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">phone</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput id="text-input" name="text-input" placeholder="" />
+
+                </CCol>
+              </CFormGroup>
 
 
-  <CCardFooter>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="email-input">occupation</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CInput type="email" id="email-input" name="email-input" placeholder="" autoComplete="" />
+
+                </CCol>
+              </CFormGroup>
+
+
+              <CCardFooter>
                 <CButton type="submit" size="lg" color="primary"> Submit</CButton>
-                
+
               </CCardFooter>
 
 
 
 
-</CForm>
+            </CForm>
           </CCardBody>
         </CCard>
       </CCol>
 
-      
+
     </CRow>
   )
 }
 
-export default Tabs;
+export default Tabs
