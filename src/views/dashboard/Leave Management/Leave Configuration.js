@@ -20,6 +20,7 @@ import {
 import { DocsLink } from 'src/reusable'
 
 import usersData from '../../users/UsersData'
+import CreatableSelect from "react-select/creatable/dist/react-select.esm";
 
 const getBadge = status => {
   switch (status) {
@@ -47,6 +48,7 @@ const Tables = () => {
   const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
+  const [leaveTypeList, setLeaveTypeList] = useState([]);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
   const [data,setdata] = useState([{
@@ -73,15 +75,42 @@ const Tables = () => {
   const handleCheckChieldElement = (id) => {
     setleavetypeId(id);
 
-
   }
+  const components = {
+    DropdownIndicator: null,
+  };
   const handleInputChange = (e,id) => {
     setdata({
       ...data,
       numberOfDays: id});
 
   };
+  const handleChange = (newValue: any, actionMeta: any) => {
+    console.group('Value Changed');
+    console.log(newValue);
+    setleavetypeId( newValue );
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
 
+  };
+  const onSelect1Change=(e) =>{
+    setdata({
+      ...data,
+      numberOfDays: e.target.value
+    })
+   // setnumberOfDays(e.target.value)
+
+
+  }
+  function removeDuplicates(arr) {
+    const map = new Map();
+    arr.forEach(v => map.set(v.leaveTypeId, v)) // having `departmentName` is always unique
+    return [...map.values()];
+  }
+
+  const onSelect2Change=(countryId, e)=> {
+    setLeaveTypeList([...leaveTypeList, { leaveTypeId: countryId , numberOfDay: e.target.value}]);
+  }
 
   const headers = {
     headers: {
@@ -119,8 +148,10 @@ const Tables = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    console.log(leavetypeId, numberOfDays);
     try{
-      const body = ({leavetypeId,employeeTypeId,numberOfDays,data} );
+      const returnLeaveTypeList = removeDuplicates(leaveTypeList);
+      const body = ({returnLeaveTypeList,employeeTypeId} );
       const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/LeaveConfig/create`, body,headers);
       console.log(loginResponse);
       setotHrsMin('')
@@ -129,6 +160,7 @@ const Tables = () => {
 
       //window.location.reload();
     } catch(err) {
+      console.log(err);
       //err.response.data.message&& setErr(err.response.data.message)
     }
   };
@@ -146,7 +178,7 @@ const headers = {
     }
 };
 
-axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/overtime/Delete`, body, headers)
+axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/LeaveConfig/Delete`, body, headers)
 .then((res) => {
     if (res.status === 200) {
       window.location.reload();
@@ -190,6 +222,9 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/o
                       <CFormText>Please Select Employee type</CFormText>
                   </CCol>
                 </CFormGroup>
+
+                  {listData.lists.map((country, key) => (
+                    <>
                   <CFormGroup row>
                     <CCol md="3">
                       <CLabel htmlFor="select">Leave Type</CLabel>
@@ -197,25 +232,26 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/o
                     <CCol xs="12" md="9">
                       <CSelect
                         name="Countries"
-                        onChange={onChangeleavetypeId}
+                        onChange={onSelect1Change}
                         value={leavetypeId}
                       >
-                        {listData.lists.map((country, key) => (
+                        <option value="">Select leave type</option>
                           <option key={key} value={country.id}>
                             {country.LeaveTypeName}
                           </option>
-                        ))}
+
                       </CSelect>
                       <CFormText>Please Select Leave type</CFormText>
                     </CCol>
                   </CFormGroup>
+
                   <CFormGroup row >
                     <CCol md="3">
                       <CLabel htmlFor="text-input">No of Days</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CSelect custom name="numberOfDays" onChange={onChangenumberOfDays} value={numberOfDays}>
-                        <option value="0">0-30 days</option>
+                      <CSelect custom name="numberOfDays" onChange={(e) => onSelect2Change(country.id, e)} value={leaveTypeList.numberOfDays}>
+                        <option value="0">0-20 days</option>
                         <option value="1" >1</option>
                         <option value="2" >2</option>
                         <option value="3" >3</option>
@@ -241,7 +277,15 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/o
                       <CFormText>select between 0-30 days</CFormText>
                     </CCol>
                   </CFormGroup>
-          {/*     {listData.lists.map((country, key) => (*/}
+
+                    </>
+                  ))}
+
+
+
+
+
+                  {/*     {listData.lists.map((country, key) => (*/}
           {/*        <>*/}
           {/*      <CFormGroup variant="checkbox"  className="my-2">*/}
           {/*        <CInputCheckbox*/}
