@@ -13,6 +13,7 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CSpinner,
+  CAlert,
   CRow
 } from '@coreui/react'
 import { useHistory, Link } from 'react-router-dom';
@@ -60,7 +61,8 @@ const Login = () => {
 
 
               } catch(err) {
-                  err.message&& setErr(err.message)
+                  err.response.data.message && setErr(err.response.data.message)
+                  //err.message&& setErr(err.message)
               }
         };
 
@@ -74,7 +76,11 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-
+                  {err ? (
+                      <CAlert color="info" closeButton fade={5}>
+                        {err}
+                      </CAlert>
+                  ) : null}
 
                   <CForm onSubmit={submit}>
 

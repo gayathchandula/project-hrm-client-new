@@ -233,7 +233,7 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                       <CSelect
                         name="Countries"
                         onChange={onSelect1Change}
-                        value={leavetypeId}
+                        value={leaveTypeList.leavetypeId}
                       >
                         <option value="">Select leave type</option>
                           <option key={key} value={country.id}>
