@@ -26,7 +26,7 @@ const Login = () => {
     const [password, setPassword] = useState();
     const [passwordConfirm, setpasswordConfirm] = useState();
     const [err, setErr] = useState();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const { setUserData } = useContext(UserContext);
 
     const history = useHistory();
@@ -42,6 +42,7 @@ const Login = () => {
 
           const submit = async (e) => {
               e.preventDefault();
+              setLoading(true);
               try{
                   const body = ({email, password,passwordConfirm});
                   const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/users/login", body);
@@ -55,8 +56,8 @@ const Login = () => {
 
 
                 });
-                  setLoading(loginResponse.data.data.loading)
-                console.log(loginResponse.data.data.user.organizations[0].id)
+                  setLoading(false)
+                  console.log(loginResponse.data.data.user.organizations[0].id)
                   history.push("/Dashboard");
 
 
@@ -67,7 +68,13 @@ const Login = () => {
         };
 
 
-
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
