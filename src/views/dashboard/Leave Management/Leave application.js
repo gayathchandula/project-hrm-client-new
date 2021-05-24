@@ -43,8 +43,8 @@ const fields = ['Leave Type','No of days', 'Date', 'Requested Date','Status', {
 
 const Tables = () => {
   const [LeaveTypeId, setLeaveTypeId] = useState("");
-    const [Reason, setReason] = useState("");
-    const [Date, setDate] = useState("");
+    const [reason, setReason] = useState("");
+    const [leaveRequestedDate, setDate] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
     const [epf, setepf] = useState("");
     const [listData, setListData] = useState({ lists: [] });
@@ -91,7 +91,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({ epf,LeaveTypeId,Reason,Date,employeeTypeId,numberOfDays} );
+        const body = ({ epf,LeaveTypeId,reason,leaveRequestedDate,numberOfDays});
 
 
     const headers = {
@@ -164,8 +164,8 @@ const Tables = () => {
                       <CFormText>Please Enter Epf No:</CFormText>
                     </CCol>
                   </CFormGroup>
-  <br></br>
-    <CFormGroup row>
+
+                  <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="select">Leave Type</CLabel>
                   </CCol>
@@ -175,6 +175,7 @@ const Tables = () => {
                   onChange={onChangeLeaveTypeId}
                   value={LeaveTypeId}
                   >
+                    <option>Please Select Leave Type</option>
                     {listData.lists.map((country, key) => (
             <option key={key} value={country.id}>
               {country.LeaveTypeName}
@@ -195,7 +196,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Reason</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Reason" value={Reason} onChange={onChangeReason}/>
+                      <CInput id="text-input" name="text-input" placeholder="Reason" value={reason} onChange={onChangeReason}/>
                       <CFormText>Please Enter Reason</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -204,7 +205,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Date</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={Date} onChange={onChangeDate} />
+                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={leaveRequestedDate} onChange={onChangeDate} />
                       <CFormText>Please select Date</CFormText>
                     </CCol>
                   </CFormGroup>
