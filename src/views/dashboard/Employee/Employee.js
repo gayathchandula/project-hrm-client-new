@@ -445,21 +445,31 @@ const Tables = () => {
                       <CFormText>Type your RFID</CFormText>
                   </CCol>
                 </CFormGroup>
-                  <CFormGroup variant="checkbox" row>
+                  <CFormGroup varient="checkbox" row>
+                    <CCol md="3">
+                      <CLabel htmlFor="select">Enable employee profile</CLabel>
+                    </CCol>
+                    <CCol xs="12" md="9">
+                      <CInputCheckbox
+                        id="checkbox"
+                        onChange={onChangecheckbox}
+                      />
+                    </CCol>
+                  </CFormGroup>
+                  {checkbox &&
+                  <CFormGroup row>
 
                     <CCol md="3">
-                      <CLabel  htmlFor="select">Employee Email</CLabel>
+                      <CLabel htmlFor="select">Employee Email</CLabel>
                     </CCol>
-                    <CInputCheckbox
-                      id="checkbox"
-                      onChange={onChangecheckbox}
-                    />
+
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="email" name="text-input" placeholder="email" value={employeeEmail} onChange={onChangeemail} />
+                      <CInput id="text-input" type="email" name="text-input" placeholder="email" value={employeeEmail}
+                              onChange={onChangeemail}/>
                       <CFormText>Type your Email</CFormText>
                     </CCol>
                   </CFormGroup>
-
+                  }
 
 
                 </CForm>
