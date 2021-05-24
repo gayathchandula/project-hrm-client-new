@@ -42,6 +42,7 @@ const Login = () => {
 
           const submit = async (e) => {
               e.preventDefault();
+            setErr("");
               setLoading(true);
               try{
                   const body = ({email, password,passwordConfirm});

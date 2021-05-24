@@ -2,30 +2,30 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from "axios";
 import {Link,useHistory } from 'react-router-dom';
 import {
-    CBadge,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CDataTable,
-    CButton,
-    CTabs,
-    CTabContent,
-    CNavItem,
-    CNavLink,
-    CNav,
-    CTabPane,
-    CForm,
-    CSelect,
-    CFormGroup,
-    CFormText,
-    CCardFooter,
-    CInput,
-    CInputFile,
+  CBadge,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CButton,
+  CTabs,
+  CTabContent,
+  CNavItem,
+  CNavLink,
+  CNav,
+  CTabPane,
+  CForm,
+  CSelect,
+  CFormGroup,
+  CFormText,
+  CCardFooter,
+  CInput,
+  CInputFile,
   CInputCheckbox,
   CSpinner,
-    CLabel,
-    CRow,
+  CLabel,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 import UserContext from '../../../userContext';
@@ -68,6 +68,7 @@ const Tables = () => {
   const [address, setaddress] = useState("");
   const [DOB, setDOB] = useState("");
   const [checkbox, setcheckbox] = useState(false);
+  const [err, setErr] = useState();
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -210,7 +211,7 @@ const Tables = () => {
 
     const onSubmit = async (data) => {
 
-
+      setErr("");
         const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,checkbox,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
 
 
@@ -229,7 +230,7 @@ const Tables = () => {
         }
     }).catch((err) => {
         console.error(err);
-        alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
     });
     };
     const onFileSubmit = async () => {
@@ -250,7 +251,8 @@ const Tables = () => {
       }
   }).catch((err) => {
       console.error(err);
-      alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
+
   });
   };
 
@@ -312,6 +314,11 @@ const Tables = () => {
                 Employee Form
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton Time={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post"  className="form-horizontal">
 
 
@@ -321,7 +328,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">First Name</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="First Name" value={firstName} onChange={onChangefirstName}/>
+                      <CInput id="text-input" name="text-input" placeholder="First Name" value={firstName} onChange={onChangefirstName} required/>
                       <CFormText>Type your first name</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -331,7 +338,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Last Name</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Last Name" value={lastName} onChange={onChangelastName} />
+                      <CInput id="text-input" name="text-input" placeholder="Last Name" value={lastName} onChange={onChangelastName} required/>
                       <CFormText>Type your last name</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -345,6 +352,7 @@ const Tables = () => {
                         name="Countries"
                         onChange={onChangegender}
                         value={gender}
+                        required
                       >
                         <option selected>Select the Gender type</option>
                         <option selected>Male</option>
@@ -360,7 +368,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Mobile No</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Mobile" value={phone} onChange={onChangephone} />
+                      <CInput id="text-input" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone" placeholder="Mobile" value={phone} onChange={onChangephone} required />
                       <CFormText>Type your Mobile No</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -370,7 +378,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Address</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Address" value={address} onChange={onChangeaddress} />
+                      <CInput id="text-input" name="text-input" placeholder="Address" value={address} onChange={onChangeaddress} required/>
                       <CFormText>Type your Address</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -380,7 +388,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Date of Birth</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" type="date" placeholder="Address" value={DOB} onChange={onChangeDOB} />
+                      <CInput id="text-input" name="text-input" type="date" placeholder="Address" value={DOB} onChange={onChangeDOB} required/>
                       <CFormText>Date of Birth</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -394,6 +402,7 @@ const Tables = () => {
                   name="Countries"
                   onChange={e => onChangeemployeeTypeId(e)}
                   value={employeeTypeId}
+                  required
                   >
                   <option selected>Select the Employee type</option>
                     {listData1.lists.map((country, key) => (
@@ -415,6 +424,7 @@ const Tables = () => {
                   name="Countries"
                   onChange={onChangeshiftId}
                   value={shiftId}
+                  required
                   >
                   <option selected>Select the Shift</option>
                     {listData2.lists.map((country, key) => (
@@ -431,7 +441,7 @@ const Tables = () => {
                     <CLabel htmlFor="select">RFID</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" placeholder="RFID" value={rfid} onChange={onChangerfid} />
+                  <CInput id="text-input" name="text-input" placeholder="RFID" value={rfid} onChange={onChangerfid} required/>
                       <CFormText>Type your RFID</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -445,7 +455,7 @@ const Tables = () => {
                       onChange={onChangecheckbox}
                     />
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="email" value={employeeEmail} onChange={onChangeemail} />
+                      <CInput id="text-input" type="email" name="text-input" placeholder="email" value={employeeEmail} onChange={onChangeemail} />
                       <CFormText>Type your Email</CFormText>
                     </CCol>
                   </CFormGroup>
