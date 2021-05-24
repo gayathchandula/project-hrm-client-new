@@ -62,6 +62,7 @@ const Login = () => {
 
 
               } catch(err) {
+                  setLoading(false)
                   err.response.data.message && setErr(err.response.data.message)
                   //err.message&& setErr(err.message)
               }

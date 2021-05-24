@@ -22,6 +22,7 @@ import {
     CCardFooter,
     CInput,
     CInputFile,
+  CInputCheckbox,
   CSpinner,
     CLabel,
     CRow,
@@ -66,6 +67,7 @@ const Tables = () => {
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
   const [DOB, setDOB] = useState("");
+  const [checkbox, setcheckbox] = useState(false);
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -131,6 +133,17 @@ const Tables = () => {
   };
   const onChangeDesignation = (e) => {
     setdesignationName( e.target.value );
+  };
+  const onChangecheckbox = function(){
+    const checkbox = document.getElementById('checkbox');
+    if(checkbox.checked == true){
+        setcheckbox(true);
+      }
+      if(checkbox.checked == false){
+        setcheckbox(false);
+      }
+
+
   };
   const onChangedepartmant = (e) => {
     e.preventDefault();
@@ -198,7 +211,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
+        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,checkbox,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
 
 
     const headers = {
@@ -422,10 +435,15 @@ const Tables = () => {
                       <CFormText>Type your RFID</CFormText>
                   </CCol>
                 </CFormGroup>
-                  <CFormGroup row>
+                  <CFormGroup variant="checkbox" row>
+
                     <CCol md="3">
-                      <CLabel htmlFor="select">Password</CLabel>
+                      <CLabel  htmlFor="select">Employee Email</CLabel>
                     </CCol>
+                    <CInputCheckbox
+                      id="checkbox"
+                      onChange={onChangecheckbox}
+                    />
                     <CCol xs="12" md="9">
                       <CInput id="text-input" name="text-input" placeholder="email" value={employeeEmail} onChange={onChangeemail} />
                       <CFormText>Type your Email</CFormText>

@@ -46,7 +46,7 @@ const Tables = () => {
     const [Reason, setReason] = useState("");
     const [Date, setDate] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
-    const [rfid, setrfid] = useState("");
+    const [epf, setepf] = useState("");
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -59,8 +59,8 @@ const Tables = () => {
     const onChangeReason = (e) => {
       setReason(e.target.value );
     };
-    const onChangerfid = (e) => {
-        setrfid( e.target.value );
+    const onChangeepf = (e) => {
+        setepf( e.target.value );
     };
     const onChangeDate = (e) => {
       setDate( e.target.value );
@@ -91,7 +91,7 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
 
-        const body = ({ LeaveTypeId,Reason,Date,employeeTypeId,numberOfDays} );
+        const body = ({ epf,LeaveTypeId,Reason,Date,employeeTypeId,numberOfDays} );
 
 
     const headers = {
@@ -157,12 +157,11 @@ const Tables = () => {
 
                   <CFormGroup row>
                     <CCol md="3">
-                      <CLabel htmlFor="text-input"> Employee ID</CLabel>
+                      <CLabel htmlFor="text-input"> Employee EPF No: </CLabel>
                     </CCol>
-                    <CCol >
-                    <CLabel htmlFor="text-input"> ID</CLabel>
-                      {/* <CInput id="text-input" name="text-input" placeholder="Employee ID" value={firstName} onChange={onChangefirstName}/> */}
-
+                    <CCol xs="12" md="9">
+                      <CInput id="text-input" name="text-input" placeholder="EPF No:" value={epf} onChange={onChangeepf}/>
+                      <CFormText>Please Enter Epf No:</CFormText>
                     </CCol>
                   </CFormGroup>
   <br></br>
