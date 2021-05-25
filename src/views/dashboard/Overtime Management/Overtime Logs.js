@@ -33,7 +33,7 @@ const changestatus = reviewstatusId => {
     default: return 'primary'
   }
 }
-const fields = ['createdAt','employeeId','shiftId','OTHrs','OTDayRate','reviewstatusId',{
+const fields = ['createdAt','employeeId','shiftId','OTHrs','OTDayRate',{
   key: 'reviewstatusId',
   label: 'Review Status',
 
