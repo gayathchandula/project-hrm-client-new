@@ -13,10 +13,10 @@ import ChartLineSimple from '../charts/ChartLineSimple'
 import ChartBarSimple from '../charts/ChartBarSimple'
 import axios from 'axios';
 const WidgetsDropdown = () => {
-  
+
    const [listData, setListData] = useState({ lists: [] });
   const token = localStorage.getItem("Token")
-  
+
   const headers = {
     headers: {
 
@@ -29,12 +29,12 @@ const WidgetsDropdown = () => {
           'https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/summary',headers
       );
       setListData({ lists: result.data.data.organization});
-      
+
       console.log(result.data.data.organization.totalEmployees)
     };
     fetchData();
   }, []);
-  
+
   // render
   return (
     <CRow>
@@ -72,7 +72,7 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-info"
-          header="23"
+          header="1"
           text="Total Absent"
           footerSlot={
             <ChartLineSimple
