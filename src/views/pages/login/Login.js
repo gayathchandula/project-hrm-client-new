@@ -40,8 +40,8 @@ const Login = () => {
     //     setpasswordConfirm( e.target.value );
     // };
 
-          const submit = async (e) => {
-              e.preventDefault();
+        const submit = async (e) => {
+            e.preventDefault();
             setErr("");
               setLoading(true);
               try{

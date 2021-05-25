@@ -211,7 +211,7 @@ const Tables = () => {
                   </CFormGroup>
                   <CFormGroup row>
                     <CCol md="3">
-                      <CLabel htmlFor="text-input"> Hour Rate Percentage</CLabel>
+                      <CLabel htmlFor="text-input"> Number of days</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
                     <CSelect onChange={onChangenumberOfDays} value={numberOfDays}>

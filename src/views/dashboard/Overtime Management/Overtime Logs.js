@@ -33,7 +33,13 @@ const changestatus = reviewstatusId => {
     default: return 'primary'
   }
 }
-const fields = ['createdAt','employeeId','employeeTypeId','shiftId','OTHrs','OTDayRate','reviewstatusId']
+const fields = ['createdAt','employeeId','shiftId','OTHrs','OTDayRate','reviewstatusId',{
+  key: 'reviewstatusId',
+  label: 'Review Status',
+
+  sorter: false,
+  filter: false
+}]
 
 const Tables = () => {
   const [listData, setListData] = useState({ lists: [] });
