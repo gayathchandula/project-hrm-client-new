@@ -243,55 +243,7 @@ const Tables = () => {
 
     </CRow>
 
-      <CRow>
-        <CCol>
-          <CCard>
-            <CCardHeader>
-              My Leaves
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={listData.lists}
-              fields={fields}
-              hover
-              striped
-              bordered
-              size="sm"
-              itemsPerPage={10}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  ),
-                  'show_details':
-          (item, index)=>{
-            return (
 
-              <td className="py-2">
-                <CButton
-                  color="danger"
-                  variant="outline"
-                  shape="square"
-                  size="sm"
-                  onClick={()=>{onDelete(item.rfid)}}
-
-                >
-                  Delete
-                </CButton>
-              </td>
-            )
-          }
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
 
     </>
   )
