@@ -22,7 +22,7 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavDropdown',
-    name: 'Employee',
+    name: 'Employee Management',
     route: '/Employee',
     icon: 'cil-puzzle',
     _children: [
@@ -38,17 +38,17 @@ const _nav =  [
         to: '/AddEmployeeType',
         icon: 'cil-star',
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Department',
+        to: '/Department',
+        icon: <CIcon name="cil-puzzle"
+                     customClasses="c-sidebar-nav-icon"/>,
+        badge: {
+          color: 'info',
+        }
+      },
     ],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Department',
-    to: '/Department',
-    icon: <CIcon name="cil-puzzle"
-                 customClasses="c-sidebar-nav-icon"/>,
-    badge: {
-      color: 'info',
-    }
   },
 
   {
