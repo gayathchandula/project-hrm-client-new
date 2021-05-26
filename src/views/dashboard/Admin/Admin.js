@@ -73,7 +73,7 @@ const Tables = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        `https://hrm-innovigent.herokuapp.com/api/v1/users`,headers
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/users/get`,headers
       );
       setListData({ lists: result.data.data.user });
       setLoading(false);
