@@ -368,8 +368,8 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Mobile No</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone" placeholder="Mobile" value={phone} onChange={onChangephone} required />
-                      <CFormText>Type your Mobile No</CFormText>
+                      <CInput id="text-input" type="tel" pattern="[0-7]{3}-[0-9]{4}-[0-9]{2}" required name="phone" placeholder="Mobile" value={phone} onChange={onChangephone} required />
+                      <CFormText>Type your Phone Number (format: 07x-xxxx-xxx)</CFormText>
                     </CCol>
                   </CFormGroup>
 
@@ -464,7 +464,7 @@ const Tables = () => {
                     </CCol>
 
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="email" name="text-input" placeholder="email" value={employeeEmail}
+                      <CInput id="text-input"  type="email" name="text-input" placeholder="email" value={employeeEmail}
                               onChange={onChangeemail}/>
                       <CFormText>Type your Email</CFormText>
                     </CCol>
