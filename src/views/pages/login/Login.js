@@ -147,11 +147,11 @@ const Login = () => {
                   <div>
                     <h2>Sign up</h2>
                     <p>Don't have a HRM account?<br></br>
-                    Join us !</p>
+                      Contact Administrator</p>
 <br></br><br></br>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now !</CButton>
-                    </Link>
+
+                      <CButton color="primary"  href="https://www.innovigenttech.com/" className="mt-3" active tabIndex={-1}>Register Now ! Contact Innovigent (Pvt) Ltd</CButton>
+
                   </div>
                 </CCardBody>
               </CCard>

@@ -23,6 +23,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { DocsLink } from 'src/reusable'
+import {Link} from "react-router-dom";
 var imageName = require('src/assets/img_avatar.png')
 const Tabs = () => {
   const [active, setActive] = useState(1)
@@ -130,7 +131,22 @@ const Tabs = () => {
         </CCard>
       </CCol>
 
+      <CCol>
+        <CCard>
+          <CCardBody>
+            <CForm>
+              <CCol col="3" sm="2" md="2" xl className="mb-1 mb-xl-0">
+                <Link to="/Change Password">
+                  <CButton active block color="danger" aria-pressed="true"  style={{width:'150px'}}>Change Password</CButton>
+                </Link>
+              </CCol>
 
+
+
+            </CForm>
+          </CCardBody>
+        </CCard>
+      </CCol>
     </CRow>
   )
 }
