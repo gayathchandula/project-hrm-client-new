@@ -8,14 +8,14 @@ import {
   CFormGroup,
   CInputGroup,
   CInputGroupPrepend,
-CInputGroupText,
+  CInputGroupText,
 
-CInput,
+  CInput,
 
-CTooltip,
+  CTooltip,
   CRow,
   CCol,
-  CLink
+  CLink, CAlert
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 import CIcon from '@coreui/icons-react'
@@ -33,6 +33,7 @@ const Changepassword = () => {
   const token = localStorage.getItem("Token")
   const [oldpassword, setoldpassword] = useState();
   const [newpassword, setnewpassword] = useState();
+  const [err, setErr] = useState();
   const [confirmNewpassword, setconfirmNewpassword] = useState();
   const onChangeoldpassword = (e) => {
     setoldpassword(e.target.value );
@@ -45,7 +46,7 @@ const Changepassword = () => {
   };
   const onSubmit = async (data) => {
 
-
+    setErr("");
     const body = ({oldpassword,newpassword,confirmNewpassword});
 
 
@@ -64,7 +65,7 @@ const Changepassword = () => {
         }
       }).catch((err) => {
       console.error(err);
-      alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
     });
   };
 
@@ -79,6 +80,11 @@ const Changepassword = () => {
         <b> CHANGE PASSWORD</b>
         </CCardHeader>
         <CCardBody>
+          {err ? (
+            <CAlert color="info" closeButton fade={5}>
+              {err}
+            </CAlert>
+          ) : null}
            <CForm action="" method="post">
            <CFormGroup>
                   <CInputGroup>
