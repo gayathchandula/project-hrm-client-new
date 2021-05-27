@@ -86,17 +86,24 @@ const Tables = () => {
   return (
 
     <>
+<CRow className="justify-content-center">
+  <CCol xs="12" sm="8" className="col-3 text-center">
+    <h1 className="text-center" style={{ padding: "10px 20px", textAlign: "center", color: "black"}}>
+      SMART People Management System
+    </h1>
+    <div>
+      <br></br>
+    </div>
+  </CCol>
+  <CCol xs="12" sm="3" className=" text-right">
+    <Link to="/login"  style={{ padding: "10px 20px", textAlign: "center"}}>
+      <CButton color="primary" className="mt-3" active tabIndex={-1}>Go to Login </CButton>
+    </Link>
+  </CCol>
 
-<h1 style={{ padding: "10px 20px", textAlign: "center", color: "black"}}>
-          SMART People Management System
-          </h1>
-<Link to="/login">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Go to Login </CButton>
-                    </Link>
-                    <div>
-                      <br></br>
-                    </div>
-<CRow>
+</CRow>
+
+<CRow className="justify-content-center">
 
     <CCol xs="12" sm="8">
     <CCard>
@@ -165,7 +172,7 @@ const Tables = () => {
                  Image
                 </CCardHeader>
                 <CCol xs="12" sm="10" md="9">
-                    <CCard color="gradient-secondary">
+                    <CCard >
                         <CCardBody>
                         <img src={imageName.default} height="180px" />
                         </CCardBody>
