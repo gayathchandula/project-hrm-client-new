@@ -4,22 +4,22 @@ import React, { useEffect, useState } from 'react';
 import {Link,useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
-    CBadge,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CDataTable,
-    CButton,
-    CForm,
-    CSelect,
-    CFormGroup,
-    CFormText,
-    CCardFooter,
-    CInput,
-    CInputFile,
-    CLabel,
-    CRow,
+  CBadge,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CButton,
+  CForm,
+  CSelect,
+  CFormGroup,
+  CFormText,
+  CCardFooter,
+  CInput,
+  CInputFile,
+  CLabel,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -46,7 +46,7 @@ const Tables = () => {
   const [rfid, setrfid] = useState();
   const [listData, setListData] = useState({ lists: [] });
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE4OTM3Mjc2fQ.YiGSokx728s4K93CjaC7BMWUa1kHO60UwdMitGwKCdQ' ;
-
+  const [err, setErr] = useState();
 
   const headers = {
     headers: {
@@ -55,6 +55,7 @@ const Tables = () => {
     }
   };
   const testIt = async (num) => {
+    setErr("");
     setrfid(num)
     if (isEffect) { isEffect = false; return;}
 
@@ -69,9 +70,10 @@ const Tables = () => {
           setlastName(loginResponse.data.data.employee.lastName);
           setShiftName(loginResponse.data.data.ShiftName);
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
+          setrfid('');
 
       } catch(err) {
-        //err.response.data.message&& setErr(err.response.data.message)
+          err.response.data.message && setErr(err.response.data.message)
         setrfid('');
       }
 
@@ -112,7 +114,11 @@ const Tables = () => {
               </CCardHeader>
               <CCardBody>
 
-
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
 
                 <CForm action="submit" method="post"  className="form-horizontal">
 
