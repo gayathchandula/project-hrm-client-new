@@ -158,8 +158,8 @@ const Tables = () => {
                       <CLabel htmlFor="number-input">Contact no</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput type="text" id="number-input" name="number-input" placeholder="Contact No" autoComplete="number"  />
-                      <CFormText className="help-block">Please enter a contact number</CFormText>
+                      <CInput type="text" id="number-input" name="phone" type="tel" pattern="[0-7]{3}-[0-9]{4}-[0-9]{2}" placeholder="Contact No" autoComplete="phone" required/>
+                      <CFormText className="help-block">Please enter a contact number (format: 07x-xxxx-xxx)</CFormText>
                     </CCol>
                   </CFormGroup>
                   <CFormGroup row>
@@ -167,7 +167,7 @@ const Tables = () => {
                       <CLabel htmlFor="password-input">Password</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password" value={password} onChange={onChangePassword} />
+                      <CInput type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password" value={password} onChange={onChangePassword} required/>
                       <CFormText className="help-block">Please enter a complex password</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -176,7 +176,7 @@ const Tables = () => {
                       <CLabel htmlFor="confirm-password-input">Confirm Password</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput type="password" id="confirm-password-input" name="confirm-password-input" placeholder="Password" autoComplete="new-password" value={passwordConfirm} onChange={onChangepasswordConfirm} />
+                      <CInput type="password" id="confirm-password-input" name="confirm-password-input" placeholder="Password" autoComplete="new-password" value={passwordConfirm} onChange={onChangepasswordConfirm} required/>
                       <CFormText className="help-block">Please enter the same password as above</CFormText>
                     </CCol>
                   </CFormGroup>

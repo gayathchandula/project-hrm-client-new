@@ -322,7 +322,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="text-input">Max OT Hours</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Max OT Hours" value={otHrsMax} onChange={onChangeMax_Hours} />
+                      <CInput id="text-input" name="text-input" type="number" placeholder="Max OT Hours" value={otHrsMax} onChange={onChangeMax_Hours} required/>
                       <CFormText>Please Enter Max OT Hours</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -332,7 +332,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="text-input">Min OT Hours</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Min OT Hours" value={otHrsMin} onChange={onChangeMin_Hours}/>
+                      <CInput id="text-input" name="text-input" type="number"  placeholder="Min OT Hours" value={otHrsMin} onChange={onChangeMin_Hours} required/>
                       <CFormText>Please Enter Min OT Hours</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -342,7 +342,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="email-input">Email</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput type="email" id="email-input" name="email-input" placeholder="Enter Email" autoComplete="email" value={incharge_email} onChange={onChangeInchemail}/>
+                      <CInput type="email" id="email-input" name="email-input" placeholder="Enter Email" autoComplete="email" value={incharge_email} onChange={onChangeInchemail} required/>
                       <CFormText className="help-block">Please enter your email</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -352,7 +352,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="text-input"> Hour Rate</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Hour Rate"  value={otRate} onChange={onChangehour_rate}/>
+                      <CInput id="text-input" name="text-input" placeholder="Hour Rate" type="number"   value={otRate} onChange={onChangehour_rate} required/>
                       <CFormText>Please Enter Hour Rate</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -449,7 +449,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="text-input">Special Date</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={SpecialDate} onChange={onChangedate} />
+                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={SpecialDate} onChange={onChangedate} required/>
                       <CFormText>Please select Special Date</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -464,7 +464,7 @@ const events= listData3.lists.map((appointment)=>{
                   //onChange={onChangespecialday}
                   onChange={onChangespecialday}
                   value={SpecialDayName}
-
+                  required
                   >
                   <option selected>Select the Day</option>
                     {listData2.lists.map((country, key) => (
@@ -528,7 +528,7 @@ const events= listData3.lists.map((appointment)=>{
                     <CLabel htmlFor="select">Special Day</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" placeholder="Special Day Name" value={HolidayInfo} onChange={onChangeHolidayInfo} />
+                  <CInput id="text-input" name="text-input" placeholder="Special Day Name" value={HolidayInfo} onChange={onChangeHolidayInfo} required/>
                       <CFormText>Please Select Special Day</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -537,7 +537,7 @@ const events= listData3.lists.map((appointment)=>{
                       <CLabel htmlFor="text-input"> Hour Rate Percentage</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                    <CSelect onChange={onChangepercentage} value={otAllowancePercentage}>
+                    <CSelect onChange={onChangepercentage} value={otAllowancePercentage} required>
                       <option selected>Select the percentage</option>
                       <option value="1">1</option>
                       <option value="1.5">1.5</option>
