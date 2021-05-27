@@ -15,7 +15,7 @@ import {
   CInput,
   CLabel,
   CSpinner,
-  CRow,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 import UserContext from '../../../userContext';
@@ -42,6 +42,7 @@ const Tables = () => {
   const [listData, setListData] = useState({ lists: [] });
   const [password, setPassword] = useState();
   const [passwordConfirm, setpasswordConfirm] = useState();
+  const [err, setErr] = useState();
   const [loading, setLoading] = useState(true);
   const { userData, setUserData } = useContext(UserContext);
 
@@ -101,7 +102,7 @@ const Tables = () => {
       console.log(loginResponse1);
       window.location.reload();
     } catch(err) {
-      //err.response.data.message&& setErr(err.response.data.message)
+      err.response.data.message && setErr(err.response.data.message)
     }
   };
 
@@ -122,6 +123,11 @@ const Tables = () => {
                 Admin Form
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post" e className="form-horizontal">
 
                   <CFormGroup row>
