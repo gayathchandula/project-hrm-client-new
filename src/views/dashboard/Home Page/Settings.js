@@ -93,7 +93,7 @@ const Tabs = () => {
                   <CLabel htmlFor="select">First name</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" value={listData.lists[0].firstName}  />
+                  <CInput id="text-input" name="text-input" value={listData.lists[0].firstName}  disabled readonly/>
 
                 </CCol>
               </CFormGroup>
@@ -104,7 +104,7 @@ const Tabs = () => {
                   <CLabel htmlFor="text-input">Last name</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" value={listData.lists[0].lastName}  />
+                  <CInput id="text-input" name="text-input" value={listData.lists[0].lastName} disabled readonly />
 
                 </CCol>
               </CFormGroup>
@@ -114,7 +114,7 @@ const Tabs = () => {
                   <CLabel htmlFor="text-input">Email</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="text-input" name="text-input" value={listData.lists[0].email} />
+                  <CInput id="text-input" name="text-input" value={listData.lists[0].email} disabled readonly/>
 
                 </CCol>
               </CFormGroup>
