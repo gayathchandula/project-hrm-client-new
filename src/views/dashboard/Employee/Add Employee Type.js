@@ -1,22 +1,22 @@
 import React, { useState, useEffect,useContext } from 'react';
 import axios from "axios";
 import {
-    CBadge,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CDataTable,
-    CButton,
-    CForm,
-    CSelect,
-    CFormGroup,
-    CFormText,
-    CCardFooter,
-    CInput,
-    CInputFile,
-    CLabel,
-    CRow,
+  CBadge,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CButton,
+  CForm,
+  CSelect,
+  CFormGroup,
+  CFormText,
+  CCardFooter,
+  CInput,
+  CInputFile,
+  CLabel,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -46,6 +46,7 @@ const Tables = () => {
     const [shiftId, setshiftId] = useState("");
     const [Employee_type, setEmployee_type] = useState("");
     const [rfid, setrfid] = useState("");
+    const [err, setErr] = useState();
     const [listData, setListData] = useState({ lists: [] });
     const { userData, setUserData } = useContext(UserContext);
     const orgid = localStorage.getItem("id")
@@ -89,7 +90,7 @@ const Tables = () => {
 
   }, []);
     const onSubmit = async (data) => {
-
+      setErr("");
 
         const body = ({Employee_type} );
     axios.defaults.baseURL = "https://hrm-innovigent.herokuapp.com/api/v1";
@@ -108,7 +109,7 @@ const Tables = () => {
         }
     }).catch((err) => {
         console.error(err);
-        alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
     });
     };
     const onDelete = async (id) => {
@@ -146,6 +147,11 @@ const Tables = () => {
               <b> Add Employee Type</b>
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post"  className="form-horizontal">
 
 
