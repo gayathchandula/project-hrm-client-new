@@ -103,7 +103,7 @@ const Login = () => {
                         </CInputGroupText>
 
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Email" autoComplete="email" onChange={onChangeEmail}/>
+                      <CInput type="text" placeholder="Email"  type="email" autoComplete="email" onChange={onChangeEmail}/>
 
 
                     </CInputGroup>
