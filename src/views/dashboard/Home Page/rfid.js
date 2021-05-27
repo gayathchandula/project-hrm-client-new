@@ -123,7 +123,7 @@ const Tables = () => {
                     </CCol>
                     <CCol xs="12" md="9">
 
-                    <CInput id="password" name="text-input" placeholder="RFID No"  value={rfid} onChange={(e) => setrfid(e.target.value)} onKeyUp={(e) =>testIt(e.target.value)}/>
+                    <CInput id="password" name="text-input" placeholder="RFID No" autoFocus  value={rfid} onChange={(e) => setrfid(e.target.value)} onKeyUp={(e) =>testIt(e.target.value)}/>
                       <CFormText>Scan RFID Card</CFormText>
                     </CCol>
                   </CFormGroup>
