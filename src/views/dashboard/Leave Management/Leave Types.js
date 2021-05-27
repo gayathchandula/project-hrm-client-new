@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import {
-    CBadge,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CDataTable,
-    CButton,
-    CForm,
-    CSelect,
-    CFormGroup,
-    CFormText,
-    CCardFooter,
-    CInput,
-    CInputFile,
-    CSpinner,
-    CLabel,
-    CRow,
+  CBadge,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CButton,
+  CForm,
+  CSelect,
+  CFormGroup,
+  CFormText,
+  CCardFooter,
+  CInput,
+  CInputFile,
+  CSpinner,
+  CLabel,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -46,6 +46,7 @@ const Tables = () => {
     const [lastName, setlastName] = useState("");
     const [shiftId, setshiftId] = useState("");
     const [Employee_type, setEmployee_type] = useState("");
+  const [err, setErr] = useState();
     const [rfid, setrfid] = useState("");
     const [listData, setListData] = useState({ lists: [] });
     const [LeaveTypeName, setLeaveTypeName] = useState("");
@@ -93,7 +94,7 @@ const Tables = () => {
 
     const onSubmit = async (data) => {
 
-
+      setErr("");
         const body = ({LeaveTypeName} );
     axios.defaults.baseURL = `https://hrm-innovigent.herokuapp.com/api/v1`;
 
@@ -111,7 +112,7 @@ const Tables = () => {
         }
     }).catch((err) => {
         console.error(err);
-        alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
     });
     };
 
@@ -157,6 +158,11 @@ if (loading) {
               <b> Add Leave Type</b>
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post"  className="form-horizontal">
 
 
