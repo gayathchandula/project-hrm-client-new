@@ -15,7 +15,7 @@ import {
   CCardFooter,
   CInputCheckbox,
   CLabel,
-  CRow, CInput,
+  CRow, CInput, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -45,6 +45,7 @@ const Tables = () => {
   const [incharge_email, setincharge_email] = useState([]);
   const [employeeTypeId, setemployeeTypeId] = useState([]);
   const [numberOfDays, setnumberOfDays] = useState([]);
+  const [err, setErr] = useState();
   const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
   const [listData2, setListData2] = useState({ lists: [] });
@@ -148,6 +149,7 @@ const Tables = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    setErr("");
     console.log(leavetypeId, numberOfDays);
     try{
       const returnLeaveTypeList = removeDuplicates(leaveTypeList);
@@ -158,10 +160,10 @@ const Tables = () => {
       setemployeeTypeId('' )
       setincharge_email('')
 
-      //window.location.reload();
+      window.location.reload();
     } catch(err) {
       console.log(err);
-      //err.response.data.message&& setErr(err.response.data.message)
+      err.response.data.message && setErr(err.response.data.message)
     }
   };
 
@@ -201,6 +203,11 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                 Leave Configuration Form
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post"  className="form-horizontal">
 
                 <CFormGroup row>
