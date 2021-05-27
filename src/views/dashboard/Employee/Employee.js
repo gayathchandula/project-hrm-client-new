@@ -378,7 +378,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Address</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Address" value={address} onChange={onChangeaddress} required/>
+                      <CInput id="text-input" name="text-input" type="address" autoComplete="address" placeholder="Address" value={address} onChange={onChangeaddress} required/>
                       <CFormText>Type your Address</CFormText>
                     </CCol>
                   </CFormGroup>
