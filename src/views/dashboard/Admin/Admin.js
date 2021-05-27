@@ -85,6 +85,7 @@ const Tables = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    setErr("");
     try{
       const body = ({email, password,passwordConfirm,firstName,lastName} );
 
