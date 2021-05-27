@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import {Link,useHistory } from 'react-router-dom';
 import {
-    CBadge,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CDataTable,
-    CButton,
-    CForm,
-    CSelect,
-    CFormGroup,
-    CFormText,
-    CCardFooter,
-    CInput,
-    CInputFile,
+  CBadge,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CDataTable,
+  CButton,
+  CForm,
+  CSelect,
+  CFormGroup,
+  CFormText,
+  CCardFooter,
+  CInput,
+  CInputFile,
   CSpinner,
-    CLabel,
-    CRow,
+  CLabel,
+  CRow, CAlert,
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -46,6 +46,7 @@ const Tables = () => {
     const [reason, setReason] = useState("");
     const [leaveRequestedDate, setDate] = useState("");
     const [employeeTypeId, setemployeeTypeId] = useState("");
+  const [err, setErr] = useState();
     const [epf, setepf] = useState("");
     const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
@@ -90,7 +91,7 @@ const Tables = () => {
     }, []);
     const onSubmit = async (data) => {
 
-
+      setErr("");
         const body = ({ epf,LeaveTypeId,reason,leaveRequestedDate,numberOfDays});
 
 
@@ -109,7 +110,7 @@ const Tables = () => {
         }
     }).catch((err) => {
         console.error(err);
-        alert('Error please try again');
+      err.response.data.message && setErr(err.response.data.message)
     });
     };
 
@@ -151,6 +152,11 @@ const Tables = () => {
                 New Leave Application Form
               </CCardHeader>
               <CCardBody>
+                {err ? (
+                  <CAlert color="info" closeButton fade={5}>
+                    {err}
+                  </CAlert>
+                ) : null}
                 <CForm action="submit" method="post"  className="form-horizontal">
 
 
@@ -160,7 +166,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input"> Employee EPF No: </CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="EPF No:" value={epf} onChange={onChangeepf}/>
+                      <CInput id="text-input" name="text-input" type="number" placeholder="EPF No:" value={epf} onChange={onChangeepf} required/>
                       <CFormText>Please Enter Epf No:</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -174,6 +180,7 @@ const Tables = () => {
                   name="Countries"
                   onChange={onChangeLeaveTypeId}
                   value={LeaveTypeId}
+                  required
                   >
                     <option>Please Select Leave Type</option>
                     {listData.lists.map((country, key) => (
@@ -196,7 +203,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Reason</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="text-input" placeholder="Reason" value={reason} onChange={onChangeReason}/>
+                      <CInput id="text-input" name="text-input" placeholder="Reason" value={reason} onChange={onChangeReason} required/>
                       <CFormText>Please Enter Reason</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -205,7 +212,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input">Date</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={leaveRequestedDate} onChange={onChangeDate} />
+                      <CInput id="text-input" type="date" name="text-input" placeholder="Special Date" value={leaveRequestedDate} onChange={onChangeDate} required/>
                       <CFormText>Please select Date</CFormText>
                     </CCol>
                   </CFormGroup>
@@ -214,7 +221,7 @@ const Tables = () => {
                       <CLabel htmlFor="text-input"> Number of days</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                    <CSelect onChange={onChangenumberOfDays} value={numberOfDays}>
+                    <CSelect onChange={onChangenumberOfDays} value={numberOfDays} required>
                       <option selected>Select the Days</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
