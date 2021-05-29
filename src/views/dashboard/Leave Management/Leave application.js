@@ -102,7 +102,7 @@ const Tables = () => {
         }
     };
 
-    axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/leaveRequests/create`, body, headers)
+    axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/leaveRequests/admin/create`, body, headers)
     .then((res) => {
         if (res.status === 200) {
           window.location.reload();
