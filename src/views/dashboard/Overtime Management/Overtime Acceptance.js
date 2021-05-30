@@ -9,7 +9,7 @@ import {
   CCol,
   CSpinner,
   CDataTable,
-  CRow
+  CRow, CAlert
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 
@@ -35,6 +35,7 @@ const fields = ['id','employeeId','employeeTypeId','shiftId','OTHrs',{
 const Tables = () => {
   const [listData, setListData] = useState({ lists: [] });
   const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState();
   const token = localStorage.getItem("Token")
   const headers = {
     headers: {
@@ -57,7 +58,7 @@ const Tables = () => {
   const Submit = async (OTLogId) => {
     const reviewStatus = 1 ;
     //setstatus('accept');
-
+    setErr("");
     try{
       const body = ({reviewStatus,OTLogId});
       const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/overtime/update", body,headers);
@@ -65,14 +66,14 @@ const Tables = () => {
       window.location.reload();
 
     } catch(err) {
-      //err.response.data.message&& setErr(err.response.data.message)
+      err.response.data.message && setErr(err.response.data.message)
     }
 
   };
   const SubmitDecline = async (OTLogId) => {
     const reviewStatus = 2 ;
     //setstatus('accept');
-
+    setErr("");
     try{
       const body = ({reviewStatus,OTLogId});
       const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/overtime/update", body,headers);
@@ -80,7 +81,7 @@ const Tables = () => {
       window.location.reload();
 
     } catch(err) {
-      //err.response.data.message&& setErr(err.response.data.message)
+      err.response.data.message && setErr(err.response.data.message)
     }
 
   };
@@ -102,6 +103,11 @@ const Tables = () => {
               Overtime Acceptance Table
             </CCardHeader>
             <CCardBody>
+              {err ? (
+                <CAlert color="info" closeButton Time={5}>
+                  {err}
+                </CAlert>
+              ) : null}
               <CDataTable
                 items={listData.lists}
                 fields={fields}
