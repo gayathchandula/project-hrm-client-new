@@ -33,7 +33,10 @@ const changestatus = reviewstatusId => {
     default: return 'primary'
   }
 }
-const fields = ['createdAt','employeeId','shiftId','OTHrs','OTDayRate',{
+const fields = ['createdAt','employeeId',{
+  key: "firstName",
+  label: "First Name"
+},'shiftId','OTHrs','OTDayRate',{
   key: 'reviewstatusId',
   label: 'Review Status',
 
@@ -102,6 +105,10 @@ const Tables = () => {
                   'createdAt':
                   (item) => (
                     <td> {moment(item.createdAt).format("MMM Do YY")} </td>
+                  ),
+                'firstName':
+                  (item) => (
+                    <td> {item.employee.firstName} </td>
                   )
 
               }}

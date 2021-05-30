@@ -32,7 +32,10 @@ const fields = [{
 },{
   key: "lastName",
   label: "Last Name"
-}, 'createdAt',  {
+},{
+  key: "createdAt",
+  label: "Time"
+},{
   key: "entry",
   label: "status"
 },{
@@ -122,8 +125,9 @@ const Tables = () => {
                   ),
                   'createdAt':
                   (item) => (
-                    <td> {moment(item.createdAt).format("MMM Do YY")} </td>
-                  )
+                    <td> {moment(item.createdAt).format("MMM Do YY, h:mm:ss a")} </td>
+                  ),
+
 
               }}
             >
