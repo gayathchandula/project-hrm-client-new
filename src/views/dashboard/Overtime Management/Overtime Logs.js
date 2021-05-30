@@ -34,6 +34,9 @@ const changestatus = reviewstatusId => {
   }
 }
 const fields = ['createdAt','employeeId',{
+  key: "epf",
+  label: "EPF No"
+},{
   key: "firstName",
   label: "First Name"
 },'shiftId','OTHrs','OTDayRate',{
@@ -109,6 +112,10 @@ const Tables = () => {
                 'firstName':
                   (item) => (
                     <td> {item.employee.firstName} </td>
+                  ),
+                'epf':
+                  (item) => (
+                    <td> {item.employee.epf} </td>
                   )
 
               }}
