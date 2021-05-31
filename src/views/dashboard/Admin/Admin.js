@@ -224,7 +224,23 @@ const Tables = () => {
                         {item.status}
                       </CBadge>
                     </td>
-                  )
+                  ),
+                'id':
+                  (item) => (
+                    <td> {item[0].id} </td>
+                  ),
+                'firstName':
+                  (item) => (
+                    <td> {item[0].firstName} </td>
+                  ),
+                'lastName':
+                  (item) => (
+                    <td> {item[0].lastName} </td>
+                  ),
+                'email':
+                  (item) => (
+                    <td> {item[0].email} </td>
+                  ),
               }}
             />
             </CCardBody>
