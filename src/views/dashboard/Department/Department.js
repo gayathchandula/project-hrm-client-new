@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import CreatableSelect from 'react-select/creatable';
 import {
@@ -18,7 +18,6 @@ import {
   CRow, CAlert,
 } from '@coreui/react'
 import moment from 'moment';
-import UserContext from '../../../userContext';
 const getBadge = status => {
   switch (status) {
     case 'Active': return 'success'
@@ -28,7 +27,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['id','Employee_type', 'createdAt', 'updatedAt', {
+const fields = ['id','organizationId', 'departmentName', 'createdAt', {
   key: 'show_details',
   label: 'Action',
 
@@ -42,6 +41,11 @@ const Tables = () => {
   const [departmentName, setDepartment] = useState("");
   const [err, setErr] = useState();
   const [listData, setListData] = useState({ lists: [] });
+  function removeDuplicates(arr) {
+    const map = new Map();
+    arr.forEach(v => map.set(v.departmentName, v)) // having `departmentName` is always unique
+    return [...map.values()];
+  }
   const orgid = localStorage.getItem("id")
   const components = {
     DropdownIndicator: null,
@@ -74,7 +78,7 @@ const Tables = () => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/get`,headers
       );
-      setListData({ lists: result.data.data.EmployeeTypeDetails });
+      setListData({ lists: removeDuplicates(result.data.data.departmentsDetails) });
       console.log(result)
     };
 
@@ -120,7 +124,7 @@ const Tables = () => {
       }
     };
 
-    axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/delete`, body, headers)
+    axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/Delete`, body, headers)
       .then((res) => {
         if (res.status === 200) {
           window.location.reload();
@@ -132,6 +136,7 @@ const Tables = () => {
 
     });
   };
+
 
   return (
 
