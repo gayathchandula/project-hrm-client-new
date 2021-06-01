@@ -9,9 +9,7 @@ import {
   CSpinner,
   CRow
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 import axios from 'axios';
-import usersData from '../../users/UsersData'
 import moment from 'moment';
 import UserContext from '../../../userContext';
 const getBadge = status => {
