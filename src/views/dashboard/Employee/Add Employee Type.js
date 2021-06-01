@@ -13,6 +13,7 @@ import {
   CFormText,
   CCardFooter,
   CInput,
+  CSpinner,
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
@@ -38,6 +39,7 @@ const Tables = () => {
     const [Employee_type, setEmployee_type] = useState("");
     const [err, setErr] = useState();
     const [listData, setListData] = useState({ lists: [] });
+  const [loading, setLoading] = useState(true);
     const orgid = localStorage.getItem("id")
 
     const onChangeemployeeTypeId = (e) => {
@@ -59,6 +61,7 @@ const Tables = () => {
           `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/emptypelist`,headers
         );
         setListData({ lists: result.data.data.EmployeeTypeDetails });
+         setLoading(false);
         console.log(result)
     };
 
@@ -115,7 +118,13 @@ const Tables = () => {
     err.response.data.message && setErr(err.response.data.message)
   });
   };
-
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   return (
 
     <>
