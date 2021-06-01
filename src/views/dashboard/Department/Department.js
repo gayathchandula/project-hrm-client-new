@@ -10,18 +10,13 @@ import {
   CDataTable,
   CButton,
   CForm,
-  CSelect,
   CFormGroup,
   CFormText,
   CCardFooter,
   CInput,
-  CInputFile,
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-
-import usersData from '../../users/UsersData'
 import moment from 'moment';
 import UserContext from '../../../userContext';
 const getBadge = status => {
@@ -42,15 +37,11 @@ const fields = ['id','Employee_type', 'createdAt', 'updatedAt', {
 }]
 
 const Tables = () => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
+
   const [designationName, setDesignation] = useState("");
   const [departmentName, setDepartment] = useState("");
-  const [Employee_type, setEmployee_type] = useState("");
-  const [rfid, setrfid] = useState("");
   const [err, setErr] = useState();
   const [listData, setListData] = useState({ lists: [] });
-  const { userData, setUserData } = useContext(UserContext);
   const orgid = localStorage.getItem("id")
   const components = {
     DropdownIndicator: null,
@@ -58,10 +49,7 @@ const Tables = () => {
    const onChangeDepartment = (e) => {
     setDepartment( e.target.value );
   };
-  const onChangeDesignation = (e) => {
-    //setDesignation( e.target.value );
 
-  };
   const handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
     console.log(newValue);
@@ -84,7 +72,7 @@ const Tables = () => {
 
     const fetchData = async () => {
       const result = await axios(
-        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/emptypelist`,headers
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/get`,headers
       );
       setListData({ lists: result.data.data.EmployeeTypeDetails });
       console.log(result)
