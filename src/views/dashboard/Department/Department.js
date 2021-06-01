@@ -15,7 +15,7 @@ import {
   CCardFooter,
   CInput,
   CLabel,
-  CRow, CAlert,
+  CRow, CAlert, CSpinner,
 } from '@coreui/react'
 import moment from 'moment';
 const getBadge = status => {
@@ -40,6 +40,7 @@ const Tables = () => {
   const [designationName, setDesignation] = useState("");
   const [departmentName, setDepartment] = useState("");
   const [err, setErr] = useState();
+  const [loading, setLoading] = useState(true);
   const [listData, setListData] = useState({ lists: [] });
   function removeDuplicates(arr) {
     const map = new Map();
@@ -79,6 +80,7 @@ const Tables = () => {
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/get`,headers
       );
       setListData({ lists: removeDuplicates(result.data.data.departmentsDetails) });
+      setLoading(false);
       console.log(result)
     };
 
@@ -137,7 +139,13 @@ const Tables = () => {
     });
   };
 
-
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   return (
 
     <>
