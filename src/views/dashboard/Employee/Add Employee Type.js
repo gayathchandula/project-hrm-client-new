@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import {
   CBadge,
@@ -9,20 +9,14 @@ import {
   CDataTable,
   CButton,
   CForm,
-  CSelect,
   CFormGroup,
   CFormText,
   CCardFooter,
   CInput,
-  CInputFile,
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-
-import usersData from '../../users/UsersData'
 import moment from 'moment';
-import UserContext from '../../../userContext';
 const getBadge = status => {
   switch (status) {
     case 'Active': return 'success'
@@ -41,33 +35,17 @@ const fields = ['id','Employee_type', 'createdAt', 'updatedAt', {
 }]
 
 const Tables = () => {
-  const [firstName, setfirstName] = useState("");
-    const [lastName, setlastName] = useState("");
-    const [shiftId, setshiftId] = useState("");
     const [Employee_type, setEmployee_type] = useState("");
-    const [rfid, setrfid] = useState("");
     const [err, setErr] = useState();
     const [listData, setListData] = useState({ lists: [] });
-    const { userData, setUserData } = useContext(UserContext);
     const orgid = localStorage.getItem("id")
 
-    const onChangefirstName = (e) => {
-        setfirstName(e.target.value);
-    };
-    const onChangelastName = (e) => {
-        setlastName(e.target.value );
-    };
-    const onChangerfid = (e) => {
-        setrfid( e.target.value );
-    };
-    const onChangeshiftId = (e) => {
-        setshiftId( e.target.value );
-    };
     const onChangeemployeeTypeId = (e) => {
         setEmployee_type( e.target.value );
     };
 
     const token = localStorage.getItem("Token")
+
     const headers = {
         headers: {
 
@@ -112,9 +90,10 @@ const Tables = () => {
       err.response.data.message && setErr(err.response.data.message)
     });
     };
+
     const onDelete = async (id) => {
 
-
+      setErr("");
       const body = ({id} );
 
 
@@ -133,7 +112,7 @@ const Tables = () => {
       }
   }).catch((err) => {
       console.error(err);
-      alert('Error please try again');
+    err.response.data.message && setErr(err.response.data.message)
   });
   };
 
