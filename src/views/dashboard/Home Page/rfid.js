@@ -63,13 +63,17 @@ const Tables = () => {
         try{
           const body = ({rfid} );
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
-
-          console.log(loginResponse.data.data.employee.firstName);
-           // Clear RFID field
           setfirstName(loginResponse.data.data.employee.firstName);
           setlastName(loginResponse.data.data.employee.lastName);
           setShiftName(loginResponse.data.data.ShiftName);
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
+
+          console.log(loginResponse);
+          const movementLogId = loginResponse.data.data.id;
+          console.log("body"+loginResponse.data.data.id)
+          const loginResponse1 = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/movements/${movementLogId}/employeeShiftAttendance`,headers);
+          console.log(loginResponse1);
+           // Clear RFID field
           setrfid('');
 
       } catch(err) {
