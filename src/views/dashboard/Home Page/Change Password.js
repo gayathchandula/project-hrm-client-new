@@ -9,26 +9,15 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-
   CInput,
-
-  CTooltip,
-  CRow,
-  CCol,
-  CLink, CAlert
+ CAlert
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 import CIcon from '@coreui/icons-react'
 import axios from "axios";
 
 
 const Changepassword = () => {
-  const placements = [
-    'top-start', 'top', 'top-end',
-    'bottom-start', 'bottom', 'bottom-end',
-    'right-start', 'right', 'right-end',
-    'left-start', 'left', 'left-end'
-  ]
+
   const orgid = localStorage.getItem("id")
   const token = localStorage.getItem("Token")
   const [oldpassword, setoldpassword] = useState();
@@ -60,7 +49,6 @@ const Changepassword = () => {
     axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/users/changepassword`, body, headers)
       .then((res) => {
         if (res.status === 200) {
-          //window.location.reload();
           alert('upload success');
         }
       }).catch((err) => {
