@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {Link,useHistory } from 'react-router-dom';
 import {
   CBadge,
   CCard,
@@ -27,9 +26,9 @@ import {
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
+
 import UserContext from '../../../userContext';
-import usersData from '../../users/UsersData'
+
 
 const getBadge = status => {
   switch (status) {
@@ -75,7 +74,7 @@ const Tables = () => {
   const [listData3, setListData3] = useState({ lists: [] });
   const [listData4, setListData4] = useState({ lists: [] });
     const [loading, setLoading] = useState(true);
-    const { userData, setUserData } = useContext(UserContext);
+
   const orgid = localStorage.getItem("id")
 
   function removeDuplicates(arr) {
@@ -156,10 +155,10 @@ const Tables = () => {
           const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
           console.log(loginResponse);
           setListData4({lists: loginResponse.data.data.departmentsDetails});
-          //window.location.reload();
+          window.location.reload();
 
         } catch (err) {
-          //err.response.data.message&& setErr(err.response.data.message)
+          err.response.data.message&& setErr(err.response.data.message)
         }
       }
       fetchData();
