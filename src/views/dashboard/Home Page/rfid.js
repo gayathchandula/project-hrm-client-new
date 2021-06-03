@@ -1,50 +1,38 @@
-import React, { useEffect, useState } from 'react';
-//import ReactDOM from 'react-dom';
-// import {DebounceInput} from 'react-debounce-input';
-import {Link,useHistory } from 'react-router-dom';
+import React, {  useState } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {
-  CBadge,
+
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CDataTable,
   CButton,
   CForm,
-  CSelect,
+
   CFormGroup,
   CFormText,
-  CCardFooter,
+
   CInput,
-  CInputFile,
+
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
+
+
 var imageName = require('src/assets/img_avatar.png')
 
-const getBadge = status => {
-  switch (status) {
-    case 'Active': return 'success'
-    case 'Inactive': return 'secondary'
-    case 'Pending': return 'warning'
-    case 'Banned': return 'danger'
-    default: return 'primary'
-  }
-}
-const fields = ['Employee ID','First Name', 'Last Name', 'Employee Type','Shift Type','Created At', 'Updated At', 'Action']
+
 var isEffect = false;
 const Tables = () => {
   const [firstName, setfirstName] = useState();
-  const [lastName, setlastName] = useState([]);
+
   const [ShiftName, setShiftName] = useState([]);
   const [employeeTypeId, setemployeeTypeId] = useState([]);
-  const [hour_rate, sethour_rate] = useState([]);
+
   const [rfid, setrfid] = useState();
-  const [listData, setListData] = useState({ lists: [] });
+
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE4OTM3Mjc2fQ.YiGSokx728s4K93CjaC7BMWUa1kHO60UwdMitGwKCdQ' ;
   const [err, setErr] = useState();
 
@@ -204,5 +192,5 @@ export default Tables
 
 
 
-//<CInput id="password" name="text-input" placeholder="RFID No"  value={rfid} onChange={(e) => setrfid(e.target.value)} onKeyUp={(e) =>testIt(e.target.value)} />
+
 
