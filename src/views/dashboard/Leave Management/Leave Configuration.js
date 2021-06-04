@@ -13,14 +13,10 @@ import {
   CFormGroup,
   CFormText,
   CCardFooter,
-  CInputCheckbox,
   CLabel,
-  CRow, CInput, CAlert,
+  CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
-import CreatableSelect from "react-select/creatable/dist/react-select.esm";
 
 const getBadge = status => {
   switch (status) {
@@ -58,48 +54,19 @@ const Tables = () => {
 
 
 }]);
-  const onChangeleavetypeId = (e) => {
-    setleavetypeId(e.target.value);
-  };
-  const onChangeMin_Hours = (e) => {
-    setotHrsMin(e.target.value );
-  };
+
   const onChangeemploy_type = (e) => {
     setemployeeTypeId( e.target.value );
   };
-  const onChangeInchemail = (e) => {
-    setincharge_email(e.target.value );
-  };
-  const onChangenumberOfDays = (e) => {
-    setnumberOfDays( e.target.value );
-  };
-  const handleCheckChieldElement = (id) => {
-    setleavetypeId(id);
 
-  }
-  const components = {
-    DropdownIndicator: null,
-  };
-  const handleInputChange = (e,id) => {
-    setdata({
-      ...data,
-      numberOfDays: id});
 
-  };
-  const handleChange = (newValue: any, actionMeta: any) => {
-    console.group('Value Changed');
-    console.log(newValue);
-    setleavetypeId( newValue );
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
 
-  };
+
   const onSelect1Change=(e) =>{
     setdata({
       ...data,
       numberOfDays: e.target.value
     })
-   // setnumberOfDays(e.target.value)
 
 
   }
@@ -287,64 +254,6 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
 
                     </>
                   ))}
-
-
-
-
-
-                  {/*     {listData.lists.map((country, key) => (*/}
-          {/*        <>*/}
-          {/*      <CFormGroup variant="checkbox"  className="my-2">*/}
-          {/*        <CInputCheckbox*/}
-
-          {/*          onChange={() =>{handleCheckChieldElement(country.id)}}*/}
-
-          {/*        />*/}
-          {/*        <CLabel  htmlFor="fade" name="leavetypeId" value={country.id} >Leave Type {country.LeaveTypeName}</CLabel>*/}
-
-          {/*      <CFormGroup row >*/}
-          {/*        <CCol md="3">*/}
-          {/*          <CLabel htmlFor="text-input">No of Days </CLabel>*/}
-          {/*        </CCol>*/}
-          {/*        <CCol xs="12" md="9">*/}
-          {/*        <CSelect custom name="numberOfDays" id="numberOfDays" >*/}
-          {/*            <option value="0">0-30 days</option>*/}
-          {/*            <option value="1" >1</option>*/}
-          {/*            <option value="2" >2</option>*/}
-          {/*            <option value="3" >3</option>*/}
-          {/*            <option value="4" >4</option>*/}
-          {/*            <option value="5" >5</option>*/}
-          {/*            <option value="6" >6</option>*/}
-          {/*            <option value="7" >7</option>*/}
-          {/*            <option value="8" >8</option>*/}
-          {/*            <option value="9" >9</option>*/}
-          {/*            <option value="10" >10</option>*/}
-          {/*            <option value="11" >11</option>*/}
-          {/*            <option value="12" >12</option>*/}
-          {/*            <option value="13" >13</option>*/}
-          {/*            <option value="14" >14</option>*/}
-          {/*            <option value="15" >15</option>*/}
-          {/*            <option value="16" >16</option>*/}
-          {/*            <option value="17" >17</option>*/}
-          {/*            <option value="18" >18</option>*/}
-          {/*            <option value="19" >19</option>*/}
-          {/*            <option value="20" >20</option>*/}
-
-          {/*          </CSelect>*/}
-          {/*          <CFormText>select between 0-30 days</CFormText>*/}
-          {/*        </CCol>*/}
-          {/*      </CFormGroup>*/}
-          {/*      </CFormGroup>*/}
-          {/* </>*/}
-          {/*))}*/}
-
-
-
-
-
-
-
-
 
 
                 </CForm>
