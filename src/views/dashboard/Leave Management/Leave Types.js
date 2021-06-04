@@ -9,19 +9,15 @@ import {
   CDataTable,
   CButton,
   CForm,
-  CSelect,
   CFormGroup,
   CFormText,
   CCardFooter,
   CInput,
-  CInputFile,
   CSpinner,
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
 import moment from 'moment';
 
 const getBadge = status => {
@@ -53,21 +49,7 @@ const Tables = () => {
     const [loading, setLoading] = useState(true);
     const orgid = localStorage.getItem("id")
 
-    const onChangefirstName = (e) => {
-        setfirstName(e.target.value);
-    };
-    const onChangelastName = (e) => {
-        setlastName(e.target.value );
-    };
-    const onChangerfid = (e) => {
-        setrfid( e.target.value );
-    };
-    const onChangeshiftId = (e) => {
-        setshiftId( e.target.value );
-    };
-    const onChangeemployeeTypeId = (e) => {
-        setEmployee_type( e.target.value );
-    };
+
     const onChangeLeaveTypeName = (e) => {
       setLeaveTypeName( e.target.value );
   };
