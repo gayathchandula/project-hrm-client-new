@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {Link,useHistory } from 'react-router-dom';
 import {
-  CBadge,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CDataTable,
   CButton,
   CForm,
   CSelect,
@@ -15,31 +12,14 @@ import {
   CFormText,
   CCardFooter,
   CInput,
-  CInputFile,
   CSpinner,
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
 
-const getBadge = status => {
-  switch (status) {
-    case 'Active': return 'success'
-    case 'Inactive': return 'secondary'
-    case 'Pending': return 'warning'
-    case 'Banned': return 'danger'
-    default: return 'primary'
-  }
-}
-const fields = ['Leave Type','No of days', 'Date', 'Requested Date','Status', {
-  key: 'show_details',
-  label: 'Action',
 
-  sorter: false,
-  filter: false
-}]
+
 
 const Tables = () => {
   const [LeaveTypeId, setLeaveTypeId] = useState("");
@@ -49,8 +29,6 @@ const Tables = () => {
   const [err, setErr] = useState();
     const [epf, setepf] = useState("");
     const [listData, setListData] = useState({ lists: [] });
-  const [listData1, setListData1] = useState({ lists: [] });
-  const [listData2, setListData2] = useState({ lists: [] });
     const [loading, setLoading] = useState(true);
     const orgid = localStorage.getItem("id")
     const [numberOfDays, setnumberOfDays] = useState("");
@@ -65,9 +43,6 @@ const Tables = () => {
     };
     const onChangeDate = (e) => {
       setDate( e.target.value );
-    };
-    const onChangeemployeeTypeId = (e) => {
-        setemployeeTypeId( e.target.value );
     };
     const onChangenumberOfDays = (e) => {
       setnumberOfDays( e.target.value );
@@ -114,30 +89,7 @@ const Tables = () => {
     });
     };
 
-    const onDelete = async (rfid) => {
 
-
-      const body = ({rfid} );
-
-
-  const headers = {
-      headers: {
-
-        "Authorization":`Bearer ${token}`
-      }
-  };
-
-  axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employeeslist/delete`, body, headers)
-  .then((res) => {
-      if (res.status === 200) {
-        window.location.reload();
-          alert('delete success');
-      }
-  }).catch((err) => {
-      console.error(err);
-      alert('Error please try again');
-  });
-  };
 
    if (loading) {
     return <CSpinner />
