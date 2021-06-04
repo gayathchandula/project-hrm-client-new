@@ -155,7 +155,7 @@ const Tables = () => {
           const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
           console.log(loginResponse);
           setListData4({lists: loginResponse.data.data.departmentsDetails});
-          window.location.reload();
+          //window.location.reload();
 
         } catch (err) {
           err.response.data.message&& setErr(err.response.data.message)

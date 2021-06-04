@@ -27,7 +27,7 @@ var imageName = require('src/assets/img_avatar.png')
 var isEffect = false;
 const Tables = () => {
   const [firstName, setfirstName] = useState();
-
+  //const [lastName, setlastName] = useState();
   const [ShiftName, setShiftName] = useState([]);
   const [employeeTypeId, setemployeeTypeId] = useState([]);
 
@@ -52,7 +52,7 @@ const Tables = () => {
           const body = ({rfid} );
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
           setfirstName(loginResponse.data.data.employee.firstName);
-          setlastName(loginResponse.data.data.employee.lastName);
+          //setlastName(loginResponse.data.data.employee.lastName);
           setShiftName(loginResponse.data.data.ShiftName);
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
 
