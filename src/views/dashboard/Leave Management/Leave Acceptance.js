@@ -11,10 +11,7 @@ import {
   CDataTable,
   CRow
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import moment from 'moment';
-import { Calendar, momentLocalizer} from 'react-big-calendar'
-import usersData from '../../users/UsersData'
+
 
 const getBadge = reviewstatusId => {
   switch (reviewstatusId) {
@@ -67,7 +64,7 @@ const Tables = () => {
 
   const Submit = async (OTLogId) => {
     const reviewStatus = 1 ;
-    //setstatus('accept');
+
 
     try{
         const body = ({reviewStatus,OTLogId});
@@ -82,7 +79,7 @@ const Tables = () => {
 };
 const SubmitDecline = async (OTLogId) => {
     const reviewStatus = 2 ;
-    //setstatus('accept');
+
 
     try{
         const body = ({reviewStatus,OTLogId});
