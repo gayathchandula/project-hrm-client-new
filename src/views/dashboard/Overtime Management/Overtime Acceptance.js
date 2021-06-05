@@ -11,9 +11,7 @@ import {
   CDataTable,
   CRow, CAlert
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
 
 const getBadge = status => {
   switch (status) {
