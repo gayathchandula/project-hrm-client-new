@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext} from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 
 
@@ -25,9 +25,8 @@ import {
     CLabel,
     CRow,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import usersData from '../../users/UsersData'
-import UserContext from '../../../userContext';
+
+
 
 import { Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment';
@@ -72,7 +71,6 @@ const Tables = () => {
   const [otAllowancePercentage, setotpercentage] = useState([]);
   const [SpecialDate, setdate] = useState([]);
   const [SpecialDayName, setspecial] = useState([]);
-  const { userData, setUserData } = useContext(UserContext);
   const [HolidayInfo, setHolidayInfo] = useState([]);
   const [listData, setListData] = useState({ lists: [] });
   const [listData1, setListData1] = useState({ lists: [] });
@@ -461,7 +459,6 @@ const events= listData3.lists.map((appointment)=>{
                     <CCol xs="12" md="9">
                     <CSelect
                   name="Countries"
-                  //onChange={onChangespecialday}
                   onChange={onChangespecialday}
                   value={SpecialDayName}
                   required
