@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import {
     CBadge,
@@ -17,9 +17,7 @@ import {
     CLabel,
     CRow,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import UserContext from '../../../userContext';
-import usersData from '../../users/UsersData'
+
 import {
   useHistory
 } from "react-router-dom";
@@ -45,12 +43,10 @@ const Tables = () => {
   const [shiftName, setshiftName] = useState([]);
   const [start_time, setstart_time] = useState([]);
   const [end_time, setend_time] = useState([]);
-  const [password, setPassword] = useState([]);
-  const [passwordConfirm, setpasswordConfirm] = useState([]);
   const [listData, setListData] = useState({ lists: [] });
   const history = useHistory();
   const orgid = localStorage.getItem("id")
-  const { userData, setUserData } = useContext(UserContext);
+
 
 
   const onChangeshiftName = (e) => {
