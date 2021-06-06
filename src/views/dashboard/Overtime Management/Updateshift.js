@@ -1,12 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {
-    CBadge,
+
     CCard,
     CCardBody,
     CCardHeader,
     CCol,
-    CDataTable,
     CButton,
     CForm,
     CSelect,
@@ -17,27 +16,11 @@ import {
     CLabel,
     CRow,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import { useHistory, Link,useLocation  } from 'react-router-dom';
-import usersData from '../../users/UsersData'
-import UserContext from '../../../userContext';
 
-const getBadge = status => {
-  switch (status) {
-    case 'Active': return 'success'
-    case 'Inactive': return 'secondary'
-    case 'Pending': return 'warning'
-    case 'Banned': return 'danger'
-    default: return 'primary'
-  }
-}
-const fields = ['shiftName','start_time', 'end_time', 'ot_startTime', {
-  key: 'show_details',
-  label: 'Action',
+import { useHistory, useLocation  } from 'react-router-dom';
 
-  sorter: false,
-  filter: false
-}]
+
+
 
 const Tables = () => {
 
@@ -47,23 +30,16 @@ const Tables = () => {
   const [newshiftName, setnewshiftName] = useState([]);
   const [start_time, setstart_time] = useState([]);
   const [end_time, setend_time] = useState([]);
-  const [password, setPassword] = useState([]);
-  const [passwordConfirm, setpasswordConfirm] = useState([]);
-  const [listData, setListData] = useState({ lists: [] });
+
+
   const orgid = localStorage.getItem("id")
   const history = useHistory();
   const location = useLocation();
   const data = location.state;
-  const { userData, setUserData } = useContext(UserContext);
+
 
   const onChangenewshiftName = (e) => {
     setnewshiftName(e.target.value);
-  };
-  const onChangestart_time = (e) => {
-    setstart_time(e.target.value );
-  };
-  const onChangeend_time = (e) => {
-    setend_time( e.target.value );
   };
 
   const handleChange = (event) => {
@@ -92,47 +68,8 @@ const Tables = () => {
 
 
 
-  const submit = async (e) => {
-    e.preventDefault();
-    try{
-      const body = ({shiftName, start_time,end_time,ot_startTime} );
-      const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/shift`, body,headers);
-      console.log(loginResponse);
-      setshiftName('')
-      setstart_time('')
-      setend_time('' )
-      setot_startTime('')
-      window.location.reload();
-
-    } catch(err) {
-      //err.response.data.message&& setErr(err.response.data.message)
-    }
-  };
-
-  const onDelete = async (id) => {
 
 
-    const body = ({id} );
-
-
-const headers = {
-    headers: {
-
-      "Authorization":`Bearer ${token}`
-    }
-};
-
-axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/shift/Delete`, body, headers)
-.then((res) => {
-    if (res.status === 200) {
-      window.location.reload();
-        alert('delete success');
-    }
-}).catch((err) => {
-    console.error(err);
-    alert('Error please try again');
-});
-};
 
 const onUpdate = async (e) => {
 
