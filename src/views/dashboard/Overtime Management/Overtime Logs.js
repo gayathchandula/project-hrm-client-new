@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext} from 'react';
+import React, { useEffect, useState} from 'react';
 import {
   CBadge,
   CCard,
@@ -9,11 +9,10 @@ import {
   CSpinner,
   CRow
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
+
 import axios from 'axios';
-import usersData from '../../users/UsersData'
+
 import moment from 'moment';
-import UserContext from '../../../userContext';
 
 const getBadge = reviewstatusId => {
   switch (reviewstatusId) {
@@ -52,7 +51,7 @@ const Tables = () => {
    const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
-  const { userData, setUserData } = useContext(UserContext);
+
   const headers = {
     headers: {
 
