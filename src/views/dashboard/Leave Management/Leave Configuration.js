@@ -27,7 +27,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['id','employeeTypeId', 'leavetypeId', 'numberOfDays',{
+const fields = ['id','employeeType', 'leavetype', 'numberOfDays',{
   key: 'show_details',
   label: 'Action',
 
@@ -291,6 +291,14 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                         {item.status}
                       </CBadge>
                     </td>
+                  ),
+                'leavetype':
+                  (item) => (
+                    <td> {item.leavetypes.LeaveTypeName} </td>
+                  ),
+                'employeeType':
+                  (item) => (
+                    <td> {item.employeeTypes.Employee_type} </td>
                   ),
                   'show_details':
           (item, index)=>{
