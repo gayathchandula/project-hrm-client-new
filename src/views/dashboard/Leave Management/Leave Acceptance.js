@@ -31,7 +31,13 @@ const changestatus = reviewstatusId => {
     default: return 'primary'
   }
 }
-const fields = ['leavetypeId','leaveRequestedDate','numberOfDays','reason','reviewstatusId',{
+const fields = ['leavetype',{
+  key:'employeeName',
+  label: 'Name'
+},{
+  key:'employeeepf',
+  label: 'EPF No'
+},'leaveRequestedDate','numberOfDays','reason','reviewstatusId',{
   key: 'show_details',
   label: 'Action',
 
@@ -131,6 +137,10 @@ if (loading) {
                       {changestatus(item.reviewstatusId)}
                       </CBadge>
                     </td>
+                  ),
+                'leavetype':
+                  (item) => (
+                    <td> {item.leavetypes.LeaveTypeName} </td>
                   ),
                   'show_details':
           (item, index)=>{
