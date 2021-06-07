@@ -47,7 +47,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['otHrsMax','otHrsMin', 'employeeTypeId', 'otRate',{
+const fields = ['otHrsMax','otHrsMin', 'employeeType', 'otRate',{
   key: 'show_details',
   label: 'Action',
 
@@ -394,6 +394,10 @@ const events= listData3.lists.map((appointment)=>{
                         {item.status}
                       </CBadge>
                     </td>
+                  ),
+                'employeeType':
+                  (item) => (
+                    <td> {item.employeeType.Employee_type} </td>
                   ),
                   'show_details':
           (item, index)=>{
