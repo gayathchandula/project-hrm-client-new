@@ -37,16 +37,23 @@ const fields = ['leavetype',{
 },{
   key:'employeeepf',
   label: 'EPF No'
-},'leaveRequestedDate','numberOfDays','reason','reviewstatusId',{
+},'leaveRequestedDate','numberOfDays','reason',{
   key: 'show_details',
   label: 'Action',
 
   sorter: false,
   filter: false
 }]
-
+const fields1 = [{
+  key:'employeeName',
+  label: 'Name'
+},{
+  key:'employeeepf',
+  label: 'EPF No'
+},'leavetype','leaveRequestedDate','numberOfDays','reason','reviewstatusId']
 const Tables = () => {
   const [listData, setListData] = useState({ lists: [] });
+  const [listData1, setListData1] = useState({ lists: [] });
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -63,9 +70,18 @@ const Tables = () => {
             `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/leaveRequests/pending`,headers
           );
           setListData({ lists: result.data.data.allPendingDetails });
-          setLoading(false);
       };
+
+    const fetchData1 = async () => {
+      const result = await axios.get(
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/leaveRequests/list`,headers
+      );
+      setListData1({ lists: result.data.data.leaveRequestDetails });
+      setLoading(false);
+    };
+
     fetchData();
+    fetchData1();
   }, []);
 
   const Submit = async (OTLogId) => {
@@ -109,7 +125,7 @@ if (loading) {
         <CCol>
           <CCard>
             <CCardHeader>
-              Overtime Acceptance Table
+              Leave Acceptance Table
             </CCardHeader>
             <CCardBody>
             <CDataTable
@@ -127,14 +143,6 @@ if (loading) {
                     <td>
                       <CBadge color={getBadge(item.status)}>
                         {item.status}
-                      </CBadge>
-                    </td>
-                  ),
-                  'reviewstatusId':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.reviewstatusId)}>
-                      {changestatus(item.reviewstatusId)}
                       </CBadge>
                     </td>
                   ),
@@ -181,6 +189,50 @@ if (loading) {
         </CCol>
       </CRow>
 
+      <CRow>
+        <CCol>
+          <CCard>
+            <CCardHeader>
+              Leave  Table
+            </CCardHeader>
+            <CCardBody>
+              <CDataTable
+                items={listData1.lists}
+                fields={fields1}
+                hover
+                striped
+                bordered
+                size="sm"
+                itemsPerPage={10}
+                pagination
+                scopedSlots = {{
+                  'status':
+                    (item)=>(
+                      <td>
+                        <CBadge color={getBadge(item.status)}>
+                          {item.status}
+                        </CBadge>
+                      </td>
+                    ),
+                  'reviewstatusId':
+                    (item)=>(
+                      <td>
+                        <CBadge color={getBadge(item.reviewstatusId)}>
+                          {changestatus(item.reviewstatusId)}
+                        </CBadge>
+                      </td>
+                    ),
+                  'leavetype':
+                    (item) => (
+                      <td> {item.leavetypes.LeaveTypeName} </td>
+                    )
+                }}
+
+              ></CDataTable>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
     </>
   )
 }
