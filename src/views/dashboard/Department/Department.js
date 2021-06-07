@@ -54,9 +54,6 @@ const Tables = () => {
    const onChangeDepartment = (e) => {
     setDepartment( e.target.value );
   };
-  const onChangedesignation = (e) => {
-    setDesignation( e.target.value );
-  };
 
   const handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
@@ -101,7 +98,8 @@ const Tables = () => {
       const body = ({departmentName, designationName} );
       const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/create`, body,headers);
       console.log(loginResponse);
-      const loginResponse1 = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/designation/create`, body,headers);
+      const departmentId = loginResponse.data.data.savedOt.id;
+      const loginResponse1 = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/${departmentId}/designation/create`, body,headers);
       console.log(loginResponse1);
       setDesignation('')
       setDepartment('')
@@ -167,31 +165,31 @@ const Tables = () => {
                     <CFormText>Enter New Department</CFormText>
                   </CCol>
                 </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">Designation</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="6">
-                    <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={designationName} onChange={onChangedesignation}/>
-                    <CFormText>Enter New Designation</CFormText>
-                  </CCol>
-                </CFormGroup>
-
                 {/*<CFormGroup row>*/}
                 {/*  <CCol md="3">*/}
                 {/*    <CLabel htmlFor="text-input">Designation</CLabel>*/}
                 {/*  </CCol>*/}
                 {/*  <CCol xs="12" md="6">*/}
-                {/*    <CreatableSelect*/}
-                {/*      isMulti*/}
-                {/*      onChange={handleChange}*/}
-
-                {/*      placeholder="Type Designation and press enter..."*/}
-                {/*      components={components}*/}
-                {/*    />*/}
+                {/*    <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={designationName} onChange={onChangedesignation}/>*/}
                 {/*    <CFormText>Enter New Designation</CFormText>*/}
                 {/*  </CCol>*/}
                 {/*</CFormGroup>*/}
+
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">Designation</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="6">
+                    <CreatableSelect
+                      isMulti
+                      onChange={handleChange}
+
+                      placeholder="Type Designation and press enter..."
+                      components={components}
+                    />
+                    <CFormText>Enter New Designation</CFormText>
+                  </CCol>
+                </CFormGroup>
 
 
               </CForm>
