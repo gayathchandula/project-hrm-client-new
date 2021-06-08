@@ -104,6 +104,12 @@ const _nav =  [
     _children: [
       {
         _tag: 'CSidebarNavItem',
+        name: 'Leave Logs',
+        to: '/leavelogs',
+        icon: 'cil-pencil',
+      },
+      {
+        _tag: 'CSidebarNavItem',
         name: 'Leave Types',
         to: '/Leave Types',
         icon: 'cil-pencil',

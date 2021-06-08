@@ -58,6 +58,7 @@ const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const Department = React.lazy(() => import('./views/dashboard/Department/Department'));
 const Designation = React.lazy(() => import('./views/dashboard/Department/Designation'));
+const leavelogs = React.lazy(() => import('./views/dashboard/Leave Management/Leave Log'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -66,6 +67,7 @@ const routes = [
   { path: '/Change Password', name: 'Change Password', component: ChangePassword },
   { path: '/Settings', name: 'Settings', component: Settings },
   { path: '/attendence', name: 'Attendence Log', component: Attendence },
+  { path: '/leavelogs', name: 'leavelogs', component: leavelogs },
   { path: '/AddEmployeeType', name: 'Add New Employee Type', component: AddEmployeeType },
   { path: '/Employee', name: 'Employee', component: Employee },
   { path: '/Employee Home', name: 'Employee Home', component: EmployeeHome },

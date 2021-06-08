@@ -35,6 +35,7 @@ const Tables = () => {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState();
   const token = localStorage.getItem("Token")
+  const orgid = localStorage.getItem("id")
   const headers = {
     headers: {
 
@@ -45,7 +46,7 @@ const Tables = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        'https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/movements/pendingOT',headers
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/movements/pendingOT`,headers
       );
       setListData({ lists: result.data.data.allPendingDetails });
       setLoading(false);
@@ -59,7 +60,7 @@ const Tables = () => {
     setErr("");
     try{
       const body = ({reviewStatus,OTLogId});
-      const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/overtime/update", body,headers);
+      const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/overtime/update`, body,headers);
       console.log(loginResponse);
       window.location.reload();
 
@@ -74,7 +75,7 @@ const Tables = () => {
     setErr("");
     try{
       const body = ({reviewStatus,OTLogId});
-      const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/overtime/update", body,headers);
+      const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/overtime/update`, body,headers);
       console.log(loginResponse);
       window.location.reload();
 

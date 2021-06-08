@@ -42,6 +42,7 @@ const Updateot = React.lazy(() => import('./containers/TheLayout'));
 const Department = React.lazy(() => import('./containers/TheLayout'));
 const Designation = React.lazy(() => import('./containers/TheLayout'));
 
+
 function App () {
 
   const [ userData, setUserData] = useState({
@@ -74,6 +75,7 @@ function App () {
               <Route exact path="/Designation" name="Designation"  render={props => <Designation {...props}/>} />
               <Route exact path="/Leave Types" name="LeaveTypes"  render={props => <LeaveTypes {...props}/>} />
               <Route exact path="/Leave Application" name="LeaveApplication"  render={props => <LeaveApplication {...props}/>} />
+              <Route exact path="/leavelogs" name="leavelogs"  render={props => <Designation {...props}/>} />
               <Route exact path="/Leave configuration" name="LeaveConfiguration"  render={props => <LeaveConfiguration {...props}/>} />
               <Route exact path="/Leave Acceptance" name="LeaveAcceptance"  render={props => <LeaveAcceptance {...props}/>} />
               <Route exact path="/Change Password" name="ChangePassword"  render={props => <ChangePassword {...props}/>} />
