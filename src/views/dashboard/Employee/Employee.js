@@ -39,7 +39,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['id','firstName', 'lastName', 'shiftId','rfid','phone','gender','DOB', {
+const fields = ['id','firstName', 'lastName', 'shift','rfid','phone','gender','DOB', {
   key: 'show_details',
   label: 'Action',
 
@@ -623,6 +623,10 @@ const Tables = () => {
                         {item.status}
                       </CBadge>
                     </td>
+                  ),
+                'shift':
+                  (item) => (
+                    <td> {item.shift.shiftName} </td>
                   ),
                   'show_details':
           (item, index)=>{
