@@ -529,7 +529,7 @@ const Tables = () => {
                   >
                     <option selected>Select the Designation</option>
                     {listData4.lists.map((country, key) => (
-                      <option key={key} value={country.designationName}>
+                      <option key={key} value={country.id}>
                         {country.designationName}
                       </option>
                     ))}
