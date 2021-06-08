@@ -27,7 +27,7 @@ const getBadge = status => {
     default: return 'primary'
   }
 }
-const fields = ['id','organizationId', 'departmentName', 'createdAt', {
+const fields = ['id', 'departmentName', 'createdAt', {
   key: 'show_details',
   label: 'Action',
 
