@@ -8,7 +8,9 @@ import {
   CCard,
   CCardBody,
   CCardFooter,
+  CCardGroup,
   CCardHeader,
+  CHeaderNavLink,
   CCol,
   CProgress,
   CRow,
@@ -35,72 +37,85 @@ const Dashboard = () => {
   return (
     <>
       <WidgetsDropdown />
-      <CCard>
-        <CCardHeader>
-        
-          Pie Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartPie
-            datasets={[
-              {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
-                data: [40, 20, 80, 10]
-              }
-            ]}
-            labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
-      <WidgetsBrand withCharts/>
-
-      <CCard>
-        <CCardHeader>
-          Bar Chart
-          <DocsLink href="http://www.chartjs.org"/>
-        </CCardHeader>
-        <CCardBody>
-          <CChartBar
-            datasets={[
-              {
-                label: 'GitHub Commits',
-                backgroundColor: '#f87979',
-                data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-              }
-            ]}
-            labels="months"
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
 
 
+      <CRow>
+        <CCol xs="12" md="6">
+          <CCard>
+            <CCardHeader>
+
+              Attendence
+            </CCardHeader>
+            <CCardBody>
+              <CHeaderNavLink to="/Chartsattendence">View More Details</CHeaderNavLink>
+              <CChartPie
+                datasets={[
+                  {
+                    backgroundColor: [
+
+                      '#00D8FF',
+                      '#DD1B16'
+                    ],
+                    data: [80, 10]
+                  }
+                ]}
+                labels={[ 'Present 80%', 'Absent 20%']}
+                options={{
+                  tooltips: {
+                    enabled: true
+                  }
+                }}
+              />
+
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+
+
+
+      <CRow>
+        <CCol  xs="12" md="6" >
+          <CCard>
+            <CCardHeader>
+              Over Time
+              <DocsLink href="http://www.chartjs.org"/>
+            </CCardHeader>
+
+            <CCardBody>
+              <CHeaderNavLink to="/Chartsot">View More Details</CHeaderNavLink>
+              <CChartBar
+                datasets={[
+                  {
+                    label: 'Hours',
+                    backgroundColor: '#f87979',
+                    data: [40, 20, 12, 39, 10, 0, 39, 0, 0, 20, 12, 11]
+                  }
+                ]}
+                labels="months"
+                options={{
+                  tooltips: {
+                    enabled: true
+                  }
+                }}
+              />
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
 
       <CRow>
         <CCol>
           <CCard>
             <CCardHeader>
-              Weekly Attendence
+              Leaves
             </CCardHeader>
             <CCardBody>
+              <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
               <CRow>
                 <CCol xs="12" md="6" xl="6">
 
-                  
+
 
                   <hr className="mt-0" />
 
@@ -113,6 +128,7 @@ const Dashboard = () => {
                     <div className="progress-group-bars">
                       <CProgress className="progress-xs" color="info" value="34" />
                       <CProgress className="progress-xs" color="danger" value="78" />
+                      <CProgress className="progress-xs" color="warning" value="34" />
                     </div>
                   </div>
                   <div className="progress-group mb-4">
@@ -124,6 +140,7 @@ const Dashboard = () => {
                     <div className="progress-group-bars">
                       <CProgress className="progress-xs" color="info" value="56" />
                       <CProgress className="progress-xs" color="danger" value="94" />
+                      <CProgress className="progress-xs" color="warning" value="56" />
                     </div>
                   </div>
                   <div className="progress-group mb-4">
@@ -135,6 +152,7 @@ const Dashboard = () => {
                     <div className="progress-group-bars">
                       <CProgress className="progress-xs" color="info" value="12" />
                       <CProgress className="progress-xs" color="danger" value="67" />
+                      <CProgress className="progress-xs" color="warning" value="12" />
                     </div>
                   </div>
                   <div className="progress-group mb-4">
@@ -146,6 +164,7 @@ const Dashboard = () => {
                     <div className="progress-group-bars">
                       <CProgress className="progress-xs" color="info" value="43" />
                       <CProgress className="progress-xs" color="danger" value="91" />
+                      <CProgress className="progress-xs" color="warning" value="43" />
                     </div>
                   </div>
                   <div className="progress-group mb-4">
@@ -157,6 +176,7 @@ const Dashboard = () => {
                     <div className="progress-group-bars">
                       <CProgress className="progress-xs" color="info" value="22" />
                       <CProgress className="progress-xs" color="danger" value="73" />
+                      <CProgress className="progress-xs" color="warning" value="22" />
                     </div>
                   </div>
                   <div className="progress-group mb-4">
@@ -188,13 +208,15 @@ const Dashboard = () => {
                       &nbsp;
                       <sup className="px-1"><CBadge shape="pill" color="danger">&nbsp;</CBadge></sup>
                       Absent Employees
+                      <sup className="px-1"><CBadge shape="pill" color="warning">&nbsp;</CBadge></sup>
+                      OT Employees
                     </small>
                   </div>
                 </CCol>
 
                 <CCol xs="12" md="6" xl="6">
 
-                  
+
 
                   <hr className="mt-0" />
 
@@ -205,7 +227,7 @@ const Dashboard = () => {
                       <span className="ml-auto font-weight-bold">43%</span>
                     </div>
                     <div className="progress-group-bars">
-                      <CProgress className="progress-xs" color="warning" value="43" />
+                      <CProgress className="progress-xs" color="info" value="43" />
                     </div>
                   </div>
                   <div className="progress-group mb-5">
@@ -215,18 +237,23 @@ const Dashboard = () => {
                       <span className="ml-auto font-weight-bold">37%</span>
                     </div>
                     <div className="progress-group-bars">
-                      <CProgress className="progress-xs" color="warning" value="37" />
+                      <CProgress className="progress-xs" color="success" value="37" />
                     </div>
                   </div>
 
-       
+
 
                 </CCol>
               </CRow>
+
             </CCardBody>
+
           </CCard>
         </CCol>
       </CRow>
+
+
+
     </>
   )
 }

@@ -41,6 +41,9 @@ const Updateshift = React.lazy(() => import('./containers/TheLayout'));
 const Updateot = React.lazy(() => import('./containers/TheLayout'));
 const Department = React.lazy(() => import('./containers/TheLayout'));
 const Designation = React.lazy(() => import('./containers/TheLayout'));
+const Chartsattendence = React.lazy(() => import('./containers/TheLayout'));
+const Chartsot = React.lazy(() => import('./containers/TheLayout'));
+const Chartsleave = React.lazy(() => import('./containers/TheLayout'));
 
 
 function App () {
@@ -60,6 +63,9 @@ function App () {
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path="/dashboard" name="Dashboard Page" render={props => <Dashboard {...props}/>} />
               <Route exact path="/attendence" name="Attendence Log"  render={props => <Attendence {...props}/>} />
+              <Route exact path="/Chartsleave" name="Chartsleave"  render={props => <Chartsleave {...props}/>} />
+              <Route exact path="/Chartsot" name="Chartsot"  render={props => <Chartsot {...props}/>} />
+              <Route exact path="/Chartsattendence" name="Chartsattendence"  render={props => <Chartsattendence {...props}/>} />
               <Route exact path="/employee" name="Employee"  render={props => <Employee {...props}/>} />
               <Route exact path="/Employee Home" name="EmployeeHome"  render={props => <EmployeeHome {...props}/>} />
               <Route exact path="/EmployeeLogin" name="EmployeeLogin"  render={props => <EmployeeLogin {...props}/>} />

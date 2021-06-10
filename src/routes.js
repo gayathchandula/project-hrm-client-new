@@ -59,6 +59,9 @@ const User = React.lazy(() => import('./views/users/User'));
 const Department = React.lazy(() => import('./views/dashboard/Department/Department'));
 const Designation = React.lazy(() => import('./views/dashboard/Department/Designation'));
 const leavelogs = React.lazy(() => import('./views/dashboard/Leave Management/Leave Log'));
+const Chartsattendence = React.lazy(() => import('./views/charts/ChartsAttendence'));
+const Chartsot = React.lazy(() => import('./views/charts/ChartsAttendence'));
+const Chartsleave = React.lazy(() => import('./views/charts/ChartsAttendence'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -66,7 +69,10 @@ const routes = [
   { path: '/rfid', name: 'rfid', component: rfid },  //rfid for main home
   { path: '/Change Password', name: 'Change Password', component: ChangePassword },
   { path: '/Settings', name: 'Settings', component: Settings },
+  { path: '/Chartsot', name: 'Chartsot', component: Chartsot },
+  { path: '/Chartsleave', name: 'Chartsleave', component: Chartsleave },
   { path: '/attendence', name: 'Attendence Log', component: Attendence },
+  { path: '/Chartsattendence', name: 'Chartsattendence', component: Chartsattendence },
   { path: '/leavelogs', name: 'leavelogs', component: leavelogs },
   { path: '/AddEmployeeType', name: 'Add New Employee Type', component: AddEmployeeType },
   { path: '/Employee', name: 'Employee', component: Employee },

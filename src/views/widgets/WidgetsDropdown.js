@@ -3,6 +3,7 @@ import {
   CWidgetDropdown,
   CRow,
   CCol,
+  CWidgetProgress,
   CDropdown,
   CDropdownMenu,
   CDropdownItem,
@@ -14,7 +15,7 @@ import ChartBarSimple from '../charts/ChartBarSimple'
 import axios from 'axios';
 const WidgetsDropdown = () => {
 
-   const [listData, setListData] = useState({ lists: [] });
+  const [listData, setListData] = useState({ lists: [] });
   const token = localStorage.getItem("Token")
 
   const headers = {
@@ -26,7 +27,7 @@ const WidgetsDropdown = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-          'https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/summary',headers
+        'https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/summary',headers
       );
       setListData({ lists: result.data.data.organization});
 
@@ -38,7 +39,21 @@ const WidgetsDropdown = () => {
   // render
   return (
     <CRow>
-      <CCol sm="6" lg="3">
+      <CCol xs="12" sm="6" lg="3">
+        <CWidgetProgress inverse color="success" variant="inverse" value={100} header="150" text="Total Employees" footer="View More Details"/>
+      </CCol>
+      <CCol xs="12" sm="6" lg="3">
+        <CWidgetProgress inverse color="info" variant="inverse" header="132" value={88} text="Total Present" footer="View more Details"/>
+      </CCol>
+      <CCol xs="12" sm="6" lg="3">
+        <CWidgetProgress inverse color="warning" variant="inverse" value={12} header="12" text="Total Absent" footer="View More Details"/>
+      </CCol>
+
+      <CCol xs="12" sm="6" lg="3">
+        <CWidgetProgress inverse color="danger" variant="inverse" value={50} header="5" text="OT Employee" footer="View More Details"/>
+      </CCol>
+
+      {/* <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-primary"
           header={listData.lists.totalEmployees}
@@ -55,20 +70,9 @@ const WidgetsDropdown = () => {
             />
           }
         >
-          <CDropdown>
-            <CDropdownToggle color="transparent">
-              <CIcon name="cil-settings"/>
-            </CDropdownToggle>
-            <CDropdownMenu className="pt-0" placement="bottom-end">
-              <CDropdownItem>Action</CDropdownItem>
-              <CDropdownItem>Another action</CDropdownItem>
-              <CDropdownItem>Something else here...</CDropdownItem>
-              <CDropdownItem disabled>Disabled action</CDropdownItem>
-            </CDropdownMenu>
-          </CDropdown>
+
         </CWidgetDropdown>
       </CCol>
-
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-info"
@@ -87,20 +91,9 @@ const WidgetsDropdown = () => {
             />
           }
         >
-          <CDropdown>
-            <CDropdownToggle caret={false} color="transparent">
-              <CIcon name="cil-location-pin"/>
-            </CDropdownToggle>
-            <CDropdownMenu className="pt-0" placement="bottom-end">
-              <CDropdownItem>Action</CDropdownItem>
-              <CDropdownItem>Another action</CDropdownItem>
-              <CDropdownItem>Something else here...</CDropdownItem>
-              <CDropdownItem disabled>Disabled action</CDropdownItem>
-            </CDropdownMenu>
-          </CDropdown>
+
         </CWidgetDropdown>
       </CCol>
-
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-warning"
@@ -119,20 +112,9 @@ const WidgetsDropdown = () => {
             />
           }
         >
-          <CDropdown>
-            <CDropdownToggle color="transparent">
-              <CIcon name="cil-settings"/>
-            </CDropdownToggle>
-            <CDropdownMenu className="pt-0" placement="bottom-end">
-              <CDropdownItem>Action</CDropdownItem>
-              <CDropdownItem>Another action</CDropdownItem>
-              <CDropdownItem>Something else here...</CDropdownItem>
-              <CDropdownItem disabled>Disabled action</CDropdownItem>
-            </CDropdownMenu>
-          </CDropdown>
+
         </CWidgetDropdown>
       </CCol>
-
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-danger"
@@ -148,19 +130,9 @@ const WidgetsDropdown = () => {
             />
           }
         >
-          <CDropdown>
-            <CDropdownToggle caret className="text-white" color="transparent">
-              <CIcon name="cil-settings"/>
-            </CDropdownToggle>
-            <CDropdownMenu className="pt-0" placement="bottom-end">
-              <CDropdownItem>Action</CDropdownItem>
-              <CDropdownItem>Another action</CDropdownItem>
-              <CDropdownItem>Something else here...</CDropdownItem>
-              <CDropdownItem disabled>Disabled action</CDropdownItem>
-            </CDropdownMenu>
-          </CDropdown>
+
         </CWidgetDropdown>
-      </CCol>
+      </CCol> */}
     </CRow>
   )
 }

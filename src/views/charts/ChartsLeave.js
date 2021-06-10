@@ -21,7 +21,7 @@ const Charts = () => {
     <CCardGroup columns className = "cols-2" >
       <CCard>
         <CCardHeader>
-          Bar Chart
+          Leave Bar Chart
           <DocsLink href="http://www.chartjs.org"/>
         </CCardHeader>
         <CCardBody>
