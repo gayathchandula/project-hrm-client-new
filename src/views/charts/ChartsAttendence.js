@@ -20,10 +20,42 @@ import {
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
 import CIcon from '@coreui/icons-react'
-
+import { Line } from 'react-chartjs-2';
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
+
+const data = {
+  labels: ['1', '2', '3', '4', '5', '6'],
+  datasets: [
+    {
+      label: '2020',
+      data: [30, 39, 10, 50, 30, 70, 35],
+      fill: false,
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(228,102,81,0.9)',
+    },
+    {
+      label: '2021',
+      data: [80, 39, 40, 35, 40, 20, 45],
+      fill: false,
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgba(255, 99, 132, 0.2)',
+    },
+  ],
+};
+
+const options = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+};
 
 const Dashboard = () => {
   return (
@@ -146,6 +178,15 @@ const Dashboard = () => {
                 }
               }}
             />
+          </CCardBody>
+        </CCard>
+
+        <CCard>
+          <CCardHeader>
+            Leave Per Month Bar Chart
+          </CCardHeader>
+          <CCardBody>
+            <Line data={data} options={options} />
           </CCardBody>
         </CCard>
 
