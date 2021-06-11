@@ -116,6 +116,12 @@ const _nav =  [
       },
       {
         _tag: 'CSidebarNavItem',
+        name: 'Leave Swaps',
+        to: '/Leaveswap',
+        icon: 'cil-pencil',
+      },
+      {
+        _tag: 'CSidebarNavItem',
         name: 'Leave Configuration',
         to: '/Leave Configuration',
         icon: 'cil-calculator',
