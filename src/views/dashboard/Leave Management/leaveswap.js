@@ -119,11 +119,13 @@ const Tables = () => {
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employeeslist`,headers
       );
       setListData({ lists: result.data.data.EmployeeList });
+      setLoading(false);
       //console.log(result)
     };
-      setLoading(false);
-    test()
+
+
       fetchData()
+    test()
 
   }, []);
   // {listData3.lists.map((country, key) => (
