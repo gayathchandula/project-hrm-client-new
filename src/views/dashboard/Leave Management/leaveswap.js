@@ -239,6 +239,16 @@ const Tables = () => {
 
                 <CFormGroup row>
                   <CCol md="3">
+                    <CLabel htmlFor="text-input"> Expire Date </CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput id="text-input" name="date" type="date"  value={epf} onChange={onChangeepf} required/>
+                    <CFormText>Please select:</CFormText>
+                  </CCol>
+                </CFormGroup>
+
+                <CFormGroup row>
+                  <CCol md="3">
                     <CLabel htmlFor="select">Timer</CLabel>
                   </CCol>
                   <CCol>
