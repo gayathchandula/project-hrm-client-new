@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "padding": "10px 20px",
+      "textAlign": "center",
+    }
+  }
+>
+  <div
+    aria-hidden="false"
+    aria-label="Loading"
+    className="spinner-border"
+    role="status"
+  />
+</div>
+`;
