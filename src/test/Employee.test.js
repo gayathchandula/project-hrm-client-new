@@ -1,16 +1,16 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+
+import React from "react";
+import {render, cleanup, fireEvent,screen } from '@testing-library/react'
+
 import Employee from '../views/dashboard/Employee/Employee';
 
-describe('Test Button component', () => {
-  it('Test click event', () => {
-    const mockCallBack = jest.fn();
+it("Test form submit and validation", () => {
 
-    const button = shallow((<Employee onSubmit={mockCallBack}>Ok!</Employee>));
-    console.log(button.debug())
-    button.find('button').simulate('click');
-    expect(mockCallBack.mock.calls.length).toEqual(1);
+  const { getByPlaceholderText, getByText } = render(<Employee />);
+  const Name = getByPlaceholderText(/First Name/i);
 
+  const id = screen.getByTestId('toggle')
 
-  });
+  fireEvent.change(Name, { target: { value: "gayth" } });
+  fireEvent.click(id);
 });

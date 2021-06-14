@@ -56,7 +56,8 @@
     "@babel/core": "^7.13.14",
     "@testing-library/react": "^11.2.7",
     "auto-changelog": "~2.2.1",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "react-testing-library": "^8.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
