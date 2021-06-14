@@ -6,6 +6,7 @@ import { render,cleanup,fireEvent  } from '@testing-library/react'
 import {shallow} from "enzyme";
 
 it('renders correctly', () => {
+  beforeEach(cleanup)
   const tree = renderer
     .create(<Admin page="https://hrm-innovigent.netlify.app/#/attendence">Facebook</Admin>)
     .toJSON();

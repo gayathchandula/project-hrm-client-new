@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext}  from 'react';
+import React, { useEffect, useState}  from 'react';
 import {
   CBadge,
   CCard,
@@ -11,7 +11,7 @@ import {
 } from '@coreui/react'
 import axios from 'axios';
 import moment from 'moment';
-import UserContext from '../../../userContext';
+
 const getBadge = status => {
   switch (status) {
     case 'Active': return 'success'
@@ -46,8 +46,7 @@ const Tables = () => {
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
   const [loading, setLoading] = useState(true);
-  const { userData, setUserData } = useContext(UserContext);
-  console.log(userData)
+
   const headers = {
     headers: {
 
