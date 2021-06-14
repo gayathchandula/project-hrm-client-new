@@ -101,7 +101,7 @@ const Changepassword = () => {
                   </CInputGroup>
                 </CFormGroup>
                 <CFormGroup className="form-actions">
-                  <CButton  size="lg" color="success" onClick={onSubmit}>Submit</CButton>
+                  <CButton  data-testid="toggle" size="lg" color="success" onClick={onSubmit}>Submit</CButton>
                 </CFormGroup>
               </CForm>
         </CCardBody>
