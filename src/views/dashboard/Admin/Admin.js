@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import {
   CBadge,
@@ -17,9 +17,8 @@ import {
   CSpinner,
   CRow, CAlert,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import UserContext from '../../../userContext';
-import usersData from '../../users/UsersData'
+
+
 
 const getBadge = status => {
   switch (status) {
@@ -44,7 +43,7 @@ const Tables = () => {
   const [passwordConfirm, setpasswordConfirm] = useState();
   const [err, setErr] = useState();
   const [loading, setLoading] = useState(true);
-  const { userData, setUserData } = useContext(UserContext);
+
 
   const onChangefirstName = (e) => {
     setfirstName(e.target.value);
