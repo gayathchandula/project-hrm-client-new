@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import  {useState, useEffect} from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Switch, BrowserRouter} from "react-router-dom";
 import './scss/style.scss';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import UserContext from './userContext';
@@ -57,7 +57,7 @@ function App () {
 
 
     return (
-      <HashRouter>
+      <BrowserRouter>
           <UserContext.Provider value={{ userData, setUserData }}>
           <React.Suspense fallback={loading}>
             <Switch>
@@ -96,7 +96,7 @@ function App () {
             </Switch>
           </React.Suspense>
            </UserContext.Provider>
-      </HashRouter>
+      </BrowserRouter>
     );
 
 }

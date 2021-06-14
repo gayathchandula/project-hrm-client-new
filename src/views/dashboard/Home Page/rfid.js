@@ -1,20 +1,16 @@
 import React, {  useState } from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'react-router-dom';
 import axios from 'axios';
 import {
-
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
   CButton,
   CForm,
-
   CFormGroup,
   CFormText,
-
   CInput,
-
   CLabel,
   CRow, CAlert,
 } from '@coreui/react'
@@ -27,7 +23,6 @@ var imageName = require('src/assets/img_avatar.png')
 var isEffect = false;
 const Tables = () => {
   const [firstName, setfirstName] = useState();
-  //const [lastName, setlastName] = useState();
   const [ShiftName, setShiftName] = useState([]);
   const [employeeTypeId, setemployeeTypeId] = useState([]);
 
