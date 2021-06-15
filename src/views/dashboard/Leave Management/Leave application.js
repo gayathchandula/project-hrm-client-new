@@ -192,7 +192,7 @@ const Tables = () => {
                 </CForm>
               </CCardBody>
               <CCardFooter>
-                <CButton type="submit" size="lg" color="primary" onClick={onSubmit}> Submit Request</CButton>
+                <CButton data-testid="toggle" type="submit" size="lg" color="primary" onClick={onSubmit}> Submit Request</CButton>
 
               </CCardFooter>
             </CCard>

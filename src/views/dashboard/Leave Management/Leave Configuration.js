@@ -259,7 +259,7 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                 </CForm>
               </CCardBody>
               <CCardFooter>
-                <CButton type="submit" size="lg" color="primary" onClick={submit}> Submit</CButton>
+                <CButton data-testid="toggle" type="submit" size="lg" color="primary" onClick={submit}> Submit</CButton>
 
               </CCardFooter>
             </CCard>

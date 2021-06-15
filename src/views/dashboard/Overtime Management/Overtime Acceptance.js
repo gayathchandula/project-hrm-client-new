@@ -132,6 +132,7 @@ const Tables = () => {
                         <tr>
                           <td className="py-2">
                             <CButton
+                              data-testid="toggle"
                               color="success"
                               variant="outline"
                               shape="square"
