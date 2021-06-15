@@ -200,7 +200,7 @@ const onUpdate = (item) => {
                 </CForm>
               </CCardBody>
               <CCardFooter>
-                <CButton type="submit" size="lg" color="primary" onClick={submit}> Submit</CButton>
+                <CButton data-testid="toggle" type="submit" size="lg" color="primary" onClick={submit}> Submit</CButton>
 
               </CCardFooter>
             </CCard>
