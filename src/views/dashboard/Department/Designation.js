@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import CreatableSelect from 'react-select/creatable';
 import {
@@ -10,20 +10,16 @@ import {
   CDataTable,
   CButton,
   CForm,
-  CSelect,
   CFormGroup,
   CFormText,
   CCardFooter,
   CInput,
-  CInputFile,
   CLabel,
   CRow,
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
-import usersData from '../../users/UsersData'
+
 import moment from 'moment';
-import UserContext from '../../../userContext';
 const getBadge = status => {
   switch (status) {
     case 'Active': return 'success'
@@ -42,14 +38,10 @@ const fields = ['id','Employee_type', 'createdAt', 'updatedAt', {
 }]
 
 const Tables = () => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
   const [Designation, setDesignation] = useState("");
   const [Department, setDepartment] = useState("");
-  const [Employee_type, setEmployee_type] = useState("");
-  const [rfid, setrfid] = useState("");
   const [listData, setListData] = useState({ lists: [] });
-  const { userData, setUserData } = useContext(UserContext);
+
   const orgid = localStorage.getItem("id")
   const components = {
     DropdownIndicator: null,
@@ -57,10 +49,7 @@ const Tables = () => {
   const onChangeDepartment = (e) => {
     setDepartment( e.target.value );
   };
-  const onChangeDesignation = (e) => {
-    //setDesignation( e.target.value );
 
-  };
   const handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
     console.log(newValue);
@@ -100,12 +89,7 @@ const Tables = () => {
     const body = ({Department,Designation} );
     axios.defaults.baseURL = "https://hrm-innovigent.herokuapp.com/api/v1";
 
-    const headers = {
-      headers: {
 
-        "Authorization":`Bearer ${token}`
-      }
-    };
 
     axios.post(`/organizations/${orgid}/employeetypes`, body, headers)
       .then((res) => {
@@ -123,12 +107,7 @@ const Tables = () => {
     const body = ({id} );
 
 
-    const headers = {
-      headers: {
 
-        "Authorization":`Bearer ${token}`
-      }
-    };
 
     axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/delete`, body, headers)
       .then((res) => {
