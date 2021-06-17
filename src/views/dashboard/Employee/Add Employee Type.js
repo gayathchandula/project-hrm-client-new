@@ -76,12 +76,7 @@ const Tables = () => {
         const body = ({Employee_type} );
     axios.defaults.baseURL = "https://hrm-innovigent.herokuapp.com/api/v1";
 
-    const headers = {
-        headers: {
 
-          "Authorization":`Bearer ${token}`
-        }
-    };
 
     axios.post(`/organizations/${orgid}/employeetypes`, body, headers)
     .then((res) => {
@@ -99,13 +94,6 @@ const Tables = () => {
       setErr("");
       const body = ({id} );
 
-
-  const headers = {
-      headers: {
-
-        "Authorization":`Bearer ${token}`
-      }
-  };
 
   axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/delete`, body, headers)
   .then((res) => {
