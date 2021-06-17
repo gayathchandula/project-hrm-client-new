@@ -47,7 +47,6 @@ const Tables = () => {
           const body = ({rfid} );
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
           setfirstName(loginResponse.data.data.employee.firstName);
-          //setlastName(loginResponse.data.data.employee.lastName);
           setShiftName(loginResponse.data.data.ShiftName);
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
 

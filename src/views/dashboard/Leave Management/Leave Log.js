@@ -4,7 +4,6 @@ import {
   CBadge,
   CCard,
   CCardBody,
-  CButton,
   CCardHeader,
   CCol,
   CSpinner,

@@ -38,12 +38,7 @@ const fields = ['id','LeaveTypeName','createdAt', {
 }]
 
 const Tables = () => {
-  const [firstName, setfirstName] = useState("");
-    const [lastName, setlastName] = useState("");
-    const [shiftId, setshiftId] = useState("");
-    const [Employee_type, setEmployee_type] = useState("");
   const [err, setErr] = useState();
-    const [rfid, setrfid] = useState("");
     const [listData, setListData] = useState({ lists: [] });
     const [LeaveTypeName, setLeaveTypeName] = useState("");
     const [loading, setLoading] = useState(true);
@@ -80,12 +75,6 @@ const Tables = () => {
         const body = ({LeaveTypeName} );
     axios.defaults.baseURL = `https://hrm-innovigent.herokuapp.com/api/v1`;
 
-    const headers = {
-        headers: {
-
-          "Authorization":`Bearer ${token}`
-        }
-    };
 
     axios.post(`/organizations/${orgid}/LeaveTypes/create`, body, headers)
     .then((res) => {
@@ -104,12 +93,7 @@ const Tables = () => {
       const body = ({id} );
 
 
-  const headers = {
-      headers: {
 
-        "Authorization":`Bearer ${token}`
-      }
-  };
 
   axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/LeaveTypes/delete`, body, headers)
   .then((res) => {

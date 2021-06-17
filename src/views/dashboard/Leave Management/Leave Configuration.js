@@ -140,13 +140,6 @@ const Tables = () => {
     const body = ({id} );
 
 
-const headers = {
-    headers: {
-
-      "Authorization":`Bearer ${token}`
-    }
-};
-
 axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/LeaveConfig/Delete`, body, headers)
 .then((res) => {
     if (res.status === 200) {

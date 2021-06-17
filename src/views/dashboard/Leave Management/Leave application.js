@@ -25,7 +25,6 @@ const Tables = () => {
   const [LeaveTypeId, setLeaveTypeId] = useState("");
     const [reason, setReason] = useState("");
     const [leaveRequestedDate, setDate] = useState("");
-    const [employeeTypeId, setemployeeTypeId] = useState("");
   const [err, setErr] = useState();
     const [epf, setepf] = useState("");
     const [listData, setListData] = useState({ lists: [] });
@@ -69,13 +68,6 @@ const Tables = () => {
       setErr("");
         const body = ({ epf,LeaveTypeId,reason,leaveRequestedDate,numberOfDays});
 
-
-    const headers = {
-        headers: {
-
-          "Authorization":`Bearer ${token}`
-        }
-    };
 
     axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/leaveRequests/admin/create`, body, headers)
     .then((res) => {
