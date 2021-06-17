@@ -111,12 +111,7 @@ const Tables = () => {
 
   const onDelete = async (id) => {
     const body = ({id} );
-    const headers = {
-      headers: {
 
-        "Authorization":`Bearer ${token}`
-      }
-    };
 
     axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/Delete`, body, headers)
       .then((res) => {
