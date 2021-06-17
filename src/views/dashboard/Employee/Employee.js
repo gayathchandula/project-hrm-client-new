@@ -27,7 +27,7 @@ import {
   CRow, CAlert,
 } from '@coreui/react'
 
-import UserContext from '../../../userContext';
+
 
 
 const getBadge = status => {
@@ -155,7 +155,6 @@ const Tables = () => {
           const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/getDesignations`, body, headers);
           console.log(loginResponse);
           setListData4({lists: loginResponse.data.data.departmentsDetails});
-          //window.location.reload();
 
         } catch (err) {
           err.response.data.message&& setErr(err.response.data.message)
@@ -214,13 +213,6 @@ const Tables = () => {
         const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,checkbox,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
 
 
-    const headers = {
-        headers: {
-
-          "Authorization":`Bearer ${token}`
-        }
-    };
-
     axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employees`, body, headers)
     .then((res) => {
         if (res.status === 200) {
@@ -262,12 +254,7 @@ const Tables = () => {
       const body = ({rfid} );
 
 
-  const headers = {
-      headers: {
 
-        "Authorization":`Bearer ${token}`
-      }
-  };
 
   axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employeeslist/delete`, body, headers)
   .then((res) => {
