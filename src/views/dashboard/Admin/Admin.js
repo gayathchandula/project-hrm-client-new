@@ -32,12 +32,9 @@ const getBadge = status => {
 const fields = ['id','firstName', 'lastName', 'email']
 
 const Tables = () => {
-    const [collapsed, setCollapsed] = React.useState(true)
-    const [showElements, setShowElements] = React.useState(true)
     const [firstName, setfirstName] = useState();
   const [lastName, setlastName] = useState();
   const [email, setemail] = useState();
-  const [Phone, setPhone] = useState();
   const [listData, setListData] = useState({ lists: [] });
   const [password, setPassword] = useState();
   const [passwordConfirm, setpasswordConfirm] = useState();

@@ -39,7 +39,7 @@ const fields = ['shiftName','start_time', 'end_time', 'ot_startTime', {
 }]
 
 const Tables = () => {
-  const [ot_startTime, setot_startTime] = useState([]);;
+  const [ot_startTime, setot_startTime] = useState([]);
   const [shiftName, setshiftName] = useState([]);
   const [start_time, setstart_time] = useState([]);
   const [end_time, setend_time] = useState([]);
@@ -111,12 +111,6 @@ const Tables = () => {
     const body = ({id} );
 
 
-const headers = {
-    headers: {
-
-      "Authorization":`Bearer ${token}`
-    }
-};
 
 axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/shift/Delete`, body, headers)
 .then((res) => {
