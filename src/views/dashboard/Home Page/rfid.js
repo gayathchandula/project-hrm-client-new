@@ -12,10 +12,8 @@ import {
   CFormText,
   CInput,
   CLabel,
-  CRow, CAlert,
+  CRow, CAlert,CSpinner
 } from '@coreui/react'
-
-
 
 var imageName = require('src/assets/img_avatar.png')
 
@@ -25,8 +23,9 @@ const Tables = () => {
   const [firstName, setfirstName] = useState();
   const [ShiftName, setShiftName] = useState([]);
   const [employeeTypeId, setemployeeTypeId] = useState([]);
-
+  const [succ, setSucc] = useState();
   const [rfid, setrfid] = useState();
+  const [disabled, setDisabled] = useState(false);
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE4OTM3Mjc2fQ.YiGSokx728s4K93CjaC7BMWUa1kHO60UwdMitGwKCdQ' ;
   const [err, setErr] = useState();
@@ -44,6 +43,8 @@ const Tables = () => {
 
       if (num.length >= 10) {
         try{
+          setDisabled(true)
+          setSucc("Please Wait...");
           const body = ({rfid} );
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
           setfirstName(loginResponse.data.data.employee.firstName);
@@ -54,10 +55,15 @@ const Tables = () => {
 
            // Clear RFID field
           setrfid('');
+          setSucc("");
+          setDisabled(false);
 
       } catch(err) {
+          setSucc("");
           err.response.data.message && setErr(err.response.data.message)
+          setDisabled(false);
         setrfid('');
+
       }
 
     isEffect = true;
@@ -96,7 +102,15 @@ const Tables = () => {
                 Employee Data
               </CCardHeader>
               <CCardBody>
-
+                <div style={{ padding: "10px 20px", textAlign: "center"}}>
+                {succ ? (
+                  <CButton disabled size="lg" >
+                    <CSpinner component="span" size="m" aria-hidden="true" color="success" />
+                    &nbsp;
+                    {succ}
+                  </CButton>
+                ) : null}
+                </div>
                 {err ? (
                   <CAlert color="info" closeButton fade={5}>
                     {err}
@@ -112,7 +126,7 @@ const Tables = () => {
                     </CCol>
                     <CCol xs="12" md="9">
 
-                    <CInput id="password" name="text-input" placeholder="RFID No" autoFocus  value={rfid} onChange={(e) => setrfid(e.target.value)} onKeyUp={(e) =>testIt(e.target.value)}/>
+                    <CInput disabled={disabled} id="password" name="text-input" placeholder="RFID No" autoFocus  value={rfid} onChange={(e) => setrfid(e.target.value)} onKeyUp={(e) =>testIt(e.target.value)} />
                       <CFormText>Scan RFID Card</CFormText>
                     </CCol>
                   </CFormGroup>
