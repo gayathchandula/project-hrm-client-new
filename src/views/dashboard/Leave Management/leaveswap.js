@@ -247,29 +247,29 @@ const Tables = () => {
                   </CCol>
                 </CFormGroup>
 
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="select">Timer</CLabel>
-                  </CCol>
-                  <CCol>
-                    <Timer
-                      initialTime={30000 * 60 * 48 + 5000}
-                      direction="backward"
-                    >
-                      {() => (
-                        <React.Fragment>
-                          <Timer.Days /> days
-                          <Timer.Hours /> hours
-                          <Timer.Minutes /> minutes
-                          <Timer.Seconds /> seconds
-                        </React.Fragment>
-                      )}
-                    </Timer>
-                    <CFormText>Select your Leave Type</CFormText>
-                  </CCol>
+                {/*<CFormGroup row>*/}
+                {/*  <CCol md="3">*/}
+                {/*    <CLabel htmlFor="select">Timer</CLabel>*/}
+                {/*  </CCol>*/}
+                {/*  <CCol>*/}
+                {/*    <Timer*/}
+                {/*      initialTime={30000 * 60 * 48 + 5000}*/}
+                {/*      direction="backward"*/}
+                {/*    >*/}
+                {/*      {() => (*/}
+                {/*        <React.Fragment>*/}
+                {/*          <Timer.Days /> days*/}
+                {/*          <Timer.Hours /> hours*/}
+                {/*          <Timer.Minutes /> minutes*/}
+                {/*          <Timer.Seconds /> seconds*/}
+                {/*        </React.Fragment>*/}
+                {/*      )}*/}
+                {/*    </Timer>*/}
+                {/*    <CFormText>Select your Leave Type</CFormText>*/}
+                {/*  </CCol>*/}
 
 
-                </CFormGroup>
+                {/*</CFormGroup>*/}
 
               </CForm>
             </CCardBody>
