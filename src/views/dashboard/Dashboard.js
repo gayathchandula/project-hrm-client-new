@@ -10,6 +10,7 @@ import {
   CRow
 } from '@coreui/react'
 import {
+  CChartBar,
   CChartPie
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
