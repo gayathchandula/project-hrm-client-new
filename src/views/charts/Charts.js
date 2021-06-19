@@ -22,7 +22,7 @@ const Charts = () => {
       <CCard>
         <CCardHeader>
           Bar Chart
-          <DocsLink href="http://www.chartjs.org"/>
+          <DocsLink href="https://www.chartjs.org"/>
         </CCardHeader>
         <CCardBody>
           <CChartBar

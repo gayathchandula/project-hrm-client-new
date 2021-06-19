@@ -200,7 +200,7 @@ const Dashboard = () => {
         <CCard>
           <CCardHeader>
             OT Per Month Bar Chart
-            <DocsLink href="http://www.chartjs.org"/>
+            <DocsLink href="https://www.chartjs.org"/>
           </CCardHeader>
           <CCardBody>
             <CChartBar
