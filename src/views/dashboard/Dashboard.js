@@ -1,39 +1,27 @@
 import React, { lazy } from 'react'
-import {  useContext , useEffect} from 'react';
-import UserContext from '../../userContext';
 import {
   CBadge,
-  CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
-  CCardFooter,
-  CCardGroup,
   CCardHeader,
   CHeaderNavLink,
   CCol,
   CProgress,
-  CRow,
-  CCallout
+  CRow
 } from '@coreui/react'
 import {
-  CChartBar,
-  CChartLine,
-  CChartDoughnut,
-  CChartRadar,
-  CChartPie,
-  CChartPolarArea
+  CChartPie
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
 import CIcon from '@coreui/icons-react'
 
-import MainChartExample from '../charts/MainChartExample.js'
+
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
-  // let {userData} = useContext(UserContext);
+
   return (
     <>
       <WidgetsDropdown />
