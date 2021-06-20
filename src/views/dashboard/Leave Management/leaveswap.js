@@ -330,10 +330,33 @@ const Tables = ({ value,options  }) => {
             <CCardHeader>
               Shift Swap
             </CCardHeader>
-            {listData.lists.map((view, key) => (
+            {listData.lists.filter(element => element.swaptoken === element.swaptoken).map((view, key) => (
               <CCardBody>
+                {/*{listData.lists.filter(element => element.swaptoken === element.swaptoken).map((view, key) => (*/}
+                  <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="select">Swap Date</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel htmlFor="select">{view.swappeddate}</CLabel>
+                  </CCol>
 
+                  <CCol md="3">
+                    <CLabel htmlFor="select">Expire Date</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel htmlFor="select">{view.swapExpire}</CLabel>
+                  </CCol>
 
+                  <CCol md="3">
+                    <CLabel htmlFor="select">EPF No:</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel htmlFor="select">{view.employees.epf}</CLabel>
+                  </CCol>
+
+                  </CFormGroup>
+                {/*))}*/}
               </CCardBody>
             ))}
             <CCardFooter>
