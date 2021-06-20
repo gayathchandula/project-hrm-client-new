@@ -44,11 +44,11 @@ const fields1 = [{
   key:'employeeepf',
   label: 'EPF No'
 },'leavetype','leaveRequestedDate','numberOfDays','reason','reviewstatusId']
-const Tables = () => {
+const Tables = ({ value,options  }) => {
 
   const [leaveRequestedDate, setDate] = useState("");
   const [err, setErr] = useState();
-  const [employees,setemployees] = useState();
+  const [employees,setemployees] = useState([]);
   const [swapDate,setswapDate] = useState();
   const [expireDate,setexpireDate] = useState();
   const [listData, setListData] = useState({ lists: [] });
@@ -65,7 +65,13 @@ const Tables = () => {
   const onChangeexpireDate = (e) => {
     setexpireDate( e.target.value );
   };
+  const onPriceChange = (index, e) => {
 
+    //var employees = this.state.employees.slice()
+    employees[index] = e.target.value;
+    setemployees( employees);
+
+  }
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -115,7 +121,7 @@ const Tables = () => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/authswaps/get`,headers
       );
-      setListData({ lists: result.data.data });
+      setListData({ lists: result.data.data.findAuthorizedShiftSwaps });
       setLoading(false);
       //console.log(result)
     };
@@ -128,13 +134,15 @@ const Tables = () => {
 
   const components = {
     DropdownIndicator: null,
+    //props => <components.Input {...props} maxLength={2} />;
   };
+  const maxOptions = 2;
   const handleChange = (newValue: any, actionMeta: any) => {
-    console.group('Value Changed');
-    console.log(newValue);
+    //console.group('Value Changed');
+    //console.log(newValue);
     setemployees( newValue );
     console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
+    //console.groupEnd();
 
   };
 
@@ -158,7 +166,6 @@ const Tables = () => {
         }
       }
       )}
-
     }, 5000)
 
 
@@ -191,7 +198,7 @@ const Tables = () => {
       window.location.reload();
 
     } catch(err) {
-      err.response.data.message&& setErr(err.response.data.message)
+      //err.response.data.message&& setErr(err.response.data.message)
     }
 
   };
@@ -217,23 +224,47 @@ const Tables = () => {
               ) : null}
               <CForm action="submit" method="post"  className="form-horizontal">
 
-
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input"> Employee EPF No: </CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput isMulti id="text-input" name="text-input" type="number" placeholder="EPF No:"  onChange={onPriceChange.bind(this, 0)} required/>
+                    <CFormText>Please Enter Epf No:</CFormText>
+                  </CCol>
+                </CFormGroup>
 
                 <CFormGroup row>
                   <CCol md="3">
-                    <CLabel htmlFor="text-input">Employee EPF No:</CLabel>
+                    <CLabel htmlFor="text-input"> Employee EPF No: </CLabel>
                   </CCol>
-                  <CCol xs="12" md="6">
-                    <CreatableSelect
-                      isMulti
-                      onChange={handleChange}
-
-                      placeholder="Type Designation and press enter..."
-                      components={components}
-                    />
-                    <CFormText>Enter Employee EPF No</CFormText>
+                  <CCol xs="12" md="9">
+                    <CInput isMulti id="text-input" name="text-input" type="number" placeholder="EPF No:"   onChange={onPriceChange.bind(this, 1)} required/>
+                    <CFormText>Please Enter Epf No:</CFormText>
                   </CCol>
                 </CFormGroup>
+
+                {/*<CFormGroup row>*/}
+                {/*  <CCol md="3">*/}
+                {/*    <CLabel htmlFor="text-input">Employee EPF No:</CLabel>*/}
+                {/*  </CCol>*/}
+                {/*  <CCol xs="12" md="6">*/}
+                {/*    <CreatableSelect*/}
+                {/*      isMulti*/}
+                {/*      onChange={handleChange}*/}
+                {/*      options={employees.length === maxOptions ? [] : options}*/}
+                {/*       noOptionsMessage={() => {*/}
+                {/*         return employees.length === maxOptions ? 'You have reached the max options value' : 'No options available' ;*/}
+                {/*       }}*/}
+                {/*      // inputProps ={*/}
+                {/*      //   (employees.length <= maxOptions ? employees : 'You have reached the max options value')*/}
+                {/*      // }*/}
+                {/*      placeholder="Type EPF no and press enter..."*/}
+                {/*      components={components}*/}
+                {/*    />*/}
+                {/*    <CFormText>Enter Employee EPF No</CFormText>*/}
+                {/*  </CCol>*/}
+                {/*</CFormGroup>*/}
 
 
                 <CFormGroup row>

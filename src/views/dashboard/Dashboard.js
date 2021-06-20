@@ -183,7 +183,6 @@ const Dashboard = () => {
           <CCard>
             <CCardHeader>
               Over Time
-              <DocsLink href="https://www.chartjs.org"/>
             </CCardHeader>
 
             <CCardBody>
