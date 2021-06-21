@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
 import moment from 'moment';
+import groupBy from 'lodash/groupBy';
 import {
   CBadge,
   CCard,
@@ -12,7 +13,8 @@ import {
   CDataTable,
   CRow, CAlert, CForm, CFormGroup, CLabel, CInput, CFormText, CSelect, CCardFooter
 } from '@coreui/react'
-import CreatableSelect from "react-select/creatable/dist/react-select.esm";
+import {array} from "prop-types";
+
 
 const getBadge = reviewstatusId => {
   switch (reviewstatusId) {
@@ -50,6 +52,7 @@ const Tables = ({ value,options  }) => {
   const [err, setErr] = useState();
   const [employees,setemployees] = useState([]);
   const [swapDate,setswapDate] = useState();
+  const [employeeInfo, setemployeeInfo] = useState(  [] );
   const [expireDate,setexpireDate] = useState();
   const [listData, setListData] = useState({ lists: [] });
   const [loading, setLoading] = useState(true);
@@ -109,6 +112,23 @@ const Tables = ({ value,options  }) => {
 
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
+  function removeDuplicates(arr) {
+    // const result = arr.reduce(function (r, a) {
+    //   //r[a.swaptoken] = r[a.swaptoken] || [];
+    //   r[a.swaptoken] = r[a.swaptoken] || [];
+    //   r[a.swaptoken].push(a);
+    //
+    //   return r;
+    // }, []);
+
+    const result = groupBy(arr, function(n) {
+      return [n.swaptoken];
+    });
+    return [result];
+  }
+
+
+
   const headers = {
     headers: {
 
@@ -121,16 +141,20 @@ const Tables = ({ value,options  }) => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/authswaps/get`,headers
       );
-      setListData({ lists: result.data.data.findAuthorizedShiftSwaps });
+      setListData({ lists: removeDuplicates(result.data.data.findAuthorizedShiftSwaps) });
+      console.log(removeDuplicates(result.data.data.findAuthorizedShiftSwaps));
       setLoading(false);
-      //console.log(result)
     };
 
 
-      fetchData()
-    test()
+    fetchData()
+
 
   }, []);
+
+
+
+
 
   const components = {
     DropdownIndicator: null,
@@ -146,48 +170,38 @@ const Tables = ({ value,options  }) => {
 
   };
 
-
-  function test () {
-
-
-    let newDate = moment(new Date()).format("MMM Do YY");
-    setInterval(function () {
-      {listData.lists.find((country, key) => {
-        if(country.expireDate === newDate)
-        {
-          try {
-            const body = (country.employees);
-            const loginResponse = axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/authswaps/update`, body, headers);
-            console.log(loginResponse);
-
-          } catch (err) {
-            //err.response.data.message && setErr(err.response.data.message)
-          }
-        }
-      }
-      )}
-    }, 5000)
-
-
-  }
-
-  // function test () {
+  // const  test = async () =>{
   //
+  //   setInterval(async () => {
+  //     try {
+  //       const body = ({employeeInfo});
+  //       const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/authswaps/update`, body, headers);
+  //       console.log(loginResponse);
   //
+  //     } catch (err) {
+  //       //err.response.data.message && setErr(err.response.data.message)
+  //     }
+  //   }, 10000)
+  // };
+
+  // const update = async () => {
+  //   {listData.lists.find( (country, key) => {
+  //       if (country.swapExpire === newDate) {
+  //         employeeInfo.push(country.employees.epf);
+  //       }
+  //     }
+  //   )}
+  //   console.log(employeeInfo)
+  //   try{
+  //     const body = ({employees,swapDate,expireDate});
+  //     const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/authswaps/create`, body,headers);
+  //     console.log(loginResponse);
   //
-  //     setInterval(function () {
-  //       //console.log(listData.lists.find(item => item.firstName === "Jude"))
-  //       listData.lists.find(function test1(country, key) {
-  //         if (country.firstName = 'Jude') {
-  //           //console.log(new Date().toLocaleString())
-  //           console.log(listData.lists.find(item => item.firstName === "Jude"))
-  //           console.log(country.firstName)
-  //         }
-  //       })
-  //     }, 5000)
+  //   } catch(err) {
+  //     //err.response.data.message&& setErr(err.response.data.message)
+  //   }
   //
-  //
-  // }
+  // };
 
   const onSubmit = async () => {
     setErr("");
@@ -330,9 +344,12 @@ const Tables = ({ value,options  }) => {
             <CCardHeader>
               Shift Swap
             </CCardHeader>
-            {listData.lists.filter(element => element.swaptoken === element.swaptoken).map((view, key) => (
               <CCardBody>
-                {/*{listData.lists.filter(element => element.swaptoken === element.swaptoken).map((view, key) => (*/}
+                {/*{view.map((view, key) => (*/}
+                {listData.lists.map((view, key) => (
+                  <>
+
+
                   <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="select">Swap Date</CLabel>
@@ -352,13 +369,15 @@ const Tables = ({ value,options  }) => {
                     <CLabel htmlFor="select">EPF No:</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CLabel htmlFor="select">{view.employees.epf}</CLabel>
+                    <CLabel htmlFor="select">{view.epf}</CLabel>
                   </CCol>
 
                   </CFormGroup>
-                {/*))}*/}
+
+
+                  </>
+                ))}
               </CCardBody>
-            ))}
             <CCardFooter>
 
 
