@@ -192,8 +192,9 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
 
                   {listData.lists.map((country, key) => (
                     <>
+                   <CRow style={{ padding: "10px 25px",paddingLeft:"8vw", textAlign: "center"}}>
                   <CFormGroup row>
-                    <CCol md="3">
+                    <CCol md="5">
                       <CLabel htmlFor="select">Leave Type</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
@@ -213,10 +214,10 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                   </CFormGroup>
 
                   <CFormGroup row >
-                    <CCol md="3">
+                    <CCol md="5">
                       <CLabel htmlFor="text-input">No of Days</CLabel>
                     </CCol>
-                    <CCol xs="12" md="9">
+                    <CCol xs="12" md="10">
                       <CSelect custom name="numberOfDays" onChange={(e) => onSelect2Change(country.id, e)} value={leaveTypeList.numberOfDays}>
                         <option value="0">0-20 days</option>
                         <option value="1" >1</option>
@@ -244,7 +245,7 @@ axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/L
                       <CFormText>select between 0-30 days</CFormText>
                     </CCol>
                   </CFormGroup>
-
+                      </CRow>
                     </>
                   ))}
 
