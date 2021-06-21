@@ -94,6 +94,12 @@ const _nav =  [
         to: '/Shift Configuration',
         icon: 'cil-calculator',
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Shift Swaps',
+        to: '/Leaveswap',
+        icon: 'cil-pencil',
+      },
     ],
   },
   {
@@ -112,12 +118,6 @@ const _nav =  [
         _tag: 'CSidebarNavItem',
         name: 'Leave Types',
         to: '/Leave Types',
-        icon: 'cil-pencil',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Leave Swaps',
-        to: '/Leaveswap',
         icon: 'cil-pencil',
       },
       {

@@ -15,7 +15,7 @@ import {
 } from '@coreui/react'
 import {array} from "prop-types";
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 const getBadge = reviewstatusId => {
   switch (reviewstatusId) {
     case 1 : return 'success'
@@ -122,8 +122,10 @@ const Tables = ({ value,options  }) => {
     // }, []);
 
     const result = groupBy(arr, function(n) {
-      return [n.swaptoken];
+      return n.swaptoken
     });
+
+
     return [result];
   }
 
@@ -345,10 +347,12 @@ const Tables = ({ value,options  }) => {
               Shift Swap
             </CCardHeader>
               <CCardBody>
-                {/*{view.map((view, key) => (*/}
-                {listData.lists.map((view, key) => (
+                {Object.keys(listData.lists[0]).map(cat => (
                   <>
-
+                  {listData.lists.map((view, key) => (
+                    <CCard>
+                  <>
+                    {view[cat].map((view, key) => (
 
                   <CFormGroup row>
                   <CCol md="3">
@@ -369,12 +373,17 @@ const Tables = ({ value,options  }) => {
                     <CLabel htmlFor="select">EPF No:</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CLabel htmlFor="select">{view.epf}</CLabel>
+                    <CLabel htmlFor="select">{view.employees.epf}</CLabel>
                   </CCol>
 
                   </CFormGroup>
+                    ))
+                    }
 
 
+                  </>
+                      </CCard>
+                    ))}
                   </>
                 ))}
               </CCardBody>
