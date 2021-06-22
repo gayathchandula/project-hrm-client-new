@@ -112,6 +112,11 @@ const Tables = ({ value,options  }) => {
 
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
+  function removeDuplicates1(arr) {
+    const map = new Map();
+    arr.forEach(v => map.set(v.swappeddate, v)) // having `departmentName` is always unique
+    return [...map.values()];
+  }
   function removeDuplicates(arr) {
     // const result = arr.reduce(function (r, a) {
     //   //r[a.swaptoken] = r[a.swaptoken] || [];
@@ -387,10 +392,7 @@ const Tables = ({ value,options  }) => {
                   </>
                 ))}
               </CCardBody>
-            <CCardFooter>
 
-
-            </CCardFooter>
           </CCard>
 
         </CCol>
