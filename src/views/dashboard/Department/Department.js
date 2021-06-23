@@ -56,7 +56,7 @@ const Tables = () => {
     setDepartment( e.target.value );
   };
   const onChangeInchargemail = (e) => {
-    setDepartment( e.target.value );
+    setInchargemail( e.target.value );
   };
   const handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
