@@ -39,6 +39,7 @@ const Tables = () => {
 
   const [designationName, setDesignation] = useState("");
   const [departmentName, setDepartment] = useState("");
+  const [Inchargemail, setInchargemail] = useState("");
   const [err, setErr] = useState();
   const [loading, setLoading] = useState(true);
   const [listData, setListData] = useState({ lists: [] });
@@ -54,7 +55,9 @@ const Tables = () => {
    const onChangeDepartment = (e) => {
     setDepartment( e.target.value );
   };
-
+  const onChangeInchargemail = (e) => {
+    setDepartment( e.target.value );
+  };
   const handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
     console.log(newValue);
@@ -95,7 +98,7 @@ const Tables = () => {
     e.preventDefault();
     setErr("");
     try{
-      const body = ({departmentName, designationName} );
+      const body = ({departmentName, designationName,Inchargemail} );
       const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/department/create`, body,headers);
       console.log(loginResponse);
       const departmentId = loginResponse.data.data.savedOt.id;
@@ -158,6 +161,15 @@ const Tables = () => {
                   <CCol xs="12" md="6">
                     <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={departmentName} onChange={onChangeDepartment}/>
                     <CFormText>Enter New Department</CFormText>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">Department Incharge Email</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="6">
+                    <CInput id="text-input" name="text-input" placeholder="Department Email" value={Inchargemail} onChange={onChangeInchargemail}/>
+                    <CFormText>Enter New Department Incharge mail</CFormText>
                   </CCol>
                 </CFormGroup>
                 {/*<CFormGroup row>*/}
