@@ -159,7 +159,7 @@ const Tables = () => {
                     <CLabel htmlFor="text-input">Department Name</CLabel>
                   </CCol>
                   <CCol xs="12" md="6">
-                    <CInput id="text-input" name="text-input" placeholder="Employee Type Name" value={departmentName} onChange={onChangeDepartment}/>
+                    <CInput id="text-input" name="text-input" type="text" placeholder="Employee Type Name" value={departmentName} onChange={onChangeDepartment}/>
                     <CFormText>Enter New Department</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -168,7 +168,7 @@ const Tables = () => {
                     <CLabel htmlFor="text-input">Department Incharge Email</CLabel>
                   </CCol>
                   <CCol xs="12" md="6">
-                    <CInput id="text-input" name="text-input" placeholder="Department Email" value={Inchargemail} onChange={onChangeInchargemail}/>
+                    <CInput id="text-input" name="text-input" type="email" placeholder="Department Email"  onChange={onChangeInchargemail}/>
                     <CFormText>Enter New Department Incharge mail</CFormText>
                   </CCol>
                 </CFormGroup>
