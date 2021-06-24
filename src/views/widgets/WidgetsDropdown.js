@@ -17,7 +17,7 @@ const WidgetsDropdown = () => {
 
   const [listData, setListData] = useState({ lists: [] });
   const token = localStorage.getItem("Token")
-
+  const orgid = localStorage.getItem("id")
   const headers = {
     headers: {
 
@@ -27,7 +27,7 @@ const WidgetsDropdown = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        'https://hrm-innovigent.herokuapp.com/api/v1/organizations/1/summary',headers
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
       );
       setListData({ lists: result.data.data.organization});
 
@@ -40,10 +40,10 @@ const WidgetsDropdown = () => {
   return (
     <CRow>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="success" variant="inverse" value={100} header="150" text="Total Employees" footer="View More Details"/>
+        <CWidgetProgress inverse color="success" variant="inverse" value={listData.lists.totalEmployees} header={listData.lists.totalEmployees} text="Total Employees" footer="View More Details"/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="info" variant="inverse" header="132" value={88} text="Total Present" footer="View more Details"/>
+        <CWidgetProgress inverse color="info" variant="inverse" header={listData.lists.currentEmployees} value={listData.lists.currentEmployees} text="Total Present" footer="View more Details"/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
         <CWidgetProgress inverse color="warning" variant="inverse" value={12} header="12" text="Total Absent" footer="View More Details"/>
