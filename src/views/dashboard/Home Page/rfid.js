@@ -50,7 +50,12 @@ const Tables = () => {
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
           setfirstName(loginResponse.data.data.employee.firstName);
           setShiftName(loginResponse.data.data.ShiftName);
-          setImage('https://hrm-innovigent.herokuapp.com/'+loginResponse.data.data.employeeImage.imagePath);
+          {loginResponse.data.data.employeeImage?(
+            setImage('https://hrm-innovigent.herokuapp.com/'+loginResponse.data.data.employeeImage.imagePath)
+          ):(
+            setImage(imageName.default)
+          )}
+
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
 
           console.log(loginResponse);
@@ -179,7 +184,11 @@ const Tables = () => {
                 <CCol xs="12" sm="10" md="9">
                     <CCard >
                         <CCardBody>
-                        <img src={Image} height="180px" />
+                          {Image?(
+                            <img src={Image} height="180px" alt={"img"}/>
+                          ):(
+                            <img src={imageName.default} height="180px" alt={"img"}/>
+                          )}
                         </CCardBody>
                     </CCard>
                  </CCol>
