@@ -22,6 +22,7 @@ var isEffect = false;
 const Tables = () => {
   const [firstName, setfirstName] = useState();
   const [ShiftName, setShiftName] = useState([]);
+  const [Image, setImage] = useState();
   const [employeeTypeId, setemployeeTypeId] = useState([]);
   const [succ, setSucc] = useState();
   const [rfid, setrfid] = useState();
@@ -49,6 +50,7 @@ const Tables = () => {
           const loginResponse = await axios.post("https://hrm-innovigent.herokuapp.com/api/v1/movements", body,headers);
           setfirstName(loginResponse.data.data.employee.firstName);
           setShiftName(loginResponse.data.data.ShiftName);
+          setImage('https://hrm-innovigent.herokuapp.com/'+loginResponse.data.data.employeeImage.imagePath);
           setemployeeTypeId(loginResponse.data.data.employee.employeeTypeId);
 
           console.log(loginResponse);
@@ -177,7 +179,7 @@ const Tables = () => {
                 <CCol xs="12" sm="10" md="9">
                     <CCard >
                         <CCardBody>
-                        <img src={imageName.default} height="180px" />
+                        <img src={Image} height="180px" />
                         </CCardBody>
                     </CCard>
                  </CCol>
