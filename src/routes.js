@@ -63,6 +63,7 @@ const Chartsattendence = React.lazy(() => import('./views/charts/ChartsAttendenc
 const Chartsot = React.lazy(() => import('./views/charts/ChartsAttendence'));
 const Chartsleave = React.lazy(() => import('./views/charts/ChartsAttendence'));
 const Leaveswap = React.lazy(() => import('./views/dashboard/Leave Management/leaveswap'));
+const Unauthleave = React.lazy(() => import('./views/dashboard/Leave Management/unauthleave'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -72,6 +73,7 @@ const routes = [
   { path: '/Settings', name: 'Settings', component: Settings },
   { path: '/Chartsot', name: 'Chartsot', component: Chartsot },
   { path: '/Leaveswap', name: 'Leaveswap', component: Leaveswap },
+  { path: '/Unauthleave', name: 'Unauthleave', component: Unauthleave },
   { path: '/Chartsleave', name: 'Chartsleave', component: Chartsleave },
   { path: '/attendence', name: 'Attendence Log', component: Attendence },
   { path: '/Chartsattendence', name: 'Chartsattendence', component: Chartsattendence },

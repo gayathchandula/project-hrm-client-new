@@ -45,6 +45,7 @@ const Chartsattendence = React.lazy(() => import('./containers/TheLayout'));
 const Chartsot = React.lazy(() => import('./containers/TheLayout'));
 const Chartsleave = React.lazy(() => import('./containers/TheLayout'));
 const Leaveswap = React.lazy(() => import('./containers/TheLayout'));
+const Unauthleave = React.lazy(() => import('./containers/TheLayout'));
 
 
 function App () {
@@ -67,6 +68,7 @@ function App () {
               <Route exact path="/Chartsleave" name="Chartsleave"  render={props => <Chartsleave {...props}/>} />
               <Route exact path="/Chartsot" name="Chartsot"  render={props => <Chartsot {...props}/>} />
               <Route exact path="/Leaveswap" name="Leaveswap"  render={props => <Leaveswap {...props}/>} />
+              <Route exact path="/Unauthleave" name="Unauthleave"  render={props => <Unauthleave {...props}/>} />
               <Route exact path="/Chartsattendence" name="Chartsattendence"  render={props => <Chartsattendence {...props}/>} />
               <Route exact path="/employee" name="Employee"  render={props => <Employee {...props}/>} />
               <Route exact path="/Employee Home" name="EmployeeHome"  render={props => <EmployeeHome {...props}/>} />

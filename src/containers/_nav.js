@@ -134,6 +134,12 @@ const _nav =  [
       },
       {
         _tag: 'CSidebarNavItem',
+        name: 'UnAuthorized Leaves',
+        to: '/Unauthleave',
+        icon: 'cil-calculator',
+      },
+      {
+        _tag: 'CSidebarNavItem',
         name: 'Leave Application(employee)',
         to: '/Leave Application',
         icon: 'cil-cursor',

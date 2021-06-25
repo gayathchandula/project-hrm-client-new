@@ -210,20 +210,21 @@ const Tables = () => {
     const onSubmit = async (data) => {
 
       setErr("");
-        const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,checkbox,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
+      const body = ({firstName, lastName,rfid,shiftId,employeeTypeId,employeeEmail,accountNumber,checkbox,departmentName,designationName,accountHolderName,bankName,branchName,epf,gender,phone,address,DOB} );
+      try{
+        const loginResponse = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employees`, body,headers);
+        console.log(loginResponse);
+        const empId = loginResponse.data.data.id;
+        const loginResponse1 = await axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${empId}/profile/createfirst`,headers);
+        console.log(loginResponse1);
+        window.location.reload();
 
+      } catch(err) {
+        err.response.data.message && setErr(err.response.data.message)
+      }
 
-    axios.post(`https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/employees`, body, headers)
-    .then((res) => {
-        if (res.status === 200) {
-          window.location.reload();
-            alert('upload success');
-        }
-    }).catch((err) => {
-        console.error(err);
-      err.response.data.message && setErr(err.response.data.message)
-    });
     };
+
     const onFileSubmit = async () => {
       const data = new FormData()
       data.append('file', file)
