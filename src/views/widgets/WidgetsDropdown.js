@@ -46,7 +46,7 @@ const WidgetsDropdown = () => {
         <CWidgetProgress inverse color="info" variant="inverse" header={listData.lists.currentEmployees} value={listData.lists.currentEmployees} text="Total Present" footer="View more Details"/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="warning" variant="inverse" value={12} header="12" text="Total Absent" footer="View More Details"/>
+        <CWidgetProgress inverse color="warning" variant="inverse" value={listData.lists.totalabsent} header={listData.lists.totalabsent} text="Total Absent" footer="View More Details"/>
       </CCol>
 
       <CCol xs="12" sm="6" lg="3">
