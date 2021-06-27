@@ -4,18 +4,14 @@ import {
   CRow,
   CCol,
   CWidgetProgress,
-  CDropdown,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownToggle
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import ChartLineSimple from '../charts/ChartLineSimple'
-import ChartBarSimple from '../charts/ChartBarSimple'
+
 import axios from 'axios';
 const WidgetsDropdown = () => {
 
   const [listData, setListData] = useState({ lists: [] });
+  const [Daycount, setDaycount] = useState({ lists: [] });
+  const [flagged, setflagged] = useState();
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
   const headers = {
@@ -30,6 +26,8 @@ const WidgetsDropdown = () => {
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
       );
       setListData({ lists: result.data.data.organization});
+      setflagged(result.data.data.organization.flaggedEmployees);
+      setDaycount({ lists: result.data.data.organization.dayCounts[0]});
 
       console.log(result.data.data.organization.totalEmployees)
     };
@@ -40,17 +38,17 @@ const WidgetsDropdown = () => {
   return (
     <CRow>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="success" variant="inverse" value={listData.lists.totalEmployees} header={listData.lists.totalEmployees} text="Total Employees" footer="View More Details"/>
+        <CWidgetProgress inverse color="success" variant="inverse" value={Daycount.lists.totalEmployees} header={Daycount.lists.totalEmployees} text="Total Employees" footer="View More Details"/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="info" variant="inverse" header={listData.lists.currentEmployees} value={listData.lists.currentEmployees} text="Total Present" footer="View more Details"/>
+        <CWidgetProgress inverse color="info" variant="inverse" header={Daycount.lists.presentCounts} value={Daycount.lists.presentCounts} text="Total Present" footer="View more Details"/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="warning" variant="inverse" value={listData.lists.totalabsent} header={listData.lists.totalabsent} text="Total Absent" footer="View More Details"/>
+        <CWidgetProgress inverse color="warning" variant="inverse" value={Daycount.lists.absentCount} header={Daycount.lists.absentCount} text="Total Absent" footer="View More Details"/>
       </CCol>
 
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="danger" variant="inverse" value={50} header="5" text="OT Employee" footer="View More Details"/>
+        <CWidgetProgress inverse color="danger" variant="inverse" value={flagged} header={flagged}  text="OT Employee" footer="View More Details"/>
       </CCol>
 
       {/* <CCol sm="6" lg="3">
