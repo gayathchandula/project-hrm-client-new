@@ -244,6 +244,7 @@ const Dashboard = () => {
           </CCardHeader>
           <CCardBody>
             <CChartBar
+
               datasets={[
                 {
                   label: 'Total Employees on Department',
@@ -253,6 +254,11 @@ const Dashboard = () => {
               ]}
               labels={departmentName}
               options={{
+                scales: {
+                  xAxes: [{
+                    barPercentage: 0.4
+                  }]
+                },
                 tooltips: {
                   enabled: true
                 }
@@ -275,6 +281,11 @@ const Dashboard = () => {
             ]}
             labels={shiftName}
             options={{
+              scales: {
+                xAxes: [{
+                  barPercentage: 0.4
+                }]
+              },
               tooltips: {
                 enabled: true
               }
