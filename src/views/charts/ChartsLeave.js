@@ -1,215 +1,372 @@
-import React from 'react'
+import React, {lazy, useState,useEffect} from 'react'
+
 import {
   CCard,
   CCardBody,
   CCardGroup,
-  CCardHeader
+  CCardHeader,
+  CCardFooter,
+  CHeaderNavLink,
+  CCol,
+  CProgress,
+  CWidgetSimple,
+  CRow,
+  CBadge,
+  CButton,
+  CButtonGroup,
+  CWidgetProgressIcon,
+  CLabel,
+  CWidgetBrand,
+  CCallout
 } from '@coreui/react'
 import {
   CChartBar,
   CChartLine,
   CChartDoughnut,
   CChartRadar,
+
   CChartPie,
   CChartPolarArea
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
+import ChartLineSimple from '../charts/ChartLineSimple'
+import CIcon from '@coreui/icons-react'
 
-const Charts = () => {
+import MainChartExample from '../charts/MainChartExample.js'
+import axios from "axios";
+import {Line} from "react-chartjs-2";
+import moment from 'moment';
 
+const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
+const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
+
+const Dashboard = () => {
+
+  const [Daycount, setDaycount] = useState({ lists: [] });
+  const [department, setdepartment] = useState([] );
+  const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
+  const [listData, setListData] = useState({ lists: [] });
+  const [empshift, setempshift] = useState([]);
+  const [unauthorizedCount, setunauthorizedCount] = useState([]);
+  const token = localStorage.getItem("Token")
+  const orgid = localStorage.getItem("id")
+  const headers = {
+    headers: {
+
+      "Authorization":`Bearer ${token}`
+    }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
+      );
+      console.log(result.data.data)
+      setListData({ lists: result.data.data.organization});
+      setempshift(result.data.data.organization.unauthorizedShift);
+      setDaycount({ lists: result.data.data.organization.dayCounts[0]});
+      setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
+      setdepartment(  result.data.data.organization.unauthorizedDepartments);
+      setunauthorizedCount(  result.data.data.organization.unauthorizedCount);
+
+    };
+    fetchData();
+  }, []);
+
+  const data = {
+    labels: ['1', '2', '3', '4', '5', '6'],
+    datasets: [
+      {
+        label: '2020',
+        data: [30, 39, 10, 50, 30, 70, 35],
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(228,102,81,0.9)',
+      },
+      {
+        label: '2021',
+        data: [80, 39, 40, 35, 40, 20, 45],
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgba(255, 99, 132, 0.2)',
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
   return (
-    <CCardGroup columns className = "cols-2" >
+    <>
+      <h4>Detailed Leave Dashboard</h4>
+      <CHeaderNavLink to="/dashboard"></CHeaderNavLink> <br></br>
+
+      <CRow>
+        <CCol sm="6" md="2">
+          <CWidgetProgressIcon
+            header={Daycount.lists.totalEmployees}
+            text="Employees"
+            color="gradient-info"
+            inverse
+          >
+            <CIcon name="cil-people" height="36"/>
+          </CWidgetProgressIcon>
+        </CCol>
+        <CCol sm="6" md="2">
+          <CWidgetProgressIcon
+            header={leaveAllStats.lists.accepted}
+            text="Authorized Leaves"
+            color="gradient-success"
+            inverse
+          >
+            <CIcon name="cil-userFollow" height="36"/>
+          </CWidgetProgressIcon>
+        </CCol>
+        <CCol sm="6" md="2">
+          <CWidgetProgressIcon
+            header={leaveAllStats.lists.pending}
+            text="Pending Leaves"
+            color="gradient-warning"
+            inverse
+          >
+            <CIcon name="cil-basket" height="36"/>
+          </CWidgetProgressIcon>
+        </CCol>
+        <CCol sm="6" md="2">
+          <CWidgetProgressIcon
+            header={unauthorizedCount}
+            text="Unauthorized Leaves"
+            color="gradient-danger"
+            inverse
+          >
+            <CIcon name="cil-speedometer" height="36"/>
+          </CWidgetProgressIcon>
+        </CCol>
+      </CRow>
+
       <CCard>
+
         <CCardHeader>
-          Leave Bar Chart
-          <DocsLink href="https://www.chartjs.org"/>
+          Leave on Departments
         </CCardHeader>
         <CCardBody>
-          <CChartBar
-            datasets={[
-              {
-                label: 'GitHub Commits',
-                backgroundColor: '#f87979',
-                data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-              }
-            ]}
-            labels="months"
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
+          <CRow>
+            {department.map((country, key) => (
+              <CCol sm="4" lg="2">
+                <CWidgetBrand color="linkedin" rightHeader={moment(country.TodayDate).format("MMM Do YY")} rightFooter="Date" leftHeader={country.LeaveCount} leftFooter="Leave">
+                  <CLabel>{country.departmentName}</CLabel>
+                </CWidgetBrand>
+              </CCol>
+            ))}
+          </CRow>
         </CCardBody>
+
       </CCard>
 
       <CCard>
         <CCardHeader>
-          Doughnut Chart
+          Leave on Shift
         </CCardHeader>
         <CCardBody>
-          <CChartDoughnut
-            datasets={[
-              {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
-                data: [40, 20, 80, 10]
-              }
-            ]}
-            labels={['  ', 'EmberJs', 'ReactJs', 'AngularJs']}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
+          <CRow>
+            {empshift.map((country, key) => (
+              <CCol sm="4" lg="2">
+                <CWidgetBrand color="linkedin" rightHeader={moment(country.TodayDate).format("MMM Do YY")} rightFooter="Date" leftHeader={country.LeaveCount} leftFooter="Leave">
+                  <CLabel>{country.shiftName}</CLabel>
+                </CWidgetBrand>
+              </CCol>
+            ))}
+          </CRow>
         </CCardBody>
       </CCard>
 
-      <CCard>
-        <CCardHeader>
-          Line Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartLine
-            datasets={[
-              {
-                label: 'Data One',
-                backgroundColor: 'rgb(228,102,81,0.9)',
-                data: [30, 39, 10, 50, 30, 70, 35]
-              },
-              {
-                label: 'Data Two',
-                backgroundColor: 'rgb(0,216,255,0.9)',
-                data: [39, 80, 40, 35, 40, 20, 45]
-              }
-            ]}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-            labels="months"
-          />
-        </CCardBody>
-      </CCard>
+      <CCardGroup columns className = "cols-1" >
 
-      <CCard>
-        <CCardHeader>
-          Pie Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartPie
-            datasets={[
-              {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
-                data: [40, 20, 80, 10]
-              }
-            ]}
-            labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
+        <CCard>
 
-      <CCard>
-        <CCardHeader>
-          Polar Area Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartPolarArea
-            datasets={[
-              {
-                label: 'My First dataset',
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: 'rgba(179,181,198,1)',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
-                data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                label: 'My Second dataset',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: 'rgba(255,99,132,1)',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
-              }
-            ]}
-            options={{
-              aspectRatio: 1.5,
-              tooltips: {
-                enabled: true
-              }
-            }}
-            labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
-            ]}
-          />
-        </CCardBody>
-      </CCard>
+          <CCardHeader>
+            Absentism last 7 days
+          </CCardHeader>
+          <CCardBody>
+            <CChartPie
+              datasets={[
+                {
+                  backgroundColor: [
+                    '#41B883',
+                    '#E46651',
+                    '#00D8FF',
+                    '#DD1B16'
+                  ],
+                  data: [4, 2, 8, 1]
+                }
+              ]}
+              labels={['6th June', '5th June', '4th June', '3rd June']}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
 
-      <CCard>
-        <CCardHeader>
-          Radar Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartRadar
-            datasets={[
-              {
-                label: '2019',
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                borderColor: 'rgba(179,181,198,1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
-                tooltipLabelColor: 'rgba(179,181,198,1)',
-                data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                label: '2020',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
-                tooltipLabelColor: 'rgba(255,99,132,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
-              }
-            ]}
-            options={{
-              aspectRatio: 1.5,
-              tooltips: {
-                enabled: true
-              }
-            }}
-            labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
-            ]}
-          />
-        </CCardBody>
-      </CCard>
-    </CCardGroup>
+
+        <CCard>
+          <CCardHeader>
+            Leave Per Month Bar Chart
+          </CCardHeader>
+          <CCardBody>
+            <CChartBar
+              datasets={[
+                {
+                  label: 'No of leaves',
+                  backgroundColor: '#f87979',
+                  data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]
+                }
+              ]}
+              labels="months"
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
+
+        <CCard>
+          <CCardHeader>
+            Leave Per Month Bar Chart
+          </CCardHeader>
+          <CCardBody>
+            <Line data={data} options={options} />
+          </CCardBody>
+        </CCard>
+
+        <CCard>
+          <CCardHeader>
+            No of Leaves
+          </CCardHeader>
+          <CCardBody>
+            <CChartBar
+              labels="months"
+
+              datasets={[
+                {
+
+                  label: 'No of leaves',
+                  backgroundColor: '#f87979',
+                  data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]
+                },
+                {
+                  label: 'No of something',
+                  backgroundColor: '#00D8FF',
+                  data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]
+                }
+              ]}
+              labels="months"
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
+
+
+        <CCard>
+          <CCardHeader>
+            Pie Chart
+          </CCardHeader>
+          <CCardBody>
+            <CChartPie
+              datasets={[
+                {
+                  backgroundColor: [
+                    '#41B883',
+                    '#E46651',
+                    '#00D8FF',
+                    '#DD1B16'
+                  ],
+                  data: [40, 20, 80, 10]
+                }
+              ]}
+              labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
+        <CCard>
+          <CCardHeader>
+            Leave Comparison Line Chart
+          </CCardHeader>
+          <CCardBody>
+            <CChartLine
+              datasets={[
+                {
+                  label: '2020',
+                  backgroundColor: 'rgb(228,102,81,0.9)',
+                  data: [30, 39, 10, 50, 30, 70, 35]
+                },
+                {
+                  label: '2021',
+                  backgroundColor: 'rgb(0,216,255,0.9)',
+                  data: [80, 39, 40, 35, 40, 20, 45]
+                }
+              ]}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+              labels="months"
+            />
+          </CCardBody>
+        </CCard>
+        <CCard>
+          <CCardHeader>
+            Doughnut Chart
+          </CCardHeader>
+          <CCardBody>
+            <CChartDoughnut
+              datasets={[
+                {
+                  backgroundColor: [
+                    '#41B883',
+                    '#E46651',
+                    '#00D8FF',
+                    '#DD1B16'
+                  ],
+                  data: [40, 20, 80, 10]
+                }
+              ]}
+              labels={['Paid Leaves', 'On Site', 'Work from home', 'Unpaid Leaves']}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
+
+      </CCardGroup>
+    </>
   )
 }
 
-export default Charts
+export default Dashboard
+
