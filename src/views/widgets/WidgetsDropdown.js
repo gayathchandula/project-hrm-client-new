@@ -1,16 +1,19 @@
 import React, { useEffect, useState} from 'react';
 import {
-  CWidgetDropdown,
   CRow,
   CCol,
-  CWidgetProgress,
+  CContainer,
+  CWidgetProgress, CCard, CCardHeader, CCardBody, CHeaderNavLink, CProgress, CBadge,
 } from '@coreui/react'
 
 import axios from 'axios';
+import {CChartPie} from "@coreui/react-chartjs";
 const WidgetsDropdown = () => {
 
   const [listData, setListData] = useState({ lists: [] });
   const [Daycount, setDaycount] = useState({ lists: [] });
+  const [department, setdepartment] = useState({ lists: [] });
+  const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [flagged, setflagged] = useState();
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -28,15 +31,18 @@ const WidgetsDropdown = () => {
       setListData({ lists: result.data.data.organization});
       setflagged(result.data.data.organization.flaggedEmployees);
       setDaycount({ lists: result.data.data.organization.dayCounts[0]});
+      setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
+      setdepartment({ lists: result.data.data.organization.departmentEmp});
 
-      console.log(result.data.data.organization.totalEmployees)
+      console.log(result.data.data)
     };
     fetchData();
   }, []);
 
   // render
   return (
-    <CRow>
+    <CContainer>
+      <CRow>
       <CCol xs="12" sm="6" lg="3">
         <CWidgetProgress inverse color="success" variant="inverse" value={Daycount.lists.totalEmployees} header={Daycount.lists.totalEmployees} text="Total Employees" footer="View More Details"/>
       </CCol>
@@ -48,90 +54,126 @@ const WidgetsDropdown = () => {
       </CCol>
 
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="danger" variant="inverse" value={flagged} header={flagged}  text="OT Employee" footer="View More Details"/>
+        <CWidgetProgress inverse color="danger" variant="inverse" value={flagged} header={flagged}  text="High Temperature Employees" footer="View More Details"/>
       </CCol>
-
-      {/* <CCol sm="6" lg="3">
-        <CWidgetDropdown
-          color="gradient-primary"
-          header={listData.lists.totalEmployees}
-          text="Total Employees"
-          footerSlot={
-            <ChartLineSimple
-              pointed
-              className="c-chart-wrapper mt-3 mx-3"
-              style={{height: '70px'}}
-              dataPoints={[65, 59, 84, 84, 51, 55, 40]}
-              pointHoverBackgroundColor="primary"
-              label="Members"
-              labels="months"
-            />
-          }
-        >
-
-        </CWidgetDropdown>
+      </CRow>
+      <CRow>
+      <CCol xs="12" sm="6" lg="3">
+        <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Unauthorized Leaves" footer="View More Details"/>
       </CCol>
-      <CCol sm="6" lg="3">
-        <CWidgetDropdown
-          color="gradient-info"
-          header="1"
-          text="Total Absent"
-          footerSlot={
-            <ChartLineSimple
-              pointed
-              className="mt-3 mx-3"
-              style={{height: '70px'}}
-              dataPoints={[1, 18, 9, 17, 34, 22, 11]}
-              pointHoverBackgroundColor="info"
-              options={{ elements: { line: { tension: 0.00001 }}}}
-              label="Members"
-              labels="months"
-            />
-          }
-        >
+      </CRow>
+      <CRow>
+      <CCol xs="12" md="6">
+        <CCard>
+          <CCardHeader>
+            Leave stats
+          </CCardHeader>
+          <CCardBody>
+            <CHeaderNavLink to="/Chartsattendence">View More Details</CHeaderNavLink>
+            <CChartPie
+              datasets={[
+                {
+                  backgroundColor: [
 
-        </CWidgetDropdown>
+                    '#42ba96',
+                    '#df4759',
+                    '#ffc107'
+                  ],
+                  data: [(leaveAllStats.lists.accepted), (leaveAllStats.lists.rejected), (leaveAllStats.lists.pending)]
+                }
+              ]}
+              labels={[ `Accept `+ (leaveAllStats.lists.accepted), `Absent ` + (leaveAllStats.lists.rejected), `Pending ` + (leaveAllStats.lists.pending)]}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+
+          </CCardBody>
+        </CCard>
       </CCol>
-      <CCol sm="6" lg="3">
-        <CWidgetDropdown
-          color="gradient-warning"
-          header={listData.lists.totalEmployees}
-          text="Total Present"
-          footerSlot={
-            <ChartLineSimple
-              className="mt-3"
-              style={{height: '70px'}}
-              backgroundColor="rgba(255,255,255,.2)"
-              dataPoints={[78, 81, 80, 45, 34, 12, 40]}
-              options={{ elements: { line: { borderWidth: 2.5 }}}}
-              pointHoverBackgroundColor="warning"
-              label="Members"
-              labels="months"
-            />
-          }
-        >
+      <CCol xs="12" md="6">
+        <CCard>
+          <CCardHeader>
+            Attendence
+          </CCardHeader>
+          <CCardBody>
+            <CHeaderNavLink to="/Chartsattendence">View More Details</CHeaderNavLink>
+            <CChartPie
+              datasets={[
+                {
+                  backgroundColor: [
 
-        </CWidgetDropdown>
+                    '#00D8FF',
+                    '#DD1B16'
+                  ],
+                  data: [(Daycount.lists.presentCounts), (Daycount.lists.absentCount)]
+                }
+              ]}
+              labels={[ `Present `+ (Daycount.lists.presentCounts), `Absent ` + (Daycount.lists.absentCount)]}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+
+          </CCardBody>
+        </CCard>
       </CCol>
-      <CCol sm="6" lg="3">
-        <CWidgetDropdown
-          color="gradient-danger"
-          header="5"
-          text="Employees OT"
-          footerSlot={
-            <ChartBarSimple
-              className="mt-3 mx-3"
-              style={{height: '70px'}}
-              backgroundColor="rgb(250, 152, 152)"
-              label="Members"
-              labels="months"
-            />
-          }
-        >
+        </CRow>
+      <CRow>
+        <CCol>
+          <CCard>
+            <CCardHeader>
+              Departments
+            </CCardHeader>
+            <CCardBody>
+              <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
+              <CRow>
+                <CCol xs="12" md="6" xl="6">
 
-        </CWidgetDropdown>
-      </CCol> */}
-    </CRow>
+                  <hr className="mt-0" />
+                  {department.lists.map((country, key) => (
+                    <div className="progress-group mb-4">
+                      <div className="progress-group-prepend">
+                      <span className="progress-group-text">
+                        {country.departmentName}
+                      </span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress className="progress-xs" color="info" value={country.DepTotalCount} />
+                        <CProgress className="progress-xs" color="success" value={country.DepPresentCount} />
+                        <CProgress className="progress-xs" color="warning" value={(country.DepTotalCount)-(country.DepPresentCount)}/>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="legend text-center">
+                    <small>
+                      <sup className="px-1"><CBadge shape="pill" color="info">&nbsp;</CBadge></sup>
+                      Total Employees
+                      &nbsp;
+                      <sup className="px-1"><CBadge shape="pill" color="success" >&nbsp;</CBadge></sup>
+                      Present Employees
+                      <sup className="px-1"><CBadge shape="pill" color="warning">&nbsp;</CBadge></sup>
+                      Absent Employees
+                    </small>
+                  </div>
+                </CCol>
+
+              </CRow>
+
+            </CCardBody>
+
+          </CCard>
+        </CCol>
+      </CRow>
+
+
+    </CContainer>
+
   )
 }
 
