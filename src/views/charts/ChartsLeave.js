@@ -188,182 +188,182 @@ const Dashboard = () => {
         </CCardBody>
       </CCard>
 
-      <CCardGroup columns className = "cols-1" >
+      {/*<CCardGroup columns className = "cols-1" >*/}
 
-        <CCard>
+      {/*  <CCard>*/}
 
-          <CCardHeader>
-            Absentism last 7 days
-          </CCardHeader>
-          <CCardBody>
-            <CChartPie
-              datasets={[
-                {
-                  backgroundColor: [
-                    '#41B883',
-                    '#E46651',
-                    '#00D8FF',
-                    '#DD1B16'
-                  ],
-                  data: [4, 2, 8, 1]
-                }
-              ]}
-              labels={['6th June', '5th June', '4th June', '3rd June']}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
-
-
-        <CCard>
-          <CCardHeader>
-            Leave Per Month Bar Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartBar
-              datasets={[
-                {
-                  label: 'No of leaves',
-                  backgroundColor: '#f87979',
-                  data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]
-                }
-              ]}
-              labels="months"
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
-
-        <CCard>
-          <CCardHeader>
-            Leave Per Month Bar Chart
-          </CCardHeader>
-          <CCardBody>
-            <Line data={data} options={options} />
-          </CCardBody>
-        </CCard>
-
-        <CCard>
-          <CCardHeader>
-            No of Leaves
-          </CCardHeader>
-          <CCardBody>
-            <CChartBar
-              labels="months"
-
-              datasets={[
-                {
-
-                  label: 'No of leaves',
-                  backgroundColor: '#f87979',
-                  data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]
-                },
-                {
-                  label: 'No of something',
-                  backgroundColor: '#00D8FF',
-                  data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]
-                }
-              ]}
-              labels="months"
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
+      {/*    <CCardHeader>*/}
+      {/*      Absentism last 7 days*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartPie*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            backgroundColor: [*/}
+      {/*              '#41B883',*/}
+      {/*              '#E46651',*/}
+      {/*              '#00D8FF',*/}
+      {/*              '#DD1B16'*/}
+      {/*            ],*/}
+      {/*            data: [4, 2, 8, 1]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels={['6th June', '5th June', '4th June', '3rd June']}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
 
 
-        <CCard>
-          <CCardHeader>
-            Pie Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartPie
-              datasets={[
-                {
-                  backgroundColor: [
-                    '#41B883',
-                    '#E46651',
-                    '#00D8FF',
-                    '#DD1B16'
-                  ],
-                  data: [40, 20, 80, 10]
-                }
-              ]}
-              labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
-        <CCard>
-          <CCardHeader>
-            Leave Comparison Line Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartLine
-              datasets={[
-                {
-                  label: '2020',
-                  backgroundColor: 'rgb(228,102,81,0.9)',
-                  data: [30, 39, 10, 50, 30, 70, 35]
-                },
-                {
-                  label: '2021',
-                  backgroundColor: 'rgb(0,216,255,0.9)',
-                  data: [80, 39, 40, 35, 40, 20, 45]
-                }
-              ]}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-              labels="months"
-            />
-          </CCardBody>
-        </CCard>
-        <CCard>
-          <CCardHeader>
-            Doughnut Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartDoughnut
-              datasets={[
-                {
-                  backgroundColor: [
-                    '#41B883',
-                    '#E46651',
-                    '#00D8FF',
-                    '#DD1B16'
-                  ],
-                  data: [40, 20, 80, 10]
-                }
-              ]}
-              labels={['Paid Leaves', 'On Site', 'Work from home', 'Unpaid Leaves']}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Leave Per Month Bar Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartBar*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            label: 'No of leaves',*/}
+      {/*            backgroundColor: '#f87979',*/}
+      {/*            data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels="months"*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
 
-      </CCardGroup>
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Leave Per Month Bar Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <Line data={data} options={options} />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      No of Leaves*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartBar*/}
+      {/*        labels="months"*/}
+
+      {/*        datasets={[*/}
+      {/*          {*/}
+
+      {/*            label: 'No of leaves',*/}
+      {/*            backgroundColor: '#f87979',*/}
+      {/*            data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            label: 'No of something',*/}
+      {/*            backgroundColor: '#00D8FF',*/}
+      {/*            data: [40, 20, 12, 39, 10, 40, 39, 200, 40, 20, 12, 11]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels="months"*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+
+
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Pie Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartPie*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            backgroundColor: [*/}
+      {/*              '#41B883',*/}
+      {/*              '#E46651',*/}
+      {/*              '#00D8FF',*/}
+      {/*              '#DD1B16'*/}
+      {/*            ],*/}
+      {/*            data: [40, 20, 80, 10]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Leave Comparison Line Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartLine*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            label: '2020',*/}
+      {/*            backgroundColor: 'rgb(228,102,81,0.9)',*/}
+      {/*            data: [30, 39, 10, 50, 30, 70, 35]*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            label: '2021',*/}
+      {/*            backgroundColor: 'rgb(0,216,255,0.9)',*/}
+      {/*            data: [80, 39, 40, 35, 40, 20, 45]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*        labels="months"*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Doughnut Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartDoughnut*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            backgroundColor: [*/}
+      {/*              '#41B883',*/}
+      {/*              '#E46651',*/}
+      {/*              '#00D8FF',*/}
+      {/*              '#DD1B16'*/}
+      {/*            ],*/}
+      {/*            data: [40, 20, 80, 10]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels={['Paid Leaves', 'On Site', 'Work from home', 'Unpaid Leaves']}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+
+      {/*</CCardGroup>*/}
     </>
   )
 }

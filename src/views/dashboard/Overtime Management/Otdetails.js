@@ -148,35 +148,35 @@ const Dashboard = () => {
         </CCardBody>
 
       </CCard>
-      <CCardGroup columns className = "cols-1" >
+      {/*<CCardGroup columns className = "cols-1" >*/}
 
-        <CCard>
+      {/*  <CCard>*/}
 
-          <CCardHeader>
-            OT Hours last 7 days
-          </CCardHeader>
-          <CCardBody>
-            <CChartPie
-              datasets={[
-                {
-                  backgroundColor: [
-                    '#41B883',
-                    '#E46651',
-                    '#00D8FF',
-                    '#DD1B16'
-                  ],
-                  data: [4, 2, 8, 1]
-                }
-              ]}
-              labels={['6th June', '5th June', '4th June', '3rd June']}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
+      {/*    <CCardHeader>*/}
+      {/*      OT Hours last 7 days*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartPie*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            backgroundColor: [*/}
+      {/*              '#41B883',*/}
+      {/*              '#E46651',*/}
+      {/*              '#00D8FF',*/}
+      {/*              '#DD1B16'*/}
+      {/*            ],*/}
+      {/*            data: [4, 2, 8, 1]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels={['6th June', '5th June', '4th June', '3rd June']}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
 
 
 
@@ -216,122 +216,122 @@ const Dashboard = () => {
 
 
 
-        <CCard>
-          <CCardHeader>
-            Leave Comparison Line Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartLine
-              datasets={[
-                {
-                  label: '2020',
-                  backgroundColor: 'rgb(228,102,81,0.9)',
-                  data: [30, 39, 10, 50, 30, 70, 35]
-                },
-                {
-                  label: '2021',
-                  backgroundColor: 'rgb(0,216,255,0.9)',
-                  data: [80, 39, 40, 35, 40, 20, 45]
-                }
-              ]}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-              labels="months"
-            />
-          </CCardBody>
-        </CCard>
-        <CCard>
-          <CCardHeader>
-            Doughnut Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartDoughnut
-              datasets={[
-                {
-                  backgroundColor: [
-                    '#41B883',
-                    '#E46651',
-                    '#00D8FF',
-                    '#DD1B16'
-                  ],
-                  data: [40, 20, 80, 10]
-                }
-              ]}
-              labels={['Paid Leaves', 'On Site', 'Work from home', 'Unpaid Leaves']}
-              options={{
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
-      </CCardGroup>
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Leave Comparison Line Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartLine*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            label: '2020',*/}
+      {/*            backgroundColor: 'rgb(228,102,81,0.9)',*/}
+      {/*            data: [30, 39, 10, 50, 30, 70, 35]*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            label: '2021',*/}
+      {/*            backgroundColor: 'rgb(0,216,255,0.9)',*/}
+      {/*            data: [80, 39, 40, 35, 40, 20, 45]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*        labels="months"*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Doughnut Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartDoughnut*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            backgroundColor: [*/}
+      {/*              '#41B883',*/}
+      {/*              '#E46651',*/}
+      {/*              '#00D8FF',*/}
+      {/*              '#DD1B16'*/}
+      {/*            ],*/}
+      {/*            data: [40, 20, 80, 10]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        labels={['Paid Leaves', 'On Site', 'Work from home', 'Unpaid Leaves']}*/}
+      {/*        options={{*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
+      {/*</CCardGroup>*/}
 
-      <CCardGroup columns className="cols-2">
-        <CCard>
-          <CCardHeader>
-            OT Per Month Bar Chart
-            <DocsLink href="https://www.chartjs.org"/>
-          </CCardHeader>
-          <CCardBody>
-            <CChartBar
-              datasets={[
-                {
-                  label: 'No of Hours',
-                  backgroundColor: '#f87979',
-                  data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]
-                }
-              ]}
+      {/*<CCardGroup columns className="cols-2">*/}
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      OT Per Month Bar Chart*/}
+      {/*      <DocsLink href="https://www.chartjs.org"/>*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartBar*/}
+      {/*        datasets={[*/}
+      {/*          {*/}
+      {/*            label: 'No of Hours',*/}
+      {/*            backgroundColor: '#f87979',*/}
+      {/*            data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]*/}
+      {/*          }*/}
+      {/*        ]}*/}
 
-              labels="months"
+      {/*        labels="months"*/}
 
-              options={{
-                //  aspectRatio: 1.0,
+      {/*        options={{*/}
+      {/*          //  aspectRatio: 1.0,*/}
 
-                tooltips: {
-                  enabled: true
-                }
-              }}
-            />
-          </CCardBody>
-        </CCard>
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
 
-        <CCard>
-          <CCardHeader>
-            Polar Area Chart
-          </CCardHeader>
-          <CCardBody>
-            <CChartPolarArea
-              datasets={[
+      {/*  <CCard>*/}
+      {/*    <CCardHeader>*/}
+      {/*      Polar Area Chart*/}
+      {/*    </CCardHeader>*/}
+      {/*    <CCardBody>*/}
+      {/*      <CChartPolarArea*/}
+      {/*        datasets={[*/}
 
-                {
-                  label: 'My Second dataset',
-                  backgroundColor: 'rgba(255,99,132,0.2)',
-                  pointBackgroundColor: 'rgba(255,99,132,1)',
-                  pointBorderColor: '#fff',
-                  pointHoverBackgroundColor: 'rgba(255,99,132,1)',
-                  pointHoverBorderColor: 'rgba(255,99,132,1)',
-                  data: [75,  96, 50]
-                }
-              ]}
-              options={{
-                aspectRatio: 2.0,
-                tooltips: {
-                  enabled: true
-                }
-              }}
-              labels={[
-                'Shift A', 'Shift B', 'Shift C'
-              ]}
-            />
-          </CCardBody>
-        </CCard>
+      {/*          {*/}
+      {/*            label: 'My Second dataset',*/}
+      {/*            backgroundColor: 'rgba(255,99,132,0.2)',*/}
+      {/*            pointBackgroundColor: 'rgba(255,99,132,1)',*/}
+      {/*            pointBorderColor: '#fff',*/}
+      {/*            pointHoverBackgroundColor: 'rgba(255,99,132,1)',*/}
+      {/*            pointHoverBorderColor: 'rgba(255,99,132,1)',*/}
+      {/*            data: [75,  96, 50]*/}
+      {/*          }*/}
+      {/*        ]}*/}
+      {/*        options={{*/}
+      {/*          aspectRatio: 2.0,*/}
+      {/*          tooltips: {*/}
+      {/*            enabled: true*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*        labels={[*/}
+      {/*          'Shift A', 'Shift B', 'Shift C'*/}
+      {/*        ]}*/}
+      {/*      />*/}
+      {/*    </CCardBody>*/}
+      {/*  </CCard>*/}
 
-      </CCardGroup>
+      {/*</CCardGroup>*/}
 
 
 
