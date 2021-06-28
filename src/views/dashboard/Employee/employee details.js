@@ -1,5 +1,5 @@
 import React, {lazy, useState,useEffect} from 'react'
-
+import {groupBy, intersection,map}  from  'lodash'
 import {
   CCard,
   CCardBody,
@@ -44,6 +44,10 @@ const Dashboard = () => {
   const [Daycount, setDaycount] = useState({ lists: [] });
   const [department, setdepartment] = useState([] );
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
+  const [departmentName, setdepartmentName] = useState([] );
+  const [departmentcount, setdepartmentcount] = useState([] );
+  const [shiftcount, setshiftcount] = useState([] );
+  const [shiftName, setshiftName] = useState([] );
   const [listData, setListData] = useState({ lists: [] });
   const [empshift, setempshift] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,37 +65,44 @@ const Dashboard = () => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
       );
-      console.log(result.data.data)
+      const x = result.data.data.organization.departmentEmp;
+      const y = result.data.data.organization.shiftEmp;
+      let chartshiftData = [];
+      let chartshiftlabel = [];
+      let chartData = [];
+      let chartlabel = [];
+      x.forEach(element => {
+        chartData.push(element.departmentName);
+      });
+      x.forEach(element => {
+        chartlabel.push(element.DepTotalCount);
+      });
+      y.forEach(element => {
+        chartshiftlabel.push(element.shiftName);
+      });
+      y.forEach(element => {
+        chartshiftData.push(element.ShiftPresent);
+      });
+      console.log(result.data.data.organization)
       setListData({ lists: result.data.data.organization});
       setempshift(result.data.data.organization.shiftEmp);
       setDaycount({ lists: result.data.data.organization.dayCounts[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.departmentEmp);
       setunauthorizedCount(  result.data.data.organization.unauthorizedCount);
+      setdepartmentName(chartData);
+      setdepartmentcount(chartlabel);
+      setshiftName(chartshiftlabel);
+      setshiftcount(chartshiftData);
+      console.log(chartlabel)
       setLoading(false);
     };
     fetchData();
   }, []);
 
-  const data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
-    datasets: [
-      {
-        label: '2020',
-        data: [30, 39, 10, 50, 30, 70, 35],
-        fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(228,102,81,0.9)',
-      },
-      {
-        label: '2021',
-        data: [80, 39, 40, 35, 40, 20, 45],
-        fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
-      },
-    ],
-  };
+
+
+
 
   const options = {
     scales: {
@@ -118,7 +129,7 @@ const Dashboard = () => {
       <CHeaderNavLink to="/dashboard"></CHeaderNavLink> <br></br>
 
       <CRow>
-        <CCol sm="6" md="2">
+        <CCol>
           <CWidgetProgressIcon
             header={Daycount.lists.totalEmployees}
             text="Employees"
@@ -128,7 +139,7 @@ const Dashboard = () => {
             <CIcon name="cil-people" height="36"/>
           </CWidgetProgressIcon>
         </CCol>
-        <CCol sm="6" md="2">
+        <CCol >
           <CWidgetProgressIcon
             header={Daycount.lists.presentCounts}
             text="Total Present"
@@ -138,7 +149,7 @@ const Dashboard = () => {
             <CIcon name="cil-userFollow" height="36"/>
           </CWidgetProgressIcon>
         </CCol>
-        <CCol sm="6" md="2">
+        <CCol >
           <CWidgetProgressIcon
             header={leaveAllStats.lists.accepted}
             text="Authorized Leaves"
@@ -148,7 +159,7 @@ const Dashboard = () => {
             <CIcon name="cil-basket" height="36"/>
           </CWidgetProgressIcon>
         </CCol>
-        <CCol sm="6" md="2">
+        <CCol >
           <CWidgetProgressIcon
             header={unauthorizedCount}
             text="Unauthorized Leaves"
@@ -227,28 +238,50 @@ const Dashboard = () => {
       {/*  </CCard>*/}
 
 
-      {/*  <CCard>*/}
-      {/*    <CCardHeader>*/}
-      {/*      Leave Per Month Bar Chart*/}
-      {/*    </CCardHeader>*/}
-      {/*    <CCardBody>*/}
-      {/*      <CChartBar*/}
-      {/*        datasets={[*/}
-      {/*          {*/}
-      {/*            label: 'No of leaves',*/}
-      {/*            backgroundColor: '#f87979',*/}
-      {/*            data: [40, 20, 12, 39, 10, 40, 39, 20, 40, 20, 12, 11]*/}
-      {/*          }*/}
-      {/*        ]}*/}
-      {/*        labels="months"*/}
-      {/*        options={{*/}
-      {/*          tooltips: {*/}
-      {/*            enabled: true*/}
-      {/*          }*/}
-      {/*        }}*/}
-      {/*      />*/}
-      {/*    </CCardBody>*/}
-      {/*  </CCard>*/}
+        <CCard>
+          <CCardHeader>
+            Employees on Departments
+          </CCardHeader>
+          <CCardBody>
+            <CChartBar
+              datasets={[
+                {
+                  label: 'Total Employees on Department',
+                  backgroundColor: '#3f83ef',
+                  data: departmentcount
+                }
+              ]}
+              labels={departmentName}
+              options={{
+                tooltips: {
+                  enabled: true
+                }
+              }}
+            />
+          </CCardBody>
+        </CCard>
+      <CCard>
+        <CCardHeader>
+          Employees on Shifts
+        </CCardHeader>
+        <CCardBody>
+          <CChartBar
+            datasets={[
+              {
+                label: 'Total Employees on Shifts',
+                backgroundColor: '#175087',
+                data: shiftcount
+              }
+            ]}
+            labels={shiftName}
+            options={{
+              tooltips: {
+                enabled: true
+              }
+            }}
+          />
+        </CCardBody>
+      </CCard>
 
       {/*  <CCard>*/}
       {/*    <CCardHeader>*/}
