@@ -60,7 +60,7 @@ const Department = React.lazy(() => import('./views/dashboard/Department/Departm
 const Designation = React.lazy(() => import('./views/dashboard/Department/Designation'));
 const leavelogs = React.lazy(() => import('./views/dashboard/Leave Management/Leave Log'));
 const Chartsattendence = React.lazy(() => import('./views/charts/ChartsAttendence'));
-const Chartsot = React.lazy(() => import('./views/charts/ChartsAttendence'));
+const Chartsot = React.lazy(() => import('./views/dashboard/Overtime Management/Otdetails'));
 const Chartsleave = React.lazy(() => import('./views/charts/ChartsAttendence'));
 const Leaveswap = React.lazy(() => import('./views/dashboard/Leave Management/leaveswap'));
 const Unauthleave = React.lazy(() => import('./views/dashboard/Leave Management/unauthleave'));

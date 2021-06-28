@@ -61,6 +61,10 @@ const WidgetsDropdown = () => {
       <CCol xs="12" sm="6" lg="3">
         <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Unauthorized Leaves" footer="View More Details"/>
       </CCol>
+        <CCol xs="12" sm="6" lg="3">
+          <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Over Time" footer={
+            <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Chartsot">View More Details</CHeaderNavLink>}/>
+        </CCol>
       </CRow>
       <CRow>
       <CCol xs="12" md="6">

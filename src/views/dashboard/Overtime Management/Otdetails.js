@@ -1,6 +1,5 @@
-import React, {lazy, useState} from 'react'
-import {  useContext , useEffect} from 'react';
-import UserContext from '../../userContext';
+import React, {lazy, useState,useEffect} from 'react'
+
 import {
   CCard,
   CCardBody,
@@ -27,22 +26,22 @@ import {
   CChartPolarArea
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
-import ChartLineSimple from '../charts/ChartLineSimple'
+import ChartLineSimple from '../../charts/ChartLineSimple'
 import CIcon from '@coreui/icons-react'
 
-import MainChartExample from '../charts/MainChartExample.js'
+import MainChartExample from '../../charts/MainChartExample.js'
 import axios from "axios";
 
-const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
+const WidgetsDropdown = lazy(() => import('../../widgets/WidgetsDropdown.js'))
+const WidgetsBrand = lazy(() => import('../../widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
 
-  const [Daycount, setDaycount] = useState({ lists: [] });
-  const [department, setdepartment] = useState({ lists: [] });
+  const [Daycount, setDaycount] = useState([] );
+  const [department, setdepartment] = useState([] );
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [listData, setListData] = useState({ lists: [] });
-  const [flagged, setflagged] = useState();
+  const [otshift, setotshift] = useState([]);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
   const headers = {
@@ -56,13 +55,13 @@ const Dashboard = () => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
       );
-      setListData({ lists: result.data.data.organization});
-      setflagged(result.data.data.organization.flaggedEmployees);
-      setDaycount({ lists: result.data.data.organization.dayCounts[0]});
-      setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
-      setdepartment({ lists: result.data.data.organization.departmentEmp});
-
       console.log(result.data.data)
+      setListData({ lists: result.data.data.organization});
+      setotshift(result.data.data.organization.otShiftStatics);
+      setDaycount( result.data.data.organization.overtimeStatics);
+      setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
+      setdepartment(  result.data.data.organization.otDepartmentStatics);
+
     };
     fetchData();
   }, []);
@@ -71,37 +70,84 @@ const Dashboard = () => {
       <h4>Detailed Over Time Dashboard</h4>
       <CHeaderNavLink to="/dashboard"></CHeaderNavLink> <br></br>
 
-      <CRow>
-        <CCol >
-          <CWidgetSimple header="Total Shifts" text="3" color="success">
-          </CWidgetSimple>
-        </CCol>
-        <CCol sm="4" lg="2">
-          <CWidgetSimple header="OT Hours- SHIFT 1" text="11">
-          </CWidgetSimple>
-        </CCol>
-        <CCol sm="4" lg="2">
-          <CWidgetSimple header="OT SHIFT 2" text="13">
 
-          </CWidgetSimple>
-        </CCol>
-        <CCol sm="4" lg="2">
-          <CWidgetSimple header="OT SHIFT 3" text="0">
 
-          </CWidgetSimple>
-        </CCol>
-        <CCol sm="4" lg="2">
-          <CWidgetSimple header="Total OT Hours" text="14">
+        <CCard>
+          <CCardHeader>
+            OverTime on Shifts
+          </CCardHeader>
+          <CCardBody>
+            <CRow>
+        {otshift.map((country, key) => (
+          <CCol sm="4" lg="2">
+            <CWidgetSimple header={country.shiftName} text={country.OTcount}>
+            </CWidgetSimple>
+          </CCol>
+        ))}
+            </CRow>
+            <CRow>
+              <CCol sm="4" lg="2">
+                <CWidgetSimple header="Total OT Hours" text="14">
 
-          </CWidgetSimple>
-        </CCol>
-        <CCol sm="4" lg="2">
-          <CWidgetSimple header="Balance OT hours" text="10">
+                </CWidgetSimple>
+              </CCol>
+              <CCol sm="4" lg="2">
+                <CWidgetSimple header="Balance OT hours" text="10">
 
-          </CWidgetSimple>
-        </CCol>
-      </CRow>
+                </CWidgetSimple>
+              </CCol>
+            </CRow>
+          </CCardBody>
 
+        </CCard>
+
+      <CCard>
+
+        <CCardHeader>
+          OverTime on Departments
+        </CCardHeader>
+        <CCardBody>
+          <CRow>
+            {department.map((country, key) => (
+              <CCol sm="4" lg="2">
+                <CWidgetSimple header={country.departmentName} text={country.OTCount}>
+                </CWidgetSimple>
+              </CCol>
+            ))}
+          </CRow>
+        </CCardBody>
+
+      </CCard>
+
+
+      <CCard>
+
+        <CCardHeader>
+          OverTime on Acceptance
+        </CCardHeader>
+        <CCardBody>
+          <CChartPie
+            datasets={[
+              {
+                backgroundColor: [
+
+                  '#42ba96',
+                  '#df4759',
+                  '#ffc107'
+                ],
+                data: [(Daycount[0].accepted), (Daycount[0].declined), (Daycount[0].pending)]
+              }
+            ]}
+            labels={[ `Accept `+ (Daycount[0].accepted), `Decline ` + (Daycount[0].declined), `Pending ` + (Daycount[0].pending)]}
+            options={{
+              tooltips: {
+                enabled: true
+              }
+            }}
+          />
+        </CCardBody>
+
+      </CCard>
       <CCardGroup columns className = "cols-1" >
 
         <CCard>
