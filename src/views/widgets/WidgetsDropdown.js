@@ -78,7 +78,7 @@ const WidgetsDropdown = () => {
             Leave stats
           </CCardHeader>
           <CCardBody>
-            <CHeaderNavLink to="/Chartsattendence">View More Details</CHeaderNavLink>
+            <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
             <CChartPie
               datasets={[
                 {
@@ -108,7 +108,7 @@ const WidgetsDropdown = () => {
             Attendence
           </CCardHeader>
           <CCardBody>
-            <CHeaderNavLink to="/Chartsattendence">View More Details</CHeaderNavLink>
+            <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
             <CChartPie
               datasets={[
                 {
