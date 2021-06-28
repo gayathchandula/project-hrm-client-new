@@ -139,7 +139,7 @@ const WidgetsDropdown = () => {
               Departments
             </CCardHeader>
             <CCardBody>
-              <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
+              <CHeaderNavLink to="/Empdetails">View More Details</CHeaderNavLink>
               <CRow>
                 <CCol xs="12" md="6" xl="6">
 
