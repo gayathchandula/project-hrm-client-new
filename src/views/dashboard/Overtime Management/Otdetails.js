@@ -15,7 +15,7 @@ import {
   CButton,
   CButtonGroup,
   CWidgetProgressIcon,
-  CCallout
+  CCallout, CSpinner
 } from '@coreui/react'
 import {
   CChartBar,
@@ -41,6 +41,7 @@ const Dashboard = () => {
   const [department, setdepartment] = useState([] );
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [listData, setListData] = useState({ lists: [] });
+  const [loading, setLoading] = useState(true);
   const [otshift, setotshift] = useState([]);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -61,10 +62,17 @@ const Dashboard = () => {
       setDaycount( { lists: result.data.data.organization.overtimeStatics[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.otDepartmentStatics);
-
+      setLoading(false);
     };
     fetchData();
   }, []);
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   return (
     <>
       <h4>Detailed Over Time Dashboard</h4>

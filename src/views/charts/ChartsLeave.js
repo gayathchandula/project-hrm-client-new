@@ -17,7 +17,7 @@ import {
   CWidgetProgressIcon,
   CLabel,
   CWidgetBrand,
-  CCallout
+  CCallout, CSpinner
 } from '@coreui/react'
 import {
   CChartBar,
@@ -47,6 +47,7 @@ const Dashboard = () => {
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [listData, setListData] = useState({ lists: [] });
   const [empshift, setempshift] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [unauthorizedCount, setunauthorizedCount] = useState([]);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -68,7 +69,7 @@ const Dashboard = () => {
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.unauthorizedDepartments);
       setunauthorizedCount(  result.data.data.organization.unauthorizedCount);
-
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -104,6 +105,14 @@ const Dashboard = () => {
       ],
     },
   };
+
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   return (
     <>
       <h4>Detailed Leave Dashboard</h4>

@@ -3,7 +3,7 @@ import {
   CRow,
   CCol,
   CContainer,
-  CWidgetProgress, CCard, CCardHeader, CCardBody, CHeaderNavLink, CProgress, CBadge,
+  CWidgetProgress, CCard, CCardHeader, CCardBody, CHeaderNavLink, CProgress, CBadge, CSpinner,
 } from '@coreui/react'
 
 import axios from 'axios';
@@ -14,6 +14,7 @@ const WidgetsDropdown = () => {
   const [Daycount, setDaycount] = useState({ lists: [] });
   const [department, setdepartment] = useState({ lists: [] });
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
+  const [loading, setLoading] = useState(true);
   const [flagged, setflagged] = useState();
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -33,12 +34,19 @@ const WidgetsDropdown = () => {
       setDaycount({ lists: result.data.data.organization.dayCounts[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment({ lists: result.data.data.organization.departmentEmp});
+      setLoading(false);
 
       console.log(result.data.data)
     };
     fetchData();
   }, []);
-
+  if (loading) {
+    return (
+      <div style={{ padding: "10px 20px", textAlign: "center"}}>
+        <CSpinner />
+      </div>
+    )
+  }
   // render
   return (
     <CContainer>
