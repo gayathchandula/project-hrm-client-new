@@ -37,7 +37,7 @@ const WidgetsBrand = lazy(() => import('../../widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
 
-  const [Daycount, setDaycount] = useState([] );
+  const [Daycount, setDaycount] = useState({ lists: [] } );
   const [department, setdepartment] = useState([] );
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [listData, setListData] = useState({ lists: [] });
@@ -58,7 +58,7 @@ const Dashboard = () => {
       console.log(result.data.data)
       setListData({ lists: result.data.data.organization});
       setotshift(result.data.data.organization.otShiftStatics);
-      setDaycount( result.data.data.organization.overtimeStatics);
+      setDaycount( { lists: result.data.data.organization.overtimeStatics[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.otDepartmentStatics);
 
@@ -135,10 +135,10 @@ const Dashboard = () => {
                   '#df4759',
                   '#ffc107'
                 ],
-                data: [(Daycount[0].accepted), (Daycount[0].declined), (Daycount[0].pending)]
+                data: [(Daycount.lists.accepted), (Daycount.lists.declined), (Daycount.lists.pending)]
               }
             ]}
-            labels={[ `Accept `+ (Daycount[0].accepted), `Decline ` + (Daycount[0].declined), `Pending ` + (Daycount[0].pending)]}
+            labels={[ `Accept `+ (Daycount.lists.accepted), `Decline ` + (Daycount.lists.declined), `Pending ` + (Daycount.lists.pending)]}
             options={{
               tooltips: {
                 enabled: true

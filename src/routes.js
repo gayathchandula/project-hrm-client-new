@@ -61,6 +61,7 @@ const Designation = React.lazy(() => import('./views/dashboard/Department/Design
 const leavelogs = React.lazy(() => import('./views/dashboard/Leave Management/Leave Log'));
 const Chartsattendence = React.lazy(() => import('./views/charts/ChartsAttendence'));
 const Chartsot = React.lazy(() => import('./views/dashboard/Overtime Management/Otdetails'));
+const Empdetails = React.lazy(() => import('./views/dashboard/Employee/employee details'));
 const Chartsleave = React.lazy(() => import('./views/charts/ChartsAttendence'));
 const Leaveswap = React.lazy(() => import('./views/dashboard/Leave Management/leaveswap'));
 const Unauthleave = React.lazy(() => import('./views/dashboard/Leave Management/unauthleave'));
@@ -73,6 +74,7 @@ const routes = [
   { path: '/Settings', name: 'Settings', component: Settings },
   { path: '/Chartsot', name: 'Chartsot', component: Chartsot },
   { path: '/Leaveswap', name: 'Leaveswap', component: Leaveswap },
+  { path: '/Empdetails', name: 'Empdetails', component: Empdetails },
   { path: '/Unauthleave', name: 'Unauthleave', component: Unauthleave },
   { path: '/Chartsleave', name: 'Chartsleave', component: Chartsleave },
   { path: '/attendence', name: 'Attendence Log', component: Attendence },

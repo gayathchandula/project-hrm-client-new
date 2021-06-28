@@ -44,13 +44,17 @@ const WidgetsDropdown = () => {
     <CContainer>
       <CRow>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="success" variant="inverse" value={Daycount.lists.totalEmployees} header={Daycount.lists.totalEmployees} text="Total Employees" footer="View More Details"/>
+        <CWidgetProgress inverse color="success" variant="inverse" value={Daycount.lists.totalEmployees} header={Daycount.lists.totalEmployees} text="Total Employees" footer={
+          <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Empdetails">View More Details</CHeaderNavLink>}/>
+
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="info" variant="inverse" header={Daycount.lists.presentCounts} value={Daycount.lists.presentCounts} text="Total Present" footer="View more Details"/>
+        <CWidgetProgress inverse color="info" variant="inverse" header={Daycount.lists.presentCounts} value={Daycount.lists.presentCounts} text="Total Present" footer={
+          <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Empdetails">View More Details</CHeaderNavLink>}/>
       </CCol>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="warning" variant="inverse" value={Daycount.lists.absentCount} header={Daycount.lists.absentCount} text="Total Absent" footer="View More Details"/>
+        <CWidgetProgress inverse color="warning" variant="inverse" value={Daycount.lists.absentCount} header={Daycount.lists.absentCount} text="Total Absent" footer={
+          <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Empdetails">View More Details</CHeaderNavLink>}/>
       </CCol>
 
       <CCol xs="12" sm="6" lg="3">
@@ -59,7 +63,8 @@ const WidgetsDropdown = () => {
       </CRow>
       <CRow>
       <CCol xs="12" sm="6" lg="3">
-        <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Unauthorized Leaves" footer="View More Details"/>
+        <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Unauthorized Leaves" footer={
+          <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Chartsleave">View More Details</CHeaderNavLink>}/>
       </CCol>
         <CCol xs="12" sm="6" lg="3">
           <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Over Time" footer={
