@@ -12,6 +12,7 @@ const WidgetsDropdown = () => {
 
   const [listData, setListData] = useState({ lists: [] });
   const [Daycount, setDaycount] = useState({ lists: [] });
+  const [Ot, setOt] = useState({ lists: [] } );
   const [department, setdepartment] = useState({ lists: [] });
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const WidgetsDropdown = () => {
       setListData({ lists: result.data.data.organization});
       setflagged(result.data.data.organization.flaggedEmployees);
       setDaycount({ lists: result.data.data.organization.dayCounts[0]});
+      setOt( { lists: result.data.data.organization.overtimeStatics[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment({ lists: result.data.data.organization.departmentEmp});
       setLoading(false);
@@ -75,7 +77,7 @@ const WidgetsDropdown = () => {
           <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Chartsleave">View More Details</CHeaderNavLink>}/>
       </CCol>
         <CCol xs="12" sm="6" lg="3">
-          <CWidgetProgress inverse color="danger" variant="inverse" value={listData.lists.unauthorizedCount} header={listData.lists.unauthorizedCount}  text="Over Time" footer={
+          <CWidgetProgress inverse color="danger" variant="inverse" value={Ot.lists.accepted} header={listData.lists.unauthorizedCount}  text="Over Time" footer={
             <CHeaderNavLink style={{ color: "inherit" , textDecoration:"none"} } to="/Chartsot">View More Details</CHeaderNavLink>}/>
         </CCol>
       </CRow>
@@ -110,6 +112,8 @@ const WidgetsDropdown = () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+
       <CCol xs="12" md="6">
         <CCard>
           <CCardHeader>
@@ -141,51 +145,37 @@ const WidgetsDropdown = () => {
       </CCol>
         </CRow>
       <CRow>
-        <CCol>
+        <CCol >
           <CCard>
             <CCardHeader>
-              Departments
+              OverTime stats
             </CCardHeader>
             <CCardBody>
-              <CHeaderNavLink to="/Empdetails">View More Details</CHeaderNavLink>
-              <CRow>
-                <CCol xs="12" md="6" xl="6">
+              <CHeaderNavLink to="/Chartsleave">View More Details</CHeaderNavLink>
+              <CChartPie
+                datasets={[
+                  {
+                    backgroundColor: [
 
-                  <hr className="mt-0" />
-                  {department.lists.map((country, key) => (
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                      <span className="progress-group-text">
-                        {country.departmentName}
-                      </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <CProgress className="progress-xs" color="info" value={country.DepTotalCount} />
-                        <CProgress className="progress-xs" color="success" value={country.DepPresentCount} />
-                        <CProgress className="progress-xs" color="warning" value={(country.DepTotalCount)-(country.DepPresentCount)}/>
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="legend text-center">
-                    <small>
-                      <sup className="px-1"><CBadge shape="pill" color="info">&nbsp;</CBadge></sup>
-                      Total Employees
-                      &nbsp;
-                      <sup className="px-1"><CBadge shape="pill" color="success" >&nbsp;</CBadge></sup>
-                      Present Employees
-                      <sup className="px-1"><CBadge shape="pill" color="warning">&nbsp;</CBadge></sup>
-                      Absent Employees
-                    </small>
-                  </div>
-                </CCol>
-
-              </CRow>
+                      '#42ba96',
+                      '#df4759',
+                      '#ffc107'
+                    ],
+                    data: [(Ot.lists.accepted), (Ot.lists.declined), (Ot.lists.pending)]
+                  }
+                ]}
+                labels={[ `Accept `+ (Ot.lists.accepted), `Decline ` + (Ot.lists.declined), `Pending ` + (Ot.lists.pending)]}
+                options={{
+                  tooltips: {
+                    enabled: true
+                  }
+                }}
+              />
 
             </CCardBody>
-
           </CCard>
         </CCol>
+
       </CRow>
 
 
