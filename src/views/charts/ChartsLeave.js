@@ -142,6 +142,8 @@ const Dashboard = () => {
   return (
     <>
       <h4>Detailed Leave Dashboard</h4>
+
+
       <CHeaderNavLink to="/dashboard"></CHeaderNavLink> <br></br>
 
       <CRow>
