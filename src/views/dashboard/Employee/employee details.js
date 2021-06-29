@@ -286,6 +286,7 @@ const Dashboard = () => {
                   barPercentage: 0.4
                 }]
               },
+
               tooltips: {
                 enabled: true
               }
