@@ -42,6 +42,10 @@ const Dashboard = () => {
   const[leaveAllStats,setleaveAllStats] = useState({ lists: [] });
   const [listData, setListData] = useState({ lists: [] });
   const [loading, setLoading] = useState(true);
+  const [departmentName, setdepartmentName] = useState([] );
+  const [departmentcount, setdepartmentcount] = useState([] );
+  const [shiftcount, setshiftcount] = useState([] );
+  const [shiftName, setshiftName] = useState([] );
   const [otshift, setotshift] = useState([]);
   const token = localStorage.getItem("Token")
   const orgid = localStorage.getItem("id")
@@ -56,12 +60,34 @@ const Dashboard = () => {
       const result = await axios(
         `https://hrm-innovigent.herokuapp.com/api/v1/organizations/${orgid}/summary`,headers
       );
+      const x = result.data.data.organization.otDepartmentStatics;
+      const y = result.data.data.organization.otShiftStatics;
+      let chartshiftData = [];
+      let chartshiftlabel = [];
+      let chartData = [];
+      let chartlabel = [];
+      x.forEach(element => {
+        chartlabel.push(element.departmentName);
+      });
+      x.forEach(element => {
+        chartData.push(element.OTCount);
+      });
+      y.forEach(element => {
+        chartshiftlabel.push(element.shiftName);
+      });
+      y.forEach(element => {
+        chartshiftData.push(element.OTcount);
+      });
       console.log(result.data.data)
       setListData({ lists: result.data.data.organization});
       setotshift(result.data.data.organization.otShiftStatics);
       setDaycount( { lists: result.data.data.organization.overtimeStatics[0]});
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.otDepartmentStatics);
+      setdepartmentName(chartlabel);
+      setdepartmentcount(chartData);
+      setshiftName(chartshiftlabel);
+      setshiftcount(chartshiftData);
       setLoading(false);
     };
     fetchData();
@@ -129,7 +155,6 @@ const Dashboard = () => {
 
 
       <CCard>
-
         <CCardHeader>
           OverTime on Acceptance
         </CCardHeader>
@@ -154,7 +179,63 @@ const Dashboard = () => {
             }}
           />
         </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardHeader>
+          Employee Overtime on Shifts
+        </CCardHeader>
+        <CCardBody>
+          <CChartBar
+            datasets={[
+              {
+                label: 'Overtime on Shifts',
+                backgroundColor: '#175087',
+                data: shiftcount
+              }
+            ]}
+            labels={shiftName}
+            options={{
+              scales: {
+                xAxes: [{
+                  barPercentage: 0.4
+                }]
+              },
 
+              tooltips: {
+                enabled: true
+              }
+            }}
+          />
+        </CCardBody>
+      </CCard>
+
+      <CCard>
+        <CCardHeader>
+          Employees Overtimes on Department
+        </CCardHeader>
+        <CCardBody>
+          <CChartBar
+            datasets={[
+              {
+                label: 'Overtime on Department',
+                backgroundColor: '#175087',
+                data: departmentcount
+              }
+            ]}
+            labels={departmentName}
+            options={{
+              scales: {
+                xAxes: [{
+                  barPercentage: 0.4
+                }]
+              },
+
+              tooltips: {
+                enabled: true
+              }
+            }}
+          />
+        </CCardBody>
       </CCard>
       {/*<CCardGroup columns className = "cols-1" >*/}
 

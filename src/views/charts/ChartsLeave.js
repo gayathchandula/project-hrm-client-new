@@ -91,8 +91,8 @@ const Dashboard = () => {
       setleaveAllStats({ lists: result.data.data.organization.leaveAllStats[0]});
       setdepartment(  result.data.data.organization.unauthorizedDepartments);
       setunauthorizedCount(  result.data.data.organization.unauthorizedCount);
-      setdepartmentName(chartData);
-      setdepartmentcount(chartlabel);
+      setdepartmentName(chartlabel);
+      setdepartmentcount(chartData);
       setshiftName(chartshiftlabel);
       setshiftcount(chartshiftData);
       setLoading(false);
@@ -261,7 +261,7 @@ const Dashboard = () => {
           <CChartBar
             datasets={[
               {
-                label: 'leaves on Shifts',
+                label: 'leaves on Department',
                 backgroundColor: '#175087',
                 data: departmentcount
               }
