@@ -1,5 +1,20 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import ContactMailOutlinedIcon from '@material-ui/icons/ContactMailOutlined';
+import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
+import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import SwapHorizOutlinedIcon from '@material-ui/icons/SwapHorizOutlined';
+import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
+import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
+import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
+import SecurityOutlinedIcon from '@material-ui/icons/SecurityOutlined';
+import TimerOffOutlinedIcon from '@material-ui/icons/TimerOffOutlined';
+import SpellcheckOutlinedIcon from '@material-ui/icons/SpellcheckOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import CancelPresentationOutlinedIcon from '@material-ui/icons/CancelPresentationOutlined';
+import DepartureBoardOutlinedIcon from '@material-ui/icons/DepartureBoardOutlined';
 
 const _nav =  [
   {
@@ -36,65 +51,64 @@ const _nav =  [
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Attendance Management',
-    icon: 'cil-group-plus',
+    icon: <FingerprintIcon className="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'RFID check',
         to: '/',
-        icon: <CIcon name="cil-address-card" customClasses="c-sidebar-nav-icon"/>,
+        icon: <ContactMailOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Attendence Log',
         to: '/attendence',
-        icon: <CIcon name="cil-address-book" customClasses="c-sidebar-nav-icon"/>,
+        icon: <BookOutlinedIcon className="c-sidebar-nav-icon"/>,
       }
     ],
   },
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Shift Management',
-    icon: 'cil-loop-circular',
+    icon: <AddAlertOutlinedIcon className="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Shift Configuration',
         to: '/Shift Configuration',
-        icon: 'cil-settings',
+        icon: <SettingsOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Shift Swaps',
         to: '/Leaveswap',
-        icon: 'cil-loop-circular',
+        icon: <SwapHorizOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
     ],
   },
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Employee Management',
-    route: '/Employee',
-    icon: 'cil-people',
+    icon: <SupervisorAccountOutlinedIcon className="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Employee',
         to: '/Employee',
-        icon: 'cil-people',
+        icon: <GroupAddOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Employee Type',
         to: '/AddEmployeeType',
-        icon: 'cil-user-secret',
+        icon: <AccountBoxOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Department',
         to: '/Department',
-        icon: <CIcon name="cil-shield"
-                     customClasses="c-sidebar-nav-icon"/>,
+        icon: <SecurityOutlinedIcon
+                     className="c-sidebar-nav-icon"/>,
         badge: {
           color: 'info',
         }
@@ -104,25 +118,25 @@ const _nav =  [
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Over Time Management',
-    icon: 'cis-timer',
+    icon: <TimerOffOutlinedIcon className="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Logs',
         to: '/Overtime logs',
-        icon: 'cis-book',
+        icon: <BookOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Configuration',
         to: '/Overtime Configuration',
-        icon: 'cil-settings-alt',
+        icon: <SettingsOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Acceptance',
         to: '/Overtime Acceptance',
-        icon: 'cil-folder-arrow-right',
+        icon: <SpellcheckOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
     ],
   },
@@ -130,43 +144,43 @@ const _nav =  [
     _tag: 'CSidebarNavDropdown',
     name: 'Leave Management',
     route: '/buttons',
-    icon: 'cis-people-minus',
+    icon: <ExitToAppOutlinedIcon className="c-sidebar-nav-icon"/>,
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Logs',
         to: '/leavelogs',
-        icon: 'cis-book',
+        icon: <BookOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Types',
         to: '/Leave Types',
-        icon: 'cil-user-secret',
+        icon: <AccountBoxOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Configuration',
         to: '/Leave Configuration',
-        icon: 'cil-settings-alt',
+        icon: <SettingsOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Acceptance',
         to: '/Leave Acceptance',
-        icon: 'cil-folder-arrow-right',
+        icon: <SpellcheckOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'UnAuthorized Leaves',
         to: '/Unauthleave',
-        icon: 'cid-people-x',
+        icon: <CancelPresentationOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Application(employee)',
         to: '/Leave Application',
-        icon: 'cid-applications',
+        icon: <DepartureBoardOutlinedIcon className="c-sidebar-nav-icon"/>,
       },
     ],
   },
