@@ -21,37 +21,6 @@ const _nav =  [
     }
   },
   {
-    _tag: 'CSidebarNavDropdown',
-    name: 'Employee Management',
-    route: '/Employee',
-    icon: 'cil-puzzle',
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Employee',
-        to: '/Employee',
-        icon: 'cil-chart-pie',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Employee Type',
-        to: '/AddEmployeeType',
-        icon: 'cil-star',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Department',
-        to: '/Department',
-        icon: <CIcon name="cil-puzzle"
-                     customClasses="c-sidebar-nav-icon"/>,
-        badge: {
-          color: 'info',
-        }
-      },
-    ],
-  },
-
-  {
     _tag: 'CSidebarNavItem',
     name: 'Admin',
     to: '/Admin',
@@ -99,6 +68,36 @@ const _nav =  [
         name: 'Shift Swaps',
         to: '/Leaveswap',
         icon: 'cil-pencil',
+      },
+    ],
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Employee Management',
+    route: '/Employee',
+    icon: 'cil-puzzle',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Employee',
+        to: '/Employee',
+        icon: 'cil-chart-pie',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Employee Type',
+        to: '/AddEmployeeType',
+        icon: 'cil-star',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Department',
+        to: '/Department',
+        icon: <CIcon name="cil-puzzle"
+                     customClasses="c-sidebar-nav-icon"/>,
+        badge: {
+          color: 'info',
+        }
       },
     ],
   },
