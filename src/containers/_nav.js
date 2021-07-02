@@ -13,9 +13,9 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Attendence Log',
-    to: '/attendence',
-    icon: <CIcon name="cil-pencil" customClasses="c-sidebar-nav-icon"/>,
+    name: 'Company Calender',
+    to: '/Companycalender',
+    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
     badge: {
       color: 'info',
     }
@@ -66,6 +66,44 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavDropdown',
+    name: 'Attendance Management',
+    icon: 'cil-puzzle',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'RFID check',
+        to: '/',
+        icon: 'cil-chart-pie',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Attendence Log',
+        to: '/attendence',
+        icon: 'cil-star',
+      }
+    ],
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Shift Management',
+    icon: 'cil-puzzle',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Shift Configuration',
+        to: '/Shift Configuration',
+        icon: 'cil-calculator',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Shift Swaps',
+        to: '/Leaveswap',
+        icon: 'cil-pencil',
+      },
+    ],
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
     name: 'Over Time Management',
     route: '/Overtime logs',
     icon: 'cil-puzzle',
@@ -87,18 +125,6 @@ const _nav =  [
         name: 'Overtime Acceptance',
         to: '/Overtime Acceptance',
         icon: 'cil-bell',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Shift Configuration',
-        to: '/Shift Configuration',
-        icon: 'cil-calculator',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Shift Swaps',
-        to: '/Leaveswap',
-        icon: 'cil-pencil',
       },
     ],
   },

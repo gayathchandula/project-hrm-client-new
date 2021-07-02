@@ -65,6 +65,7 @@ const Empdetails = React.lazy(() => import('./views/dashboard/Employee/employee 
 const Chartsleave = React.lazy(() => import('./views/charts/ChartsLeave'));
 const Leaveswap = React.lazy(() => import('./views/dashboard/Leave Management/leaveswap'));
 const Unauthleave = React.lazy(() => import('./views/dashboard/Leave Management/unauthleave'));
+const Companycalender = React.lazy(() => import('./views/dashboard/Home Page/Company calender'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -73,6 +74,7 @@ const routes = [
   { path: '/Change Password', name: 'Change Password', component: ChangePassword },
   { path: '/Settings', name: 'Settings', component: Settings },
   { path: '/Chartsot', name: 'Chartsot', component: Chartsot },
+  { path: '/Companycalender', name: 'Companycalender', component: Companycalender },
   { path: '/Leaveswap', name: 'Leaveswap', component: Leaveswap },
   { path: '/Empdetails', name: 'Empdetails', component: Empdetails },
   { path: '/Unauthleave', name: 'Unauthleave', component: Unauthleave },
