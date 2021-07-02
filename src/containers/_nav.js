@@ -15,7 +15,7 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Company Calender',
     to: '/Companycalender',
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+    icon: <CIcon name="cil-calendar" customClasses="c-sidebar-nav-icon"/>,
     badge: {
       color: 'info',
     }
@@ -24,7 +24,7 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Admin',
     to: '/Admin',
-    icon: <CIcon name="cil-cursor" customClasses="c-sidebar-nav-icon"/>,
+    icon: <CIcon name="cil-shield-alt" customClasses="c-sidebar-nav-icon"/>,
     badge: {
       color: 'info',
     }
@@ -36,38 +36,38 @@ const _nav =  [
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Attendance Management',
-    icon: 'cil-puzzle',
+    icon: 'cil-group-plus',
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'RFID check',
         to: '/',
-        icon: 'cil-chart-pie',
+        icon: <CIcon name="cil-address-card" customClasses="c-sidebar-nav-icon"/>,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Attendence Log',
         to: '/attendence',
-        icon: 'cil-star',
+        icon: <CIcon name="cil-address-book" customClasses="c-sidebar-nav-icon"/>,
       }
     ],
   },
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Shift Management',
-    icon: 'cil-puzzle',
+    icon: 'cil-loop-circular',
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Shift Configuration',
         to: '/Shift Configuration',
-        icon: 'cil-calculator',
+        icon: 'cil-settings',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Shift Swaps',
         to: '/Leaveswap',
-        icon: 'cil-pencil',
+        icon: 'cil-loop-circular',
       },
     ],
   },
@@ -75,25 +75,25 @@ const _nav =  [
     _tag: 'CSidebarNavDropdown',
     name: 'Employee Management',
     route: '/Employee',
-    icon: 'cil-puzzle',
+    icon: 'cil-people',
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Employee',
         to: '/Employee',
-        icon: 'cil-chart-pie',
+        icon: 'cil-people',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Employee Type',
         to: '/AddEmployeeType',
-        icon: 'cil-star',
+        icon: 'cil-user-secret',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Department',
         to: '/Department',
-        icon: <CIcon name="cil-puzzle"
+        icon: <CIcon name="cil-shield"
                      customClasses="c-sidebar-nav-icon"/>,
         badge: {
           color: 'info',
@@ -104,26 +104,25 @@ const _nav =  [
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Over Time Management',
-    route: '/Overtime logs',
-    icon: 'cil-puzzle',
+    icon: 'cis-timer',
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Logs',
         to: '/Overtime logs',
-        icon: 'cil-chart-pie',
+        icon: 'cis-book',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Configuration',
         to: '/Overtime Configuration',
-        icon: 'cil-star',
+        icon: 'cil-settings-alt',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Overtime Acceptance',
         to: '/Overtime Acceptance',
-        icon: 'cil-bell',
+        icon: 'cil-folder-arrow-right',
       },
     ],
   },
@@ -131,43 +130,43 @@ const _nav =  [
     _tag: 'CSidebarNavDropdown',
     name: 'Leave Management',
     route: '/buttons',
-    icon: 'cil-cursor',
+    icon: 'cis-people-minus',
     _children: [
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Logs',
         to: '/leavelogs',
-        icon: 'cil-pencil',
+        icon: 'cis-book',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Types',
         to: '/Leave Types',
-        icon: 'cil-pencil',
+        icon: 'cil-user-secret',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Configuration',
         to: '/Leave Configuration',
-        icon: 'cil-calculator',
+        icon: 'cil-settings-alt',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Acceptance',
         to: '/Leave Acceptance',
-        icon: 'cil-calculator',
+        icon: 'cil-folder-arrow-right',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'UnAuthorized Leaves',
         to: '/Unauthleave',
-        icon: 'cil-calculator',
+        icon: 'cid-people-x',
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'Leave Application(employee)',
         to: '/Leave Application',
-        icon: 'cil-cursor',
+        icon: 'cid-applications',
       },
     ],
   },

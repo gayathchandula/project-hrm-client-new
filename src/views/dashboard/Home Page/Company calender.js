@@ -41,7 +41,7 @@ const Tables = () => {
       <CCol>
         <CCard>
           <CCardHeader>
-            Overtime Configuration Table
+            Company Calender
           </CCardHeader>
           <CCardBody>
             <Calendar
