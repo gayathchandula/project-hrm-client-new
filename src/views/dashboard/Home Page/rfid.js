@@ -39,6 +39,10 @@ const Tables = () => {
   };
   const testIt = async (num) => {
     setErr("");
+    setfirstName("");
+    setShiftName("");
+    setImage("");
+    setemployeeTypeId("");
     setrfid(num)
     if (isEffect) { isEffect = false; return;}
 
