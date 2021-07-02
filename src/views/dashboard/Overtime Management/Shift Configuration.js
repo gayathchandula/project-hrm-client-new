@@ -107,8 +107,8 @@ const Tables = () => {
 
   const onDelete = async (id) => {
 
-
-    const body = ({id} );
+    const Status = 1 ;
+    const body = ({id,Status} );
 
 
 
