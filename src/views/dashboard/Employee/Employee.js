@@ -251,8 +251,8 @@ const Tables = () => {
 
     const onDelete = async (rfid) => {
 
-
-      const body = ({rfid} );
+      const Status = 1 ;
+      const body = ({rfid,Status} );
 
 
 
