@@ -12,6 +12,7 @@ import {
   CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import Clock from 'react-live-clock';
 
 // routes config
 import routes from '../routes'
@@ -61,7 +62,7 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        
+
         <TheHeaderDropdown/>
       </CHeaderNav>
 
@@ -70,7 +71,9 @@ const TheHeader = () => {
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
         />
-         
+        <h1>
+          <Clock format="HH:mm:ss" interval={1000} ticking={true} />
+        </h1>
       </CSubheader>
     </CHeader>
   )
