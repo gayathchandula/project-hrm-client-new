@@ -3,6 +3,9 @@ import {Calendar, momentLocalizer} from "react-big-calendar";
 import React, {useEffect, useState} from "react";
 import moment from "moment";
 import axios from "axios";
+import Clock from 'react-live-clock';
+
+const ReactFitText = require('react-fittext');
 
 const Tables = () => {
   const localizer = momentLocalizer(moment);
@@ -37,6 +40,24 @@ const Tables = () => {
     }
   })
   return (
+    <>
+    <CRow>
+      <CCol>
+        <CCard>
+          <CCardHeader>
+            Company Calender
+          </CCardHeader>
+          <CCardBody>
+            <ReactFitText compressor={0.4}>
+              <h1>
+                <Clock format="HH:mm:ss" interval={1000} ticking={true} />
+              </h1>
+            </ReactFitText>
+
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
     <CRow>
       <CCol>
         <CCard>
@@ -57,6 +78,7 @@ const Tables = () => {
         </CCard>
       </CCol>
     </CRow>
+    </>
   )
 }
 
