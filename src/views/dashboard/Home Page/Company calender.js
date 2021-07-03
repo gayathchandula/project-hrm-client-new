@@ -48,23 +48,6 @@ const Tables = () => {
             Company Calender
           </CCardHeader>
           <CCardBody>
-            <ReactFitText compressor={0.4}>
-              <h1>
-                <Clock format="HH:mm:ss" interval={1000} ticking={true} />
-              </h1>
-            </ReactFitText>
-
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
-    <CRow>
-      <CCol>
-        <CCard>
-          <CCardHeader>
-            Company Calender
-          </CCardHeader>
-          <CCardBody>
             <Calendar
               localizer={localizer}
               events={events}
